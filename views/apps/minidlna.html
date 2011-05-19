@@ -1,0 +1,181 @@
+{% extends 'apps/apptemplate.html' %}
+{% block title %}MiniDLNA{% endblock %}
+
+{% block configpage %}
+<script type="text/javascript"><!--
+
+var package_name = "minidlna";
+
+function showstart() {
+	$('#startlink').show();
+	$('#stoplink').hide();
+}
+function showstop() {
+	$('#startlink').hide();
+	$('#stoplink').show();
+}
+
+function hidelinks() {
+	$('#startlink').hide();
+	$('#stoplink').hide();
+}
+
+function showloader() {
+	clearRunning();
+	$('#loader').show();
+}
+
+function hideloader() {
+	$('#loader').hide();
+	$('#runstatus').show();
+}
+
+function isRunning() {
+	$('#runstatus').html('Running');
+}
+
+function notRunning() {
+	$('#runstatus').html('Not running');
+}
+
+function clearRunning() {
+	$('#runstatus').html('Please Wait...');
+}
+
+function errorRunning() {
+	$('#runstatus').html('Error!');
+}
+
+function start() {
+	hidelinks();
+	showloader();
+	$.ajax({
+        method: 'GET',
+        cache: false,
+        url : '/api/startapp/' + package_name,
+        dataType : 'text',
+        success: function (text) { 
+            setTimeout(checkStatus, 3000);
+        }
+	});
+}
+
+function stop() {
+	hidelinks();
+	showloader();
+	$.ajax({
+        method: 'GET',
+        cache: false,
+        url : '/api/stopapp/' + package_name,
+        dataType : 'text',
+        success: function (text) { 
+            setTimeout(checkStatus, 3000);
+        }
+	});
+}
+
+function checkStatus() {
+showloader();
+hidelinks();
+$.ajax({
+        method: 'GET',
+        cache: false,
+        url : '/api/isrunning/' + package_name,
+        dataType : 'text',
+        success: function (text) { 
+            if (text == "False") {
+				notRunning();
+                showstart();
+				hideloader();
+            }
+            else if (text == "True") {
+				isRunning();
+                showstop();
+				hideloader();
+            }
+			else {
+				showstart();
+				errorRunning();
+				hideloader();
+			}
+        }
+});
+}
+hidelinks();
+checkStatus();
+--></script>
+<div id="configpage">
+<h2>Minidlna</h2>
+
+<div id="leftpanel">
+<div id="header">
+
+<div>Configuration</div>
+
+</div><!-- header -->
+
+<div id="displayarea">
+<form action="" method="post">
+	
+	
+	{{ form.strict_dlna }}
+	<label for="id_strict_dlna">Strict DLNA</label>{{ form.strict_dlna.errors }}
+	<br/><br/>
+	
+	
+	{{ form.enable_tivo }}
+	<label for="id_enable_tivo">Enable TiVO Support</label>{{ form.enable_tivo.errors }}
+	<br/><br/>
+	
+	
+	{{ form.inotify }}
+	<label for="id_inotify">Reload when files change</label>{{ form.inotify.errors }}
+	<br/><br/>
+	
+	<label for="id_media_dir">Media Directory</label>{{ form.media_dir.errors }}
+	<br/>
+	
+	{{ form.media_dir }}
+	<br/><br/>
+	
+	<label for="id_port">Network port</label>{{ form.port.errors }}
+	<br/>
+	
+	{{ form.port }}
+	<br/><br/>
+	
+
+	
+	  {% csrf_token %}
+      <input type="submit" value="Save">
+  </form>
+</div><!-- displayarea -->
+</div><!-- leftpanel -->
+<div id="rightpanel">
+<div id="header">Daemon</div><!-- header -->
+<div id="attributes">
+
+<div id="statustitle" class="panelattributename">Status:</div>
+<div id="runstatus" class="panelattribute">
+Please Wait...
+</div>
+
+
+<div id="daemonoptions" class="panelattributename">Options:</div>
+
+
+<img id="loader" style="width:18px;height:18px;margin:0;" src="/static/images/loader.gif"/>
+<div id="startlink" class="panelattribute">
+<input type="button" value="Start" onclick="start();"/>
+</div>
+
+<div id="stoplink" class="panelattribute">
+<input type="button" value="Stop" onclick="stop();"/>
+</div>
+
+
+</div><!-- attributes -->
+
+</div><!-- rightpanel -->
+</div><!-- configpage -->
+{% endblock %}

@@ -1,0 +1,934 @@
+/* global elements */
+
+/*
+Copyright (c) 2011, Steve Oliver (mrsteveman1@gmail.com)
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in the 
+      documentation and/or other materials provided with the distribution.
+    * Neither the name of the <organization> nor the
+      names of its contributors may be used to endorse or promote products
+      derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY STEVE OLIVER ''AS IS'' AND ANY
+EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL STEVE OLIVER BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;                    
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND 
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
+html,body {
+margin:0;
+padding:0;
+font-family:Helvetica;
+height: 100%;
+background-color:#f9f9f9;
+}
+
+a, a:hover, a:visited {
+color:#333;
+text-decoration:none;
+}
+
+#clear,
+.clear {
+	clear:both;
+}
+
+h4 {
+    padding:0;
+    margin:1em 0 0.2em 0em;
+}
+
+h2 {
+    padding:0;
+    margin:1em 0 1em 0;
+}
+
+p {
+    padding:0;
+    margin:1em 0 0.2em 0em;
+}
+
+
+/* main elements */
+
+#wrapper {
+    padding:0;
+    min-height: 100%;
+    height: auto !important;
+    margin: 0 auto -5.35em;
+	width: 100%;
+}
+
+#main {
+        margin:0 auto;
+        width:auto;		
+}
+
+#content {
+
+clear: both;
+margin-left: 175px;
+
+}
+
+#page_body {
+float: left;
+width: 100%;
+}
+
+
+.page_body_section {
+    display:block;
+    min-height:250px;
+    position:relative;
+    padding-right:12px;
+    padding-bottom:24px;
+    padding-left: 12px;
+}
+
+
+/* header */
+
+#header {
+height:46px;
+border-bottom: #C6C6C6 1px solid;
+background: #D9D9D9;
+background: -moz-linear-gradient(bottom,#D7D7D7,#E4E4E4);
+background: -webkit-gradient(linear,left bottom,left top,from(#D7D7D7),to(#E4E4E4));
+}
+
+#header img#tuxinabox {
+height:32px;
+width:32px;
+float: left;
+margin: 7px 0 0 15px;
+}
+
+#header img#plugapps-logo {
+padding: 8px 0 0 12px;
+margin: 0;
+float: left;
+height:32px;
+width:96px;
+}
+
+#header span#login {
+color:#777;
+text-shadow:rgba(255, 255, 255, 0.8) 0 1px 0;
+display:inline-block;
+font-weight:bold;
+font-size:0.8em;
+position:absolute;
+right:24px;
+top:16px;
+
+}
+
+#header span#login a,
+#header span#login a:visited {
+color:#222;
+}
+
+#header span#login .auth_navbar {
+font-family:helvetica;
+font-weight:normal;
+}
+
+#header span#login .auth_navbar a, .auth_navbar a:visited {
+color:#222;
+font-weight:normal;
+text-decoration:none;
+font-family:helvetica;
+font-weight:normal;
+}
+
+/* left admin menu */
+
+div#plugmenu * {
+-webkit-user-select: none;
+-moz-user-select: none;
+-khtml-user-select: none;
+user-select: none;
+}
+
+div#plugmenu {
+float: left;
+clear: left;
+width: 145px;
+margin-top: 15px;
+margin-right: 5px;
+margin-bottom: 15px;
+margin-left: -160px;
+position: relative;
+padding: 0;
+list-style: none;
+}
+
+div#plugmenu ul {
+margin:0;
+padding:0;
+
+list-style: none;
+}
+
+div#plugmenu ul li.plug-menu {
+height: 20px;
+border-width: 1px;
+border-style: solid;
+border-color: #E3E3E3;
+-webkit-border-top-left-radius: 4px;
+-webkit-border-top-right-radius: 4px;
+-moz-border-radius-topleft: 4px;
+-moz-border-radius-topright: 4px;
+border-top-left-radius: 4px;
+border-top-right-radius: 4px;
+background:#eee;
+padding-top: 6px;
+padding-left: 6px;
+}
+
+div#plugmenu ul li.plug-menu a {
+font-size:12px;
+font-weight:bold;
+min-width: 10em;
+padding: 5px;
+color:#222;
+text-shadow:rgba(255, 255, 255, 0.8) 0 1px 0;
+}
+
+div#plugmenu ul ul.plug-submenu {
+background: white;
+border-width: 1px;
+border-style: solid;
+border-color: #E3E3E3;
+font-size: 12px;
+padding-left: 12px;
+padding-top: 6px;
+padding-bottom: 6px;
+line-height: 14px;
+line-height: 22px;
+}
+
+div#plugmenu ul li.plug-menu-sep {
+min-height:24px;
+}
+
+/* news widget */
+
+#newsbox {
+float:right;
+width:300px;
+}
+
+#newsbox ul {
+list-style:none;
+}
+
+#newsbox ul li#newsentry {
+margin-bottom:12px;
+}
+
+#newsbox ul li#newsentry div#newstitle {
+font-family:Helvetica;
+font-size:14px;
+margin-bottom:4px;
+font-weight:bold;
+}
+
+#newsbox ul li#newsentry span#newsdescription {
+font-family:Helvetica;
+font-size:12px;
+}
+
+#newsbox ul li#newsentry span#readmore {
+font-size:12px;
+
+}
+
+#newsbox ul li#newsentry span#readmore a,
+#newsbox ul li#newsentry span#readmore a:hover,
+#newsbox ul li#newsentry span#readmore a:visited {
+color:#0000FF;
+text-decoration:underline;
+}
+
+/* shell page */
+
+#runloader {
+	float:right;
+	margin:0;
+}
+
+form#runcommand {
+	display:inline;
+	margin-left:12px;
+	margin-right:12px;
+	margin-bottom:4px;
+}
+
+form#runcommand #commandbox {
+	width:400px;
+}
+
+form#runcommand #error {
+
+}
+
+#terminal {
+	background:#333;
+	color:#fff;
+	min-height:300px;
+	border:1px dotted #666;
+	padding-top:12px;
+	padding-left:12px;
+	padding-right:6px;
+	padding-bottom:6px;
+}
+
+/* storage page elements */
+
+span.device-stats {
+display: inline-block;
+}
+
+.plot-area {
+float:right;
+}
+
+div.jqplot-yaxis {
+width:100px;
+}
+
+div.jqplot-target {
+	width:400px !important;
+	height:300px !important;
+	right:40px !important;
+}
+
+#configpage #leftpanel div.storage-header {
+	height:20px;
+	font-size:12px;
+}
+
+#configpage #leftpanel div.storage-header div {
+	padding-left:9px;
+}
+
+#configpage #leftpanel #displayarea div.device-row {
+	height:38px;
+	font-size:12px;
+}
+
+#configpage #leftpanel #displayarea div.odd {
+	background:#fff;
+}
+
+#configpage #leftpanel #displayarea div.even {
+	background:#efefef;
+}
+
+#configpage #leftpanel #displayarea div.device-row div {
+	height:20px;
+	float:left;
+}
+
+#configpage #leftpanel #displayarea div.device-row div {
+	height:24px;
+	float:left;
+}
+
+#configpage #leftpanel #displayarea div.device-row div {
+	vertical-align:middle;
+	padding-top:10px;
+	padding-left:8px;
+    white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow:hidden;
+}
+
+#configpage #leftpanel div.storage-header div.mountpoint,
+#configpage #leftpanel #displayarea div.device-row div.mountpoint {
+	width:120px;
+}
+
+#configpage #leftpanel div.storage-header div.devicename,
+#configpage #leftpanel #displayarea div.device-row div.devicename {
+	width:70px;
+}
+
+#configpage #leftpanel div.storage-header div.devicesize,
+#configpage #leftpanel #displayarea div.device-row div.devicesize {
+	width:70px;
+}
+
+#configpage #leftpanel div.storage-header div.filesystem,
+#configpage #leftpanel #displayarea div.device-row div.filesystem {
+	width:70px;
+}
+
+#configpage #leftpanel div.storage-header div.spaceused,
+#configpage #leftpanel #displayarea div.device-row div.spaceused {
+	width:90px;
+}
+
+#configpage #leftpanel div.storage-header div.spacefree,
+#configpage #leftpanel #displayarea div.device-row div.spacefree {
+	width:90px;
+}
+
+/* software page */
+
+#buttonarea {
+	width:155px;
+	margin:0 auto;
+}
+
+#buttonarea p {
+	margin-left: 0px;
+	margin-top:64px;
+	text-align: center;
+}
+
+/* home page widgets */
+
+#homepage #widget {
+	float:left;
+	width:48%;
+	margin-right: 12px;
+	margin-bottom:24px;
+	position: relative;
+	min-height:100px;
+	-moz-border-radius: 4px;
+	-khtml-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	border-color: #DFDFDF;
+	border-width:1px;
+	border-style:solid;
+	border-spacing:0;
+	background:white;
+	padding-bottom:12px;
+}
+
+
+#homepage #widget div#header {
+	text-shadow:rgba(255, 255, 255, 0.8) 0 1px 0;
+	background: #D9D9D9;
+	background: -moz-linear-gradient(bottom,#D7D7D7,#E4E4E4);
+	background: -webkit-gradient(linear,left bottom,left top,from(#D7D7D7),to(#E4E4E4));
+	height:20px !important;
+	padding-top: 6px;
+	padding-left:6px;
+	font-size: 12px;
+	border-bottom: #C6C6C6 1px solid;
+	-webkit-border-top-left-radius: 4px;
+	-webkit-border-top-right-radius: 4px;
+	-moz-border-radius-topleft: 4px;
+	-moz-border-radius-topright: 4px;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;	
+}
+
+#homepage #widget div#header div {
+	float:left;
+	height:20px;
+	font-weight:bold;
+}
+
+#homepage #widget div#displayarea {
+	background:#fff;
+	padding: 12px;
+	min-height:100px;
+}
+
+/* system config pages */
+
+#configpage {
+      margin-bottom:24px;
+	  position:relative;
+}
+
+#configpage #rightpanel {
+	width: 190px;
+	float: left;
+	min-height:350px;
+	border: #DFDFDF 1px solid;
+	position:fixed;
+	top:123px;
+	right:12px;
+	border: 1px solid #ccc;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+
+#configpage #rightpanel div#header,
+#configpage #leftpanel div#header {
+	text-shadow:rgba(255, 255, 255, 0.8) 0 1px 0;
+	background: #D9D9D9;
+	background: -moz-linear-gradient(bottom,#D7D7D7,#E4E4E4);
+	background: -webkit-gradient(linear,left bottom,left top,from(#D7D7D7),to(#E4E4E4));
+	height:20px !important;
+	padding-top: 6px;
+	padding-left:6px;
+	font-size: 12px;
+	font-weight:bold;
+	border-bottom: #C6C6C6 1px solid;
+	-webkit-border-top-left-radius: 4px;
+	-webkit-border-top-right-radius: 4px;
+	-moz-border-radius-topleft: 4px;
+	-moz-border-radius-topright: 4px;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;	
+}
+
+#configpage #leftpanel div#header div {
+	float:left;
+	height:20px;
+	font-weight:bold;
+}
+
+#configpage #leftpanel div#displayarea,
+#homepage #widget div#displayarea {
+	background:#fff;
+	padding: 12px;
+	min-height:150px;
+    font-size:12px;
+}
+
+#configpage #rightpanel div#attributes {
+	background:#fff;
+	padding: 12px;
+	min-height:350px;
+}
+
+#configpage #rightpanel div#attributes div a {
+    text-decoration:underline;
+}
+
+#configpage #rightpanel div.panelattributename {
+	color:#333;
+	font-size:12px;
+	font-weight:bold;
+	margin-bottom:4px;
+}
+
+#configpage #rightpanel div.panelattribute {
+	
+	color:#333;
+	font-size:12px;
+	font-weight:normal;
+	white-space: wrap;
+	margin-bottom:12px;
+	
+}
+
+#configpage #rightpanel #downloadlink a,
+#configpage #rightpanel #downloadlink a:hover,
+#configpage #rightpanel #downloadlink a:link,
+#configpage #rightpanel #downloadlink a:visited {
+	text-decoration:underline;
+	color:blue;
+}
+
+#configpage #rightpanel #sharelink a,
+#configpage #rightpanel #sharelink a:hover,
+#configpage #rightpanel #sharelink a:link,
+#configpage #rightpanel #sharelink a:visited {
+	text-decoration:underline;
+	color:blue;
+}
+
+#configpage #rightpanel #viewlink a,
+#configpage #rightpanel #viewlink a:hover,
+#configpage #rightpanel #viewlink a:link,
+#configpage #rightpanel #viewlink a:visited {
+	text-decoration:underline;
+	color:blue;
+}
+
+
+#configpage #leftpanel {
+	width: auto;
+	margin-right:240px;
+	position: relative;
+	min-height:250px;
+	min-width:600px;
+	-moz-border-radius: 4px;
+	-khtml-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	border-color: #DFDFDF;
+	border-width:1px;
+	border-style:solid;
+	border-spacing:0;
+	background:white;
+	padding-bottom:12px;
+}
+
+#configpage #leftpanel #filelist .line {
+	color:#333;
+	font-size:12px;
+	font-weight:normal;
+	height:20px;
+	padding-top:4px;
+	padding-left:4px;
+	
+}
+
+.highlightRow {
+	background:#eaeaea;
+	color:#333;
+}
+
+.highlightRow a {
+	color:#333;
+}
+
+#configpage #leftpanel .fileheader {
+	padding-left:14px !important;
+}
+
+#configpage #leftpanel .fileheader div#name,
+#configpage #leftpanel #filelist .line #name {
+	float:left;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow:hidden;
+	width:300px;
+	
+	z-index:100;
+}
+
+#configpage #leftpanel #filelist .line #name {
+	text-decoration:none;
+	
+}
+
+#configpage #leftpanel .fileheader div#type,
+#configpage #leftpanel #filelist .line #type {
+	float:left;
+	width:40px;
+}
+
+#configpage #leftpanel .fileheader div#size,
+#configpage #leftpanel #filelist .line #size {
+	float:left;
+	width:70px;
+}
+
+#configpage #leftpanel .fileheader div#date,
+#configpage #leftpanel #filelist .line #date {
+	float:left;
+	width:130px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow:hidden;
+}
+
+#configpage #leftpanel #filelist .line #icon,
+#configpage #leftpanel .fileheader #icon {
+	float:left;
+	width:20px;
+	height:20px;
+}
+
+#configpage #leftpanel .fileheader #loader {
+	position:absolute;
+	width:20px;
+	height:20px;
+	margin:0;
+	top:3px;
+	left:7px;
+}
+
+
+/* custom styles for file icons */
+
+#configpage #leftpanel #filelist .line #icon { background: url(images/txt.png) left top no-repeat; }
+
+
+/* Core Styles */
+#configpage #leftpanel #filelist .line div.directory { background: url(images/directory.png) left top no-repeat !important ;}
+#configpage #leftpanel #filelist .line div.expanded { background: url(images/folder_open.png) left top no-repeat !important ;}
+#configpage #leftpanel #filelist .line div.file { background: url(images/file.png) left top no-repeat !important;}
+#configpage #leftpanel #filelist .line div.wait { background: url(images/spinner.gif) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line div.parentdir { background: url(images/parent.png) left top no-repeat !important; }
+
+/* File Extensions*/
+#configpage #leftpanel #filelist .line .file-3gp { background: url(images/film.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-afp { background: url(images/code.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-afpa { background: url(images/code.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-asp { background: url(images/code.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-aspx { background: url(images/code.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-avi { background: url(images/film.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-bat { background: url(images/application.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-bin { background: url(images/application.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-bmp { background: url(images/picture.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-c { background: url(images/code.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-cfm { background: url(images/code.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-cgi { background: url(images/code.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-cmd { background: url(images/application.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-com { background: url(images/application.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-cpp { background: url(images/code.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-css { background: url(images/css.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-doc { background: url(images/doc.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-exe { background: url(images/application.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-gif { background: url(images/picture.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-fla { background: url(images/flash.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-h { background: url(images/code.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-htm { background: url(images/html.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-html { background: url(images/html.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-jar { background: url(images/java.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-jpg { background: url(images/picture.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-jpeg { background: url(images/picture.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-js { background: url(images/script.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-lasso { background: url(images/code.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-log { background: url(images/txt.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-m4p { background: url(images/music.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-mov { background: url(images/film.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-mp3 { background: url(images/play.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-m4a { background: url(images/play.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-mp4 { background: url(images/film.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-mkv { background: url(images/film.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-m4v { background: url(images/film.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-mpg { background: url(images/film.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-mpeg { background: url(images/film.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-ogg { background: url(images/play.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-pcx { background: url(images/picture.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-pdf { background: url(images/pdf.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-php { background: url(images/php.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-png { background: url(images/picture.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-ppt { background: url(images/ppt.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-psd { background: url(images/psd.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-pl { background: url(images/script.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-py { background: url(images/script.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-rb { background: url(images/ruby.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-rbx { background: url(images/ruby.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-rhtml { background: url(images/ruby.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-rpm { background: url(images/linux.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-ruby { background: url(images/ruby.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-sh { background: url(images/script.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-sql { background: url(images/db.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-swf { background: url(images/flash.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-tif { background: url(images/picture.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-tiff { background: url(images/picture.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-txt { background: url(images/txt.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-vb { background: url(images/code.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-wav { background: url(images/music.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-wmv { background: url(images/film.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-xls { background: url(images/xls.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-xml { background: url(images/code.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-zip { background: url(images/zip.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-tar { background: url(images/zip.png) left top no-repeat !important; }
+#configpage #leftpanel #filelist .line .file-bz2 { background: url(images/zip.png) left top no-repeat !important; }
+
+
+/* user list */
+
+#configpage #leftpanel div.user-header {
+	height:20px;
+	font-size:12px;
+}
+
+#configpage #leftpanel div.user-header div {
+	padding-left:9px;
+}
+
+#configpage #leftpanel #displayarea div.user-row {
+	height:34px;
+	font-size:12px;
+}
+
+#configpage #leftpanel #displayarea div.odd {
+	background:#fff;
+}
+
+#configpage #leftpanel #displayarea div.even {
+	background:#efefef;
+}
+
+#configpage #leftpanel div.user-header div {
+	height:20px;
+	float:left;
+}
+
+#configpage #leftpanel #displayarea div.user-row div {
+	height:24px;
+	float:left;
+}
+
+
+
+#configpage #leftpanel #displayarea div.user-row div {
+	vertical-align:middle;
+	padding-top:10px;
+	padding-left:8px;
+    white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow:hidden;
+}
+
+#configpage #leftpanel div.user-header div.username,
+#configpage #leftpanel #displayarea div.user-row div.username {
+	width:90px;
+}
+
+#configpage #leftpanel div.user-header div.useremail,
+#configpage #leftpanel #displayarea div.user-row div.useremail {
+	width:90px;
+}
+
+#configpage #leftpanel div.user-header div.usergroup,
+#configpage #leftpanel #displayarea div.user-row div.usergroup {
+	width:90px;
+}
+
+#configpage #leftpanel div.user-header div.useractive,
+#configpage #leftpanel #displayarea div.user-row div.useractive,
+#configpage #leftpanel div.user-header div.userupload,
+#configpage #leftpanel #displayarea div.user-row div.userupload,
+#configpage #leftpanel div.user-header div.userdownload,
+#configpage #leftpanel #displayarea div.user-row div.userdownload,
+#configpage #leftpanel div.user-header div.userdelete,
+#configpage #leftpanel #displayarea div.user-row div.userdelete {
+	width:60px;
+}
+
+#configpage #leftpanel #displayarea div.user-row div.userdelete {
+	padding-top:6px;
+}
+
+
+
+
+
+
+
+
+
+/* share list */
+
+#configpage #leftpanel div.share-header {
+	height:20px;
+	font-size:12px;
+}
+
+#configpage #leftpanel div.share-header div {
+	padding-left:9px;
+}
+
+#configpage #leftpanel #displayarea div.share-row {
+	height:38px;
+	font-size:12px;
+}
+
+#configpage #leftpanel #displayarea div.odd {
+	background:#fff;
+}
+
+#configpage #leftpanel #displayarea div.even {
+	background:#efefef;
+}
+
+#configpage #leftpanel #displayarea div.share-row div {
+	height:20px;
+	float:left;
+}
+
+#configpage #leftpanel #displayarea div.share-row div {
+	height:24px;
+	float:left;
+}
+
+#configpage #leftpanel #displayarea div.share-row div {
+	vertical-align:middle;
+	padding-top:10px;
+	padding-left:8px;
+    white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow:hidden;
+}
+
+#configpage #leftpanel div.share-header div#sharename,
+#configpage #leftpanel #displayarea div.share-row div.sharename {
+	width:300px;
+}
+
+#configpage #leftpanel div.share-header div#publicurl,
+#configpage #leftpanel #displayarea div.share-row div.publicurl {
+	width:90px;
+}
+
+#configpage #leftpanel div.share-header div#directurl,
+#configpage #leftpanel #displayarea div.share-row div.directurl {
+	width:90px;
+}
+
+#configpage #leftpanel #displayarea div.share-row div.sharedelete {
+	padding-top:6px;
+}
+
+/* music player stuff */
+
+#current-track {
+    position:absolute;
+    top:5px;
+    left:120px;
+    font-size:12px;
+}
+
+/* add share page */
+
+input#id_path {
+	width:500px;
+}
+
+
+/* @ Footer */
+
+#footer {
+display:none;
+color: #777;
+border-color: #D1D1D1;
+background: #D9D9D9;
+background: -moz-linear-gradient(bottom,#D7D7D7,#E4E4E4);
+background: -webkit-gradient(linear,left bottom,left top,from(#D7D7D7),to(#E4E4E4));
+margin-top: -46px;
+border-top: 1px;
+border-style: solid;
+clear: both;
+height:40px;
+}
+
+#footer, #footer a {
+font-size: 12px;
+font-family: Helvetica, sans-serif;
+}
+
+#footer p {
+margin: 0;
+padding: 15px;
+line-height: 15px;
+}
+
+#footer ul {
+list-style:none;
+}
+
+#footer ul li {
+display:inline;
+margin-right:12px;
+}

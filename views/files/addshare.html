@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html style="margin:0;padding:0;" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>Add share</title>
+    <link rel="shortcut icon"
+          href="/static/favicon.gif"
+          type="image/vnd.microsoft.icon">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="/static/style.css" rel="stylesheet" type="text/css" />
+    <script language="javascript" type="text/javascript" src="/static/jquery-1.5.1.min.js"></script>
+    <script language="javascript" type="text/javascript" src="/static/jquery.jqplot.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/jquery.jqplot.css" />
+	<link rel="stylesheet" href="/static/formalize.css" />
+	<script src="/static/jquery.formalize.js"></script>
+  </head>
+
+<body style="margin:0;margin-left:12px;padding:0;">
+
+<script language="JavaScript"> 
+
+function closeWindow() {
+	window.opener='x';
+	window.close();
+}
+
+$(document).ready(function(){
+	$("form#submit").submit(function() {  
+		var path     = $('#id_path').attr('value');
+		var uuid     = $('#id_uuid').attr('value');
+		var public   = $('#id_public').attr('value');
+		if (uuid == "") {  
+			$("label#id_error").show();  
+			$("input#id").focus();  
+			return false;  
+		} 	
+		if (path == "") {  
+			$("label#path_error").show();  
+			$("input#path").focus();  
+			return false;  
+		} 
+		$.ajax({
+			type: "POST",
+			url: "/api/fileapi",
+			data: "cmd=addshare" + "&path=" + encodeURIComponent(path) + "&uuid=" + uuid + "&public=" + public,
+			dataType : 'json',
+			success: function(json){
+				var result = json;
+				if (result.success == true) {
+					$('#button').html("Share saved, window will close in 3 seconds.");
+					setTimeout(closeWindow,3000);
+					
+				}
+				else {
+					$('#error').html("Could not save share!");
+				}  
+
+			}
+		});
+	return false;
+	});
+});
+
+
+</script>
+
+
+<div id="configpage">
+<h2>Share file</h2>
+
+<div id="leftpanel">
+<div id="header">
+<div>Add a new share</div>
+</div><!-- header -->
+<div id="displayarea">
+
+<div class="formcontainer">
+<form id="submit" method="post">
+
+<label for="id_path">File Path:</label>
+{{ form.path }}
+<br/><br/>
+
+<label for="id_uuid">File ID:</label>
+{{ form.uuid }}
+<br/><br/>
+
+{{ form.public }}
+<label for="id_public">Public share?</label>
+<br/><br/>
+<div id="button"><button class="button">Save</button></div>
+</form>
+<div id="error"></div>
+</div>
+
+</div><!-- displayarea -->
+</div><!-- leftpanel -->
+
+</div><!-- configpage -->
+
+</body> 
+
+
+</html>

@@ -1,0 +1,48 @@
+{% extends "apps/apptemplate.html" %}
+{% block title %}Apps{% endblock %}
+{% block configpage %}
+<script language="JavaScript">
+
+function showInstall(app) {
+window.location = "/apps/install/" + app;
+}
+</script>
+
+<div id="configpage">
+<h2>Apps</h2>
+
+<div id="leftpanel"> 
+<div id="header">
+<div>Available Apps</div>
+</div><!-- header -->
+<div id="displayarea">
+{% for app in app_details %}
+<h4>{{ app.name }}</h4>
+<ul>
+<li>
+	{% if app.installed %}
+		Installed - <a href="/apps/{{ app.name }}">Configure now ></a>
+	{% else %}
+		<a href="#" onclick="showInstall('{{ app.name }}');">Click to install</a>
+	{% endif %}
+</li>
+</ul>
+{% endfor %}
+</div><!-- displayarea -->
+</div><!-- leftpanel -->
+
+<div id="rightpanel">
+<div id="header">
+
+</div><!-- header -->
+<div id="attributes">
+
+</div><!-- attributes -->
+</div><!-- rightpanel -->
+
+
+</div><!-- configpage -->
+
+<div style="clear:both;"></div>
+
+{% endblock %}

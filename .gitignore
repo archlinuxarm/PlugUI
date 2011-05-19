@@ -1,0 +1,10 @@
+*/*.pyc
+*.pyc
+*._*
+.DS_Store
+webui.pid
+*.bak
+db.sqlite3
+.idea
+*.pid
+test.py

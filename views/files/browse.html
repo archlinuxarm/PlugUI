@@ -1,0 +1,413 @@
+{% extends "files/filestemplate.html" %}
+{% block title %}Files{% endblock %}
+
+{% block configpage %}	
+<script language="javascript" type="text/javascript" src="/static/jquery.jplayer.min.js"></script> 
+<link href="/static/skins/jplayer.blue.monday.css" rel="stylesheet" type="text/css" />
+<div id="configpage">
+	<div class="jp-audio">
+		<div class="jp-type-single">
+			<div id="jp_interface_1" class="jp-interface">
+				<ul class="jp-controls">
+					<li><a href="#" class="jp-play" tabindex="1">play</a></li>
+					<li><a href="#" class="jp-pause" tabindex="1">pause</a></li>
+					<li><a href="#" class="jp-stop" tabindex="1">stop</a></li>
+					<div id="current-track"></div>
+					<div class="jp-progress">
+						<div class="jp-seek-bar">
+							<div class="jp-play-bar"></div>
+						</div>
+					</div>
+					<div class="jp-volume-bar">
+						<div class="jp-volume-bar-value"></div>
+					</div>
+					<div class="jp-current-time">00:00</div>
+					<div class="jp-duration">00:00</div>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+<div id="leftpanel">
+<div id="header" class="fileheader">
+<img id="loader" src="/static/images/loader.gif"/>
+<div id="icon"></div>
+<div id="name">Name</div><!-- name -->
+<div id="type">Type</div><!-- type -->
+<div id="size">Size</div><!-- size -->
+<div id="date">Date</div><!-- date -->
+</div><!-- header -->
+<div id="displayarea">
+<div id="filelist">
+</div><!-- filelist -->
+</div><!-- displayarea -->
+</div><!-- leftpanel -->
+
+<div id="rightpanel">
+<div id="header">Selected item</div>
+<div id="attributes">
+
+<div id="filenametitle" class="panelattributename">Selected Item:</div>
+<div id="filename" class="panelattribute">none </div>
+
+<div id="filetypetitle" class="panelattributename">Type:</div>
+<div id="filetype" class="panelattribute">none </div>
+
+<div id="filesizetitle" class="panelattributename">Size:</div>
+<div id="filesize" class="panelattribute">none </div>
+
+<div id="filedatetitle" class="panelattributename">Modified:</div>
+<div id="filedate" class="panelattribute">none </div>
+
+<div id="fileoptions" class="panelattributename">Options:</div>
+<div id="downloadlink" class="panelattribute"></div>
+<div id="sharelink" class="panelattribute"></div>
+<div id="viewlink" class="panelattribute"></div>
+
+</div>
+</div><!-- rightpanel -->
+
+<div><!-- configpage -->
+<script type="text/javascript">
+
+var directory = '';
+var currentpath = '';
+	
+function getTree(directory) {
+	showloader();
+	$.ajax({
+		   type: 'POST',
+		   cache: false,
+		   url : '/api/fileapi',
+		   data: { cmd: "get", path: directory },
+		   dataType : 'json',
+		   success: function (json) { 
+				$('#spinner').hide();
+				var returnlist = json;
+				if (returnlist) {
+					$('#filelist').empty();
+					if (returnlist.success == false) {
+						if (returnlist.validpath == false) {
+							$('#filelist').html("Invalid path"); 
+						}
+						else {
+							$('#filelist').html("Unknown failure requesting path " + returnlist.requestpath); 
+						}
+						return;
+					}
+					currentpath = returnlist.requestpath;
+					$('#currentpath').html(currentpath);
+					var filelist = document.getElementById('filelist');
+					var parentdirline = document.createElement("div");
+					parentdirline.setAttribute('class', 'line');
+		   
+					var icon = document.createElement("div");
+					icon.setAttribute('id', 'icon');
+					icon.setAttribute('class', 'parentdir');
+					parentdirline.appendChild(icon);
+					
+					var name = document.createElement("div");
+					name.setAttribute('id', 'name');
+					var parentlink = document.createElement("a");
+					parentlink.setAttribute('href','none');
+					parentlink.onclick = function(){ selectParent();return false };
+					var parenttext = document.createTextNode("Parent Directory");
+					parentlink.appendChild(parenttext);
+					name.appendChild(parentlink);
+					parentdirline.appendChild(name);
+					
+					filelist.appendChild(parentdirline);
+					
+					var clear = document.createElement("div");
+					clear.setAttribute('id', 'clear');
+					filelist.appendChild(clear);
+
+					$.each(returnlist.files, function(i,item){
+
+						//new file line	
+						var fileline = document.createElement("div");
+						fileline.setAttribute('class', 'line');
+						fileline.setAttribute('id', 'line');
+						fileline.onclick = function(){ selectLine(item); $('.line').removeClass('highlightRow'); $(this).addClass('highlightRow'); };
+						
+						//create an icon for the file listing and add it to the line
+						var icon;
+						if (item.iconCls == 'file-mp3' || item.iconCls == 'file-m4a' || item.iconCls == 'file-oga') {
+						   icon = document.createElement("a");
+						   icon.setAttribute('href','none');
+						   icon.onclick = function(){ playMedia(item);return false };
+						}
+						else {
+						   icon = document.createElement("div");
+						}
+						   
+						icon.setAttribute('id', 'icon');
+						icon.setAttribute('class', item.iconCls);
+						fileline.appendChild(icon);
+
+						//create an element to hold the name of the file and add it to the line
+						var name = document.createElement("div");
+						name.setAttribute('id', 'name');
+						var namelink = document.createElement("a");
+						namelink.setAttribute('href','none');
+						namelink.onclick = function(){ selectLink(item);return false };
+						var text = document.createTextNode(item.text);
+						namelink.appendChild(text);
+						name.appendChild(namelink);
+						fileline.appendChild(name);
+						
+						
+						//create an element to show the type of file, add it to the line
+						var type = document.createElement("div");
+						type.setAttribute('id', 'type');
+						if (item.folder == true) {
+							var text = document.createTextNode("Folder");
+						}
+						else {
+							var text = document.createTextNode("File");
+						}
+						
+						type.appendChild(text);
+						fileline.appendChild(type);
+						
+						//create an element to show file size, add to line
+						var size = document.createElement("div");
+						size.setAttribute('id', 'size');
+						var text = document.createTextNode(item.size);
+						size.appendChild(text);
+						fileline.appendChild(size);
+						
+						//create an element to show date, add it to the line
+						var date = document.createElement("div");
+						date.setAttribute('id', 'date');
+						var text = document.createTextNode(item.date);
+						date.appendChild(text);
+						fileline.appendChild(date);
+						
+						//append our new line to the file list
+						filelist.appendChild(fileline);
+						
+						//create a clearing element and add it to the file list to keep things from floating next to each other
+						var clear = document.createElement("div");
+						clear.setAttribute('id', 'clear');
+						filelist.appendChild(clear);
+						
+					});
+				}
+				else {
+					$('#filelist').html("Did not receive a response from the plug"); 
+				}
+				
+		   }
+	});
+	hideloader();
+}
+
+function downloadFile(item) {
+	var form = document.createElement("form");
+	form.setAttribute("method", "post");
+	form.setAttribute("action", "/api/fileapi");
+	document.body.appendChild(form);
+
+	var hidden;
+
+	// append cmd to form
+	hidden = document.createElement('input');
+	hidden.type = 'hidden';
+	hidden.name = 'cmd';
+	hidden.value = 'download';
+	form.appendChild(hidden);
+	
+	// append path to form
+	hidden = document.createElement('input');
+	hidden.type = 'hidden';
+	hidden.name = 'path';
+	hidden.value = directory + "/" + item.text;
+	form.appendChild(hidden);
+	
+	form.submit();
+}
+
+function viewFile(item) {
+	var form = document.createElement("form");
+	form.setAttribute("method", "post");
+	form.setAttribute("action", "/api/fileapi");
+	document.body.appendChild(form);
+
+	var hidden;
+
+	// append cmd to form
+	hidden = document.createElement('input');
+	hidden.type = 'hidden';
+	hidden.name = 'cmd';
+	hidden.value = 'view';
+	form.appendChild(hidden);
+	
+	// append path to form
+	hidden = document.createElement('input');
+	hidden.type = 'hidden';
+	hidden.name = 'path';
+	hidden.value = directory + "/" + item.text;
+	form.appendChild(hidden);
+	
+	form.submit();
+}
+    
+
+function shareFile(item) {
+		var form = document.createElement("form");
+        form.setAttribute("method", "post");
+        form.setAttribute("action", "/files/addshare");
+
+        // setting form target to a window named 'formresult'
+        form.setAttribute("target", "formresult");
+
+        var hiddenField = document.createElement("input");              
+
+		// append cmd to form
+		hiddenField = document.createElement('input');
+		hiddenField.type = 'hidden';
+		hiddenField.name = 'cmd';
+		hiddenField.value = 'share';
+		form.appendChild(hiddenField);
+
+		// append path to form
+		hiddenField = document.createElement('input');
+		hiddenField.type = 'hidden';
+		hiddenField.name = 'path';
+		hiddenField.value = "/media/" + directory + "/" + item.text;
+		form.appendChild(hiddenField);
+        document.body.appendChild(form);
+        window.open('/files/addshare', 'formresult', 'scrollbars=no,menubar=no,height=400,width=650,resizable=no,toolbar=no,status=no');
+        form.submit();
+}
+	
+function playMedia(item) {
+	path = item.text;
+	showloader();
+	$("#player").jPlayer("destroy");
+	var filetype = '';
+	if (item.iconCls == 'file-mp3') {
+		filetype = 'mp3';
+	}
+	else if (item.iconCls == 'file-m4a') {
+		filetype = 'm4a';
+	}
+	else if (item.iconCls == 'file-oga') {
+		filetype = 'oga';
+	}
+	$('#player').jPlayer({
+						 ready: hideloader(),
+						 swfPath: '/static',
+						 solution: 'html, flash',
+						 supplied: filetype,
+						 preload: 'metadata',
+						 volume: 1.0,
+						 muted: false,
+						 backgroundColor: 'transparent',
+						 cssSelectorAncestor: '#jp_interface_1',
+						 cssSelector: {
+						 
+						 play: '.jp-play',
+
+						 pause: '.jp-pause',
+						 
+						 stop: '.jp-stop',
+
+						 seekBar: '.jp-seek-bar',
+
+						 playBar: '.jp-play-bar',
+
+						 volumeBar: '.jp-volume-bar',
+						 volumeBarValue: '.jp-volume-bar-value',
+						 
+						 currentTime: '.jp-current-time',
+						 duration: '.jp-duration'
+						 },
+						 errorAlerts: false,
+						 warningAlerts: false
+	});
+	if (filetype == 'mp3') {
+		$('#player').jPlayer("setMedia", { mp3: "/api/fileapi?cmd=stream&path=" + directory + "/" + encodeURIComponent(path) }).jPlayer("play");
+	}
+	else if (filetype == 'm4a') {
+		$('#player').jPlayer("setMedia", { m4a: "/api/fileapi?cmd=stream&path=" + directory + "/" + encodeURIComponent(path) }).jPlayer("play");
+	}
+	else if (filetype == 'oga') {
+		$('#player').jPlayer("setMedia", { oga: "/api/fileapi?cmd=stream&path=" + directory + "/" + encodeURIComponent(path) }).jPlayer("play");
+	}
+	$('#current-track').text(item.text);
+}
+	
+
+function selectLine(item) {
+	$('#filename').text(item.text);
+	$('#filetype').text(item.iconCls);
+	$('#filesize').text(item.size);
+	$('#filedate').text(item.date);
+	$('#downloadlink').empty();
+	$('#sharelink').empty();
+	$('#viewlink').empty();
+	if (item.folder == true) {
+	
+	}
+	else {
+		//create download link element and point it at the correct js function
+		var downloadlink = document.getElementById("downloadlink");
+		var link = document.createElement("button");
+		link.onclick = function(){ downloadFile(item);return false };
+		var text = document.createTextNode("Download file");
+		link.appendChild(text);
+		downloadlink.appendChild(link);
+		
+		//create share link element, yadda blah blah pants
+		var sharelink = document.getElementById("sharelink");
+		var link = document.createElement("button");
+		link.onclick = function(){ shareFile(item);return false };
+		var text = document.createTextNode("Share file");
+		link.appendChild(text);
+		sharelink.appendChild(link);
+		
+		//create view link element, scooby doo 
+		var viewlink = document.getElementById("viewlink");
+		var link = document.createElement("button");
+		link.onclick = function(){ viewFile(item);return false };
+		var text = document.createTextNode("View file");
+		link.appendChild(text);
+		viewlink.appendChild(link);
+	}
+	
+}
+
+function selectParent() {
+	var directory_array = directory.split("/");
+	directory_array.pop();
+	var newdir = directory_array.join("/");
+	directory = newdir;
+	getTree(newdir);
+}
+
+function selectLink(item) {
+	if (item.folder == true) {
+		var directory_array = directory.split("/");
+		directory_array.push(item.text);
+		var newdir = directory_array.join("/");
+		directory = newdir;
+		getTree(newdir);
+	}
+	else {
+		
+	}	
+}
+	
+function showloader() {
+	$('#loader').show();
+}
+	
+function hideloader() {
+	setTimeout( function(){ $('#loader').hide() }, 500);
+}
+		
+getTree(directory);
+</script>
+{% endblock %}

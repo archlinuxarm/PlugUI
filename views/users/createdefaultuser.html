@@ -1,0 +1,30 @@
+{% extends 'users/userstemplate.html' %}
+{% block title %}Create Default User{% endblock %}
+
+{% block userpage %}
+<div id="configpage">
+<h2>Create default user</h2>
+<p><strong>Important:</strong>You need to create a default user account before proceeding!</p>
+<br/>
+  <form action="" method="post">
+{% csrf_token %}
+
+<table>
+<tr>
+    <td>{{ form.username.label_tag }}</td>
+    <td>{{ form.username }}</td>
+</tr>
+<tr>
+    <td>{{ form.password1.label_tag }}</td>
+    <td>{{ form.password1 }}</td>
+</tr>
+
+<tr>
+    <td>{{ form.password2.label_tag }}</td>
+    <td>{{ form.password2 }}</td>
+</tr>
+</table>
+      <input type="submit" value="Create">
+  </form>
+</div><!-- configpage -->
+{% endblock %}

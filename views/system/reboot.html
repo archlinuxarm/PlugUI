@@ -1,0 +1,33 @@
+{% extends 'system/systemtemplate.html' %}
+
+{% block configpage %}
+<script type="text/javascript"><!--
+
+function go_home() {
+	window.location.href = "/";
+}
+
+function reboot() {
+	$('#button').hide();
+	$('#text').html('Please wait, your device is rebooting. You will be redirected to the home page in 60 seconds.');
+	$.ajax({
+        'type': "GET",
+        'url': '/api/rebootnow',
+        'cache': false,
+	});
+	setTimeout("go_home()",60000);
+}
+
+--></script>
+<div id="configpage">
+
+<h3>Reboot</h3>
+<p id="text">Clicking the button below will reboot your device immediately.</p>
+<br/>
+<br/> 
+<span id="button">
+<input type="button" value="Reboot now" onclick="reboot();"/>
+</span>
+
+</div><!-- configpage -->
+{% endblock %}

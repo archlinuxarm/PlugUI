@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}PlugUI{% endblock %}
+{% block content %}
+
+<div id="homepage">
+
+<h2>Home</h2>
+
+<div id="widget">
+<div id="header">
+<div>Welcome</div>
+</div><!-- header -->
+<div id="displayarea">
+Welcome to PlugApps!
+</div><!-- displayarea -->
+</div><!-- widget -->
+
+<div id="widget">
+<div id="header">
+<div>Notifications</div>
+</div><!-- header -->
+<div id="displayarea">
+{% if updatesavailable %}
+Software updates available: {{ updatecount }} 
+<a href="/system/software"> - <b>Update now</b></a>
+{% else %}
+No software updates available.
+{% endif %}
+</div><!-- displayarea -->
+</div><!-- widget -->
+
+<div id="clear"></div>
+</div><!-- homepage -->
+{% endblock %}

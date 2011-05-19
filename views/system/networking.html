@@ -1,0 +1,26 @@
+{% extends 'system/systemtemplate.html' %}
+
+{% block configpage %}
+<div id="configpage">
+<h2>Networking</h2>
+<div id="leftpanel">
+<div id="header">
+<div>Configuration</div>
+</div><!-- header -->
+<div id="displayarea">
+
+</div><!-- displayarea -->
+</div><!-- leftpanel -->
+
+<div id="rightpanel">
+<div id="header">
+<div>Status</div>
+</div><!-- header -->
+<div id="attributes">
+<div id="filenametitle" class="panelattributename">Local IP Address:</div>
+<div id="ip" class="panelattribute">{{ localip }}</div>
+<div id="filenametitle" class="panelattributename">Public IP Address:</div>
+<div id="ip" class="panelattribute">{{ publicip }}</div>
+</div><!-- attributes -->
+</div><!-- configpage -->
+{% endblock %}

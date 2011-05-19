@@ -1,0 +1,181 @@
+{% extends 'apps/apptemplate.html' %}
+{% block title %}Samba{% endblock %}
+
+{% block configpage %}
+<script type="text/javascript"><!--
+
+var package_name = "samba";
+
+function showstart() {
+	$('#startlink').show();
+	$('#stoplink').hide();
+}
+function showstop() {
+	$('#startlink').hide();
+	$('#stoplink').show();
+}
+
+function hidelinks() {
+	$('#startlink').hide();
+	$('#stoplink').hide();
+}
+
+function showloader() {
+	clearRunning();
+	$('#loader').show();
+}
+
+function hideloader() {
+	$('#loader').hide();
+	$('#runstatus').show();
+}
+
+function isRunning() {
+	$('#runstatus').html('Running');
+}
+
+function notRunning() {
+	$('#runstatus').html('Not running');
+}
+
+function clearRunning() {
+	$('#runstatus').html('Please Wait...');
+}
+
+function errorRunning() {
+	$('#runstatus').html('Error!');
+}
+
+function start() {
+	hidelinks();
+	showloader();
+	$.ajax({
+        method: 'GET',
+        cache: false,
+        url : '/api/startapp/' + package_name,
+        dataType : 'text',
+        success: function (text) { 
+            setTimeout(checkStatus, 3000);
+        }
+	});
+}
+
+function stop() {
+	hidelinks();
+	showloader();
+	$.ajax({
+        method: 'GET',
+        cache: false,
+        url : '/api/stopapp/' + package_name,
+        dataType : 'text',
+        success: function (text) { 
+            setTimeout(checkStatus, 3000);
+        }
+	});
+}
+
+function checkStatus() {
+showloader();
+hidelinks();
+$.ajax({
+        method: 'GET',
+        cache: false,
+        url : '/api/isrunning/' + package_name,
+        dataType : 'text',
+        success: function (text) { 
+            if (text == "False") {
+				notRunning();
+                showstart();
+				hideloader();
+            }
+            else if (text == "True") {
+				isRunning();
+                showstop();
+				hideloader();
+            }
+			else {
+				showstart();
+				errorRunning();
+				hideloader();
+			}
+        }
+});
+}
+hidelinks();
+checkStatus();
+--></script>
+<div id="configpage">
+<h2>Samba</h2>
+
+<div id="leftpanel">
+<div id="header">
+
+<div>Configuration</div>
+
+</div><!-- header -->
+
+<div id="displayarea">
+<h2>Global Configuration</h2>
+<form action="" method="post">
+	
+	<label for="id_workgroup">Workgroup</label>{{ form.workgroup.errors }}
+	<br/>
+	{{ form.workgroup }}
+	<br/><br/>
+
+	<label for="id_server_string">Server Description</label>{{ form.server_string.errors }}
+	<br/>
+	{{ form.server_string }}
+	<br/><br/>
+
+<input type="hidden" name="cmd" value="global"/>	
+	  {% csrf_token %}
+      <input type="submit" value="Save">
+</form>
+
+<h2>Shares</h2>
+<form action="" method="post">
+{% for share in shares %}
+	<h3>{{ share.name|capfirst }}</h3>
+	{% for option in share.options %}
+		{% for k,v in option.items %}
+			<label for="id_{{ k }}">{{ k|capfirst }}</label><br/>
+			<input for="id_{{ v }}" type="text" name="{{ k }}" value="{{ v }}"/>
+		{% endfor %}
+		<br/><br/>
+	{% endfor %}
+{% endfor %}
+</form>
+
+
+
+</div><!-- displayarea -->
+</div><!-- leftpanel -->
+<div id="rightpanel">
+<div id="header">Daemon</div><!-- header -->
+<div id="attributes">
+
+<div id="statustitle" class="panelattributename">Status:</div>
+<div id="runstatus" class="panelattribute">
+Please Wait...
+</div>
+
+
+<div id="daemonoptions" class="panelattributename">Options:</div>
+
+
+<img id="loader" style="width:18px;height:18px;margin:0;" src="/static/images/loader.gif"/>
+<div id="startlink" class="panelattribute">
+<input type="button" value="Start" onclick="start();"/>
+</div>
+
+<div id="stoplink" class="panelattribute">
+<input type="button" value="Stop" onclick="stop();"/>
+</div>
+
+
+</div><!-- attributes -->
+
+</div><!-- rightpanel -->
+</div><!-- configpage -->
+{% endblock %}
