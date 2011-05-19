@@ -4,7 +4,7 @@ NOTE: If you're on PlugApps Linux, install the beta with "pacman -Sy plugui".
 
 For everyone else:
 
-Step 1: clone the git tree: "cd /opt; git clone git://github.com/plugapps/PlugUI.git " 
+Step 1: clone the git tree: "cd /opt; git clone git://github.com/archlinuxarm/PlugUI.git " 
 
 	(if you wish to help with development, fork the tree on github instead and clone your own tree so you can commit and we can pull from you)
 
