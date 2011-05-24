@@ -8,3 +8,6 @@ db.sqlite3
 .idea
 *.pid
 test.py
+data/**
+PlugUI.xcodeproj/project.xcworkspace
+PlugUI.xcodeproj/xcuserdata

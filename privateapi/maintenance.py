@@ -28,7 +28,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."""
 
 import shlex, subprocess, re, socket, os, httplib, urllib
 import feedparser
-from home.models import PlugappsNewsEntry
+from system.models import PlugappsNewsEntry
 from system.models import MaintenanceStats
 from system.models import SystemStats
 from system.models import AvailableUpdate

@@ -1,0 +1,42 @@
+<div class="page_body_section">
+<div id="configpage">
+<h2>File Sharing</h2>
+
+<div id="leftpanel">
+
+<div id="header" class="share-header">
+<div id="sharename">Name</div><!-- name -->
+<div id="publicurl">Public URL</div><!-- publicurl -->
+<div id="directurl">Direct URL</div><!-- directurl -->
+</div><!-- share-header -->
+<div id="displayarea">
+
+{% for share in sharelist %}
+<div class="share-row {% cycle 'odd' 'even' %}">
+<div class="sharename">{{ share.filename }}</div><!-- sharename -->
+<div class="publicurl">
+<a href="http://plugfinder.appspot.com/dl/{{ plugid }}/{{ share.uuid }}">Public link</a>
+</div><!-- publicurl -->
+<div class="directurl">
+<a href="http://{{ publicip }}:{{ port }}/files/download/{{ share.uuid }}">Direct link</a>
+</div><!-- directurl -->
+<div class="sharedelete">
+<form action="/files/deleteshare" method="post">
+	  {% csrf_token %}
+	  <input type="hidden" name="uuid" value="{{ share.uuid }}"/>
+      <input type="submit" value="Delete">
+</form>
+</div><!-- sharedelete -->
+
+</div><!-- share-row -->
+<div id="clear"></div><!-- clear -->
+{% empty %}
+No shares entered, visit the <a href="/files/browse">file browser</a> to share a file
+{% endfor %}
+
+</div><!-- displayarea -->
+</div><!-- leftpanel -->
+
+
+</div><!-- configpage -->
+</div><!-- page_body_section -->

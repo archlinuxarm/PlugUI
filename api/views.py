@@ -25,27 +25,24 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."""
 from django.http import HttpResponse
 from django.utils import simplejson
+from django import forms
+from django.contrib.auth.decorators import login_required
+import urllib, os, shutil, traceback, sys, shlex, datetime, locale, re, operator, posixpath
 
 import privateapi.core 
 import privateapi.pacman
 import privateapi.minidlna
 import privateapi.samba
 import privateapi.maintenance
+import files.views as files
+import users.views as users 
 from files.models import ShareForm
 from system.models import MaintenanceStats
 from system.models import AvailableUpdate
 from system.models import SystemStats
-from django.contrib.auth.decorators import login_required
-
-import urllib, os, shutil, traceback, sys, shlex, datetime, locale, re, operator, posixpath
 
 @login_required
-def install(request,package):
-	output = privateapi.pacman.install(package)
-	return HttpResponse(simplejson.dumps(output),content_type = 'application/javascript; charset=utf8')
-
-@login_required
-def maintenance(request):
+def maintenanceapi(request):
 	response = dict()
 	try:
 		privateapi.maintenance.run_maintenance()
@@ -59,130 +56,159 @@ def maintenance(request):
 	return HttpResponse(simplejson.dumps(response),content_type = 'application/javascript; charset=utf8')
 	
 @login_required
-def isinstalled(request,package):
-	if getattr(privateapi, package).is_installed():
-		return HttpResponse('True')
-	return HttpResponse('False')
-   
-@login_required
-def isrunning(request,package):
-	if getattr(privateapi, package).is_running():
-		return HttpResponse('True')
-	return HttpResponse('False')
-    
-@login_required 
-def startapp(request,package):
-	if getattr(privateapi, package).start():
-		return HttpResponse('True')
-	return HttpResponse('False')
-    
-@login_required 
-def stopapp(request,package):
-	if getattr(privateapi, package).stop():
-		return HttpResponse('True')
-	return HttpResponse('False')
-    
-@login_required
-def doupdateos(request):
-    pacman_output = privateapi.pacman.doupdateos()
-    privateapi.maintenance.update_counter()
-    return HttpResponse(pacman_output)
-    
-@login_required
-def listupgrades(request):
-    return HttpResponse(privateapi.pacman.list_upgrades())
-
-@login_required    
-def checkforupdates(request):
-	privateapi.maintenance.update_counter()
-	systemstats = SystemStats.objects.get(id=1)
-	returnlist = dict()
-	if systemstats.updatesavailable:
-		returnlist['hasupgrades'] = True
-		availableupdates = AvailableUpdate.objects.all()
-		packagelist = []
-		for package in availableupdates:
-			if ":" in package.name:
-				pass
-			else:
-				packagedict = dict()
-				packagedict['name'] = package.name
-				packagedict['newversion'] = package.newversion
-				packagelist.append(packagedict)
-		returnlist['packages'] = packagelist
-		returnlist['numberofpackages'] = len(packagelist)
-	else:
-		returnlist['hasupgrades'] = False
-	return HttpResponse(simplejson.dumps(returnlist),content_type = 'application/javascript; charset=utf8')
-
-@login_required    
-def list_installed(request):
-	package_list = privateapi.pacman.list_installed()
-	returnlist = dict()
-	if package_list:
-		returnlist['success'] = True
-		counter = 0
-		for package in package_list:
-			packagedict = dict()
-			packagedict['name'] = package[0]
-			packagedict['version'] = package[1]
-			returnlist[counter] = packagedict
-			counter += 1
-		returnlist['numberofpackages'] = counter
-	else:
-		returnlist['success'] = False
-	return HttpResponse(simplejson.dumps(returnlist),content_type = 'application/javascript; charset=utf8')
-
-
-@login_required	
-def rebootnow(request):
-    return HttpResponse(privateapi.core.rebootnow())
-
-
-def diskuse(request):
-    return HttpResponse(privateapi.core.getdiskuse())
-
-
-def loadavg(request):
-    return HttpResponse(privateapi.core.getloadavg())
-
-
-def entropy(request):
-    return HttpResponse(privateapi.core.getentropy())
-
-
-def uptime(request):
-    return HttpResponse(privateapi.core.getuptime())
-
-
-def memory_total(request):
-    return HttpResponse(privateapi.core.getmemory_total())
-
-
-
-def memory_free(request):
-    return HttpResponse(privateapi.core.getmemory_free())
-    
-   
-def memory_percent(request):
-    return HttpResponse(privateapi.core.getmemory_percent())
-
-@login_required
-def runcommand(request):
+def appapi(request):
+	response = {}
+	response['success'] = False
 	if request.method == 'POST':
-		formdata = request.POST
-		command = formdata['command'].strip('\n')
-		response = {}
-		try:
-			response['output'] = privateapi.core.runcommand(command)
+		apicmd = request.POST['apicmd']
+		if apicmd == "check_install":
+			package = request.POST['package']
+			if getattr(privateapi, package).is_installed():
+				response['success'] = True
+				response['installed'] = True
+			else:
+				response['installed'] = False
+		elif apicmd == "check_running":
+			package = request.POST['package']
+			if getattr(privateapi, package).is_running():
+				response['success'] = True
+				response['running'] = True
+			else:
+				response['running'] = False
+		elif apicmd == "install_package":
+			response['output'] = privateapi.pacman.install(package)
 			response['success'] = True
-		except:
-			response['success'] = False
-		return HttpResponse(simplejson.dumps(response))
+		elif apicmd == "startapp":
+			package = request.POST['package']
+			if getattr(privateapi, package).start():
+				response['success'] = True
+		elif apicmd == "stop_app":
+			package = request.POST['package']
+			if getattr(privateapi, package).stop():
+				response['success'] = True
 	else:
-		return HttpResponse("this API requires a POST command")
+		pass
+	return HttpResponse(simplejson.dumps(response),content_type = 'application/javascript; charset=utf8')
+		
 	
+	
+@login_required
+def pacmanapi(request):
+	response = {}
+	response['success'] = False
+	if request.method == 'POST':
+		apicmd = request.POST['apicmd']
+		if apicmd == "list_installed":
+			package_list = privateapi.pacman.list_installed()
+			if package_list:
+				response['success'] = True
+				counter = 0
+				for package in package_list:
+					packagedict = dict()
+					packagedict['name'] = package[0]
+					packagedict['version'] = package[1]
+					response[counter] = packagedict
+					counter += 1
+				response['numberofpackages'] = counter
+			else:
+				response['success'] = False
+		elif apicmd == "check_for_updates":
+			privateapi.maintenance.update_counter()
+			systemstats = SystemStats.objects.get(id=1)
+			if systemstats.updatesavailable:
+				returnlist['hasupgrades'] = True
+				availableupdates = AvailableUpdate.objects.all()
+				packagelist = []
+				for package in availableupdates:
+					if ":" in package.name:
+						pass
+					else:
+						packagedict = dict()
+						packagedict['name'] = package.name
+						packagedict['newversion'] = package.newversion
+						packagelist.append(packagedict)
+				response['packages'] = packagelist
+				response['numberofpackages'] = len(packagelist)
+			else:
+				response['hasupgrades'] = False
+			response['success'] = True
+		elif apicmd == "list_updates":
+			response['output'] = privateapi.pacman.list_upgrades()
+			response['success'] = True
+		elif apicmd == "do_upgrade":
+			response['output'] = privateapi.pacman.doupdateos()
+			response['success'] = True
+			privateapi.maintenance.update_counter()
+	# dont do anything on GET requests and success = false will be returned as json		
+	else:
+		pass
+	return HttpResponse(simplejson.dumps(response),content_type = 'application/javascript; charset=utf8')
+			
 
+@login_required
+def systemapi(request):
+	response = {}
+	response['success'] = False
+	if request.method == 'POST':
+		apicmd = request.POST['apicmd']
+		if apicmd == "execute":
+			command = formdata['command'].strip('\n')
+			try:
+				response['output'] = privateapi.core.runcommand(command)
+				response['success'] = True
+			except:
+				pass
+		elif apicmd == "reboot":
+			response['output'] = privateapi.core.rebootnow()
+			response['success'] = True
+	else:
+		pass
+	return HttpResponse(simplejson.dumps(response),content_type = 'application/javascript; charset=utf8')
+		
+	
+	
+	
+@login_required
+def statusapi(request):
+	response = {}
+	response['success'] = False
+	response['diskuse'] = privateapi.core.getdiskuse()
+	response['loadavg'] = privateapi.core.getloadavg()
+	response['entropy'] = privateapi.core.getentropy()
+	response['uptime'] = privateapi.core.getuptime()
+	response['memory_total'] = privateapi.core.getmemory_total()
+	response['memory_free'] = privateapi.core.getmemory_free()
+	response['memory_percent'] = privateapi.core.getmemory_percent()
+	return HttpResponse(simplejson.dumps(response),content_type = 'application/javascript; charset=utf8')
+
+def userapi(request):
+	pass
+
+def downloadshare(request,shareuuid=''):
+	share = Share.objects.get(uuid=shareuuid)
+	path = share.path
+	response = privateapi.core.streamfile(path,"download")
+	return response
+	
+class UploadFileForm(forms.Form):
+	file  = forms.FileField()	
+
+def handle_uploaded_file(f):
+	destination = open('/var/lib/PlugUI/data/uploads/' + f.name, 'wb+')
+	for chunk in f.chunks():
+		destination.write(chunk)
+	destination.close()
+		
+@login_required
+def uploadapi(request):
+	if request.method == 'POST':
+		form = UploadFileForm(request.POST, request.FILES)
+		if form.is_valid():
+			for file in request.FILES:
+				handle_uploaded_file(file)
+			return HttpResponse(request.FILES)
+	return HttpResponse(request.FILES)
+	
 @login_required	
 def fileapi(request):
 	def nodot(item): 
@@ -325,6 +351,17 @@ def fileapi(request):
 					share.save()
 					response['success'] = True
 			return HttpResponse(simplejson.dumps(response),content_type = 'application/javascript; charset=utf8')
+		if request.POST['cmd'] == 'deleteshare':
+			response = dict()
+			response['success'] = False
+			rawpath = request.POST['path']
+			cleanpath = posixpath.normpath(urllib.unquote(rawpath)).rstrip('.').rstrip('/')
+			if re.match("/media", cleanpath):
+				share = ShareForm(request.POST)
+				if share.is_valid():
+					share.save()
+					response['success'] = True
+			return HttpResponse(simplejson.dumps(response),content_type = 'application/javascript; charset=utf8')			
 				
 	else:
 		if request.GET['cmd'] == 'stream':

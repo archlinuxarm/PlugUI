@@ -37,10 +37,10 @@ from custom_decorators import user_present
 
 @user_present
 @login_required
-def index(request):
+def list(request):
 	user_list = User.objects.all()
 	contents = { "user_list": user_list } 
-	return render_to_response('users/index.html', contents, context_instance=RequestContext(request))
+	return render_to_response('users/list.html', contents, context_instance=RequestContext(request))
 
 @user_present
 @login_required

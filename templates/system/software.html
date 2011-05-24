@@ -1,0 +1,67 @@
+{% if updatesavailable %} 
+<script type="text/javascript">
+$(document).ready(showUpgrade);
+</script>
+{% else %}
+<script type="text/javascript">
+$(document).ready(showCheck);
+</script>
+{% endif %}
+
+<div class="page_body_section">
+<div id="configpage">
+<h2>Software</h2>
+
+<div id="leftpanel">
+<div id="header">
+<div>Software updates</div>
+</div><!-- header -->
+<div id="displayarea">
+<span id="os">
+{% if updatesavailable %}
+{{ updatecount }} update(s) available.
+{% for package in packagelist %}
+<p class="packagename">{{ package.name }} {{ package.newversion }}</p>
+{% endfor %}
+{% else %}
+All software is up to date!
+{% endif %}
+</span><!-- os -->
+
+</div><!-- displayarea -->
+</div><!-- leftpanel -->
+
+
+<div id="rightpanel">
+<div id="header">
+Status
+</div><!-- header -->
+<div id="attributes">
+
+<div id="updatecounttitle" class="panelattributename">Updates available:</div>
+<div id="updatecount" class="panelattribute">
+{% if updatesavailable %}
+{{ updatecount }}
+{% else %}
+None
+{% endif %}
+</div><!-- panelattribute -->
+<div id="loading" style="display:none;"><img id="loader" style="width:18px;height:18px;margin:0;" src="/static/images/loader.gif"/></div>
+<div id="checkbuttons">
+<span id="button">
+<input type="button" value="Check now" onclick="checkUpdates();"/>
+</span>
+</div><!-- checkbuttons -->
+
+<div id="upgradebuttons">
+<span id="button">
+<input type="button" value="Update now" onclick="doUpgrade();"/>
+</span>
+</div><!-- upgradebuttons -->
+
+
+</div><!-- attributes -->
+</div><!-- rightpanel -->
+<div id="clear"></div>
+</div><!-- configpage -->
+</div><!-- page_body_section -->

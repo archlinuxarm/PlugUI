@@ -46,7 +46,7 @@ USE_L10N = False
 MEDIA_ROOT = ''
 MEDIA_URL = ''
 LOGIN_URL = '/users/login/'
-LOGIN_REDIRECT_URL = '/home/'
+LOGIN_REDIRECT_URL = '/'
 ADMIN_MEDIA_PREFIX = '/media/'
 
 # how to handle this during deployment?
@@ -69,7 +69,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'urls'
 
 TEMPLATE_DIRS = (
-    '/opt/PlugUI/views'
+    '/opt/PlugUI/templates'
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -92,7 +92,6 @@ INSTALLED_APPS = (
     'system',
     'files',
     'apps',
-    'home',
 )
 
 PLUGAPPS_LIST = (

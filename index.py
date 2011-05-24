@@ -24,15 +24,40 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."""
 
-from django.conf.urls.defaults import *
+from django.shortcuts import render_to_response
+from django.template import RequestContext
 
-urlpatterns = patterns('',
+from django.contrib.auth.decorators import login_required
 
-	(r'^isinstalled/(?P<package>\w{1,50})/$', 'api.views.isinstalled'),
-	(r'^isrunning/(?P<package>\w{1,50})/$', 'api.views.isrunning'),
-	(r'^startapp/(?P<package>\w{1,50})/$', 'api.views.startapp'),
-	(r'^stopapp/(?P<package>\w{1,50})/$', 'api.views.stopapp'),
-	(r'^install/(?P<package>\w{1,50})/$', 'api.views.install'),
+from system.models import SystemStats
+from system.models import AvailableUpdate
 
+from custom_decorators import user_present
+
+@user_present
+@login_required
+def home(request):
+	#news_list = PlugappsNewsEntry.objects.all()
+	try:
+		systemstats = SystemStats.objects.get(id=1)
+		updatesavailable = systemstats.updatesavailable
+		updatelist = AvailableUpdate.objects.all()
+		packagelist = []
+		for package in updatelist:
+			if ":" in package.name:
+				pass
+			else:
+				packagedict = dict()
+				packagedict['name'] = package.name
+				packagedict['newversion'] = package.newversion
+				packagelist.append(packagedict)	
+		updatecount = len(packagelist)
+	except:
+		updatecount = "0"
+		updatesavailable = False
+	return render_to_response('home.html', {"updatecount": updatecount, "updatesavailable": updatesavailable }, context_instance=RequestContext(request))
 	
-)
+@user_present
+def index(request):
+	return render_to_response('index.html', {}, context_instance=RequestContext(request))
+	

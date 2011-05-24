@@ -1,0 +1,43 @@
+
+<div id="configpage">
+<h2>Plug information</h2>
+<div id="leftpanel">
+<div id="header">
+<div>About your Device</div>
+</div><!-- header -->
+<div id="displayarea">
+<p><b>Device:</b> {{ devicename }}</p>
+<p><b>Processor:</b> {{ processor }}</p>
+<p><b>Architecture:</b> {{ architecture }}</p>
+<p><b>Kernel:</b> Linux {{ kernelversion }}</p>
+
+</div><!-- displayarea -->
+</div><!-- leftpanel -->
+<div id="rightpanel">
+<div id="header">
+Status
+</div><!-- header -->
+<div id="attributes">
+
+<div id="filenametitle" class="panelattributename">Uptime:</div>
+<div id="uptime" class="panelattribute">{{ currentuptime }}</div>
+
+<div id="filetypetitle" class="panelattributename">Memory used:</div>
+<div id="memory" class="panelattribute"><meter min="0" max="100" value="{{ percentused }}"></meter> {{ memused }}MB</div>
+
+<div id="filesizetitle" class="panelattributename">Load:</div>
+<div id="load" class="panelattribute">{{ load }}</div>
+
+<div id="filedatetitle" class="panelattributename">Local IP Address:</div>
+<div id="ip" class="panelattribute">{{ localip }}</div>
+    
+<div id="filedatetitle" class="panelattributename">Public IP Address:</div>
+<div id="ip" class="panelattribute">{{ publicip }}</div>
+
+</div><!-- attributes -->
+</div><!-- rightpanel -->
+
+
+</div><!-- configpage -->
+<div style="clear:both;"></div>
+</div><!-- page_body_section -->

@@ -27,15 +27,49 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."""
 from django.conf.urls.defaults import *
 from django.conf import settings
 from django.views.generic.simple import redirect_to
+from django.contrib.auth.views import password_change_done
 
 urlpatterns = patterns('',
 	(r'^static/(?P<path>.*)$', 'django.views.static.serve',
         {'document_root': settings.STATIC_DOC_ROOT}),
-	(r'^api/', include('api.urls')),
-	(r'^users/', include('users.urls')),
-	(r'^system/', include('system.urls')),
-	(r'^files/', include('files.urls')),
-	(r'^apps/', include('apps.urls')),
-	(r'^home/', include('home.urls')),
-	(r'^$', redirect_to, {'url': '/home/'}),
+	
+	(r'^fileapi$', 'api.views.fileapi'),
+	(r'^uploadapi$', 'api.views.uploadapi'),
+	(r'^songapi$', 'api.views.songapi'),
+	(r'^statusapi$', 'api.views.statusapi'),
+	(r'^userapi$', 'api.views.userapi'),
+
+	
+	(r'^storage$', 'system.views.storage', {}, 'storage'),
+	(r'^software$', 'system.views.software', {}, 'software'),
+	(r'^networking$', 'system.views.networking', {}, 'networking'),
+	(r'^reboot$', 'system.views.reboot', {}, 'reboot'),
+	(r'^advanced', 'system.views.advanced', {}, 'advanced'),
+	(r'^shell', 'system.views.shell', {}, 'shell'),
+	(r'^system', 'system.views.about', {}, 'system'),
+	
+	
+	(r'^browse', 'files.views.browse', {}, 'browse'),
+	(r'^shares', 'files.views.shares', {}, 'shares'),
+	(r'^addshare', 'files.views.addshare', {}, 'addshare'),
+	(r'^deleteshare', 'files.views.deleteshare', {}, 'deleteshare'),
+	(r'^download/(?P<shareuuid>\w+)', 'files.views.downloadshare', {}, 'downloadshare'),
+	
+	
+	(r'^samba', 'apps.views.samba', {}, 'samba'),
+	(r'^minidlna', 'apps.views.minidlna', {}, 'minidlna'),
+	(r'^app_list', 'apps.views.index', {}, 'apps'),
+	(r'^install_app/(?P<package>\w{1,50})/$', 'apps.views.install'),
+	
+	(r'^create_user$', 'users.views.create', {}, 'createuser'),
+	(r'^create_default_user$', 'users.views.createdefaultuser', {}, 'createdefaultuser'),
+	(r'^deleteuser$', 'users.views.delete', {}, 'deleteuser'),
+	(r'^login', 'django.contrib.auth.views.login', {'template_name': 'users/login.html'}, 'login'),
+	(r'^logout', 'django.contrib.auth.views.logout', {'template_name': 'users/logout.html'}, 'logout'),
+	(r'^change_password', 'django.contrib.auth.views.password_change', { 'template_name': 'users/password_change.html' , 'post_change_redirect': '#'} ),
+	(r'^user_list', 'users.views.list', {}, 'user_list'),
+	
+	
+	(r'^home', 'index.home', {}, 'home'),
+	(r'^$', 'index.index', {}, 'index'),
 )

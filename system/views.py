@@ -58,7 +58,7 @@ class AdvancedForm(forms.Form):
 
 @user_present
 @login_required
-def index(request):
+def about(request):
 	localip = privateapi.core.getlocalip()
 	publicip = privateapi.core.getpublicip()
 	currentuptime = privateapi.core.getuptime() 
@@ -83,7 +83,7 @@ def index(request):
 				"devicename": devicename, 
 				"processor": processor, 
 				"architecture": architecture } 
-	return render_to_response('system/index.html', stats, context_instance=RequestContext(request))
+	return render_to_response('system/about.html', stats, context_instance=RequestContext(request))
 
 @user_present
 @login_required

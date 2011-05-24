@@ -1,0 +1,611 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXFileReference section */
+		AA75E277138AF991002BBF3B /* __init__.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
+		AA75E27A138AF991002BBF3B /* __init__.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
+		AA75E27C138AF991002BBF3B /* models.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = models.py; sourceTree = "<group>"; };
+		AA75E27D138AF991002BBF3B /* views.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = views.py; sourceTree = "<group>"; };
+		AA75E27F138AF991002BBF3B /* urls.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = urls.py; sourceTree = "<group>"; };
+		AA75E282138AF992002BBF3B /* models.pyc */ = {isa = PBXFileReference; lastKnownFileType = file; path = models.pyc; sourceTree = "<group>"; };
+		AA75E283138AF992002BBF3B /* __init__.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
+		AA75E285138AF992002BBF3B /* models.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = models.py; sourceTree = "<group>"; };
+		AA75E286138AF992002BBF3B /* views.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = views.py; sourceTree = "<group>"; };
+		AA75E28A138AF992002BBF3B /* custom_context.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = custom_context.py; sourceTree = "<group>"; };
+		AA75E28C138AF992002BBF3B /* custom_decorators.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = custom_decorators.py; sourceTree = "<group>"; };
+		AA75E28E138AF992002BBF3B /* feedparser.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = feedparser.py; sourceTree = "<group>"; };
+		AA75E292138AF992002BBF3B /* __init__.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
+		AA75E294138AF992002BBF3B /* models.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = models.py; sourceTree = "<group>"; };
+		AA75E295138AF992002BBF3B /* views.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = views.py; sourceTree = "<group>"; };
+		AA75E2A5138AF992002BBF3B /* manage.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = manage.py; sourceTree = "<group>"; };
+		AA75E2A6138AF992002BBF3B /* plugmaintenance.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = plugmaintenance.py; sourceTree = "<group>"; };
+		AA75E2A7138AF992002BBF3B /* plugui.cherrypy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = plugui.cherrypy; sourceTree = "<group>"; };
+		AA75E2AA138AF992002BBF3B /* core.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = core.py; sourceTree = "<group>"; };
+		AA75E2AB138AF992002BBF3B /* samba.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = samba.py; sourceTree = "<group>"; };
+		AA75E2AC138AF992002BBF3B /* pacman.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = pacman.py; sourceTree = "<group>"; };
+		AA75E2AD138AF992002BBF3B /* samba3.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = samba3.py; sourceTree = "<group>"; };
+		AA75E2B1138AF992002BBF3B /* __init__.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
+		AA75E2B4138AF992002BBF3B /* maintenance.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = maintenance.py; sourceTree = "<group>"; };
+		AA75E2B5138AF992002BBF3B /* minidlna.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = minidlna.py; sourceTree = "<group>"; };
+		AA75E2B6138AF992002BBF3B /* apt.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = apt.py; sourceTree = "<group>"; };
+		AA75E2B7138AF992002BBF3B /* dev.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = dev.py; sourceTree = "<group>"; };
+		AA75E2B8138AF992002BBF3B /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		AA75E2B9138AF992002BBF3B /* settings.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = settings.py; sourceTree = "<group>"; };
+		AA75E2BB138AF992002BBF3B /* setup.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = setup.sh; sourceTree = "<group>"; };
+		AA75E2BD138AF992002BBF3B /* Jplayer.swf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Jplayer.swf; sourceTree = "<group>"; };
+		AA75E2BE138AF992002BBF3B /* jquery.jqplot.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery.jqplot.js; sourceTree = "<group>"; };
+		AA75E2C0138AF992002BBF3B /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		AA75E2C1138AF992002BBF3B /* ruby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ruby.png; sourceTree = "<group>"; };
+		AA75E2C2138AF992002BBF3B /* footer-back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "footer-back.png"; sourceTree = "<group>"; };
+		AA75E2C3138AF992002BBF3B /* spinner.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = spinner.gif; sourceTree = "<group>"; };
+		AA75E2C4138AF992002BBF3B /* pdf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pdf.png; sourceTree = "<group>"; };
+		AA75E2C5138AF992002BBF3B /* metal-pattern5-256.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "metal-pattern5-256.jpg"; sourceTree = "<group>"; };
+		AA75E2C6138AF992002BBF3B /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		AA75E2C7138AF992002BBF3B /* application.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = application.png; sourceTree = "<group>"; };
+		AA75E2C8138AF992002BBF3B /* zip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zip.png; sourceTree = "<group>"; };
+		AA75E2C9138AF992002BBF3B /* xls.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xls.png; sourceTree = "<group>"; };
+		AA75E2CA138AF992002BBF3B /* loader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loader.gif; sourceTree = "<group>"; };
+		AA75E2CB138AF992002BBF3B /* gradient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gradient.png; sourceTree = "<group>"; };
+		AA75E2CC138AF992002BBF3B /* code.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = code.png; sourceTree = "<group>"; };
+		AA75E2CD138AF992002BBF3B /* php.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = php.png; sourceTree = "<group>"; };
+		AA75E2CE138AF992002BBF3B /* music.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = music.png; sourceTree = "<group>"; };
+		AA75E2CF138AF992002BBF3B /* topbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = topbar.png; sourceTree = "<group>"; };
+		AA75E2D0138AF992002BBF3B /* css.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = css.png; sourceTree = "<group>"; };
+		AA75E2D1138AF992002BBF3B /* file.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = file.png; sourceTree = "<group>"; };
+		AA75E2D2138AF992002BBF3B /* film.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = film.png; sourceTree = "<group>"; };
+		AA75E2D3138AF992002BBF3B /* plugapps.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plugapps.png; sourceTree = "<group>"; };
+		AA75E2D4138AF992002BBF3B /* sidebar-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sidebar-background.png"; sourceTree = "<group>"; };
+		AA75E2D5138AF992002BBF3B /* header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = header.png; sourceTree = "<group>"; };
+		AA75E2D6138AF992002BBF3B /* txt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = txt.png; sourceTree = "<group>"; };
+		AA75E2D7138AF992002BBF3B /* subnav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = subnav.png; sourceTree = "<group>"; };
+		AA75E2D8138AF992002BBF3B /* flash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flash.png; sourceTree = "<group>"; };
+		AA75E2D9138AF992002BBF3B /* doc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = doc.png; sourceTree = "<group>"; };
+		AA75E2DA138AF992002BBF3B /* html.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = html.png; sourceTree = "<group>"; };
+		AA75E2DB138AF992002BBF3B /* directory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = directory.png; sourceTree = "<group>"; };
+		AA75E2DC138AF992002BBF3B /* select_arrow.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = select_arrow.gif; sourceTree = "<group>"; };
+		AA75E2DD138AF992002BBF3B /* bottombarbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottombarbg.png; sourceTree = "<group>"; };
+		AA75E2DE138AF992002BBF3B /* script.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = script.png; sourceTree = "<group>"; };
+		AA75E2DF138AF992002BBF3B /* folder_open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = folder_open.png; sourceTree = "<group>"; };
+		AA75E2E0138AF992002BBF3B /* downright.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = downright.png; sourceTree = "<group>"; };
+		AA75E2E1138AF992002BBF3B /* db.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = db.png; sourceTree = "<group>"; };
+		AA75E2E2138AF992002BBF3B /* picture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = picture.png; sourceTree = "<group>"; };
+		AA75E2E3138AF992002BBF3B /* parent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parent.png; sourceTree = "<group>"; };
+		AA75E2E4138AF992002BBF3B /* ppt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ppt.png; sourceTree = "<group>"; };
+		AA75E2E5138AF992002BBF3B /* nav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nav.png; sourceTree = "<group>"; };
+		AA75E2E6138AF992002BBF3B /* linux.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = linux.png; sourceTree = "<group>"; };
+		AA75E2E7138AF992002BBF3B /* bar.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = bar.gif; sourceTree = "<group>"; };
+		AA75E2E8138AF992002BBF3B /* java.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = java.png; sourceTree = "<group>"; };
+		AA75E2E9138AF992002BBF3B /* psd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = psd.png; sourceTree = "<group>"; };
+		AA75E2EA138AF992002BBF3B /* tuxinbox-50px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tuxinbox-50px.png"; sourceTree = "<group>"; };
+		AA75E2EB138AF992002BBF3B /* button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button.png; sourceTree = "<group>"; };
+		AA75E2EC138AF992002BBF3B /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
+		AA75E2ED138AF992002BBF3B /* topmenubarbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = topmenubarbg.png; sourceTree = "<group>"; };
+		AA75E2EE138AF992002BBF3B /* favicon.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = favicon.gif; sourceTree = "<group>"; };
+		AA75E2EF138AF992002BBF3B /* formalize.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = formalize.css; sourceTree = "<group>"; };
+		AA75E2F0138AF992002BBF3B /* jquery-1.5.1.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "jquery-1.5.1.min.js"; sourceTree = "<group>"; };
+		AA75E2F1138AF992002BBF3B /* jquery.jplayer.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery.jplayer.min.js; sourceTree = "<group>"; };
+		AA75E2F3138AF992002BBF3B /* jplayer.blue.monday.video.play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jplayer.blue.monday.video.play.png; sourceTree = "<group>"; };
+		AA75E2F4138AF992002BBF3B /* jplayer.blue.monday.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = jplayer.blue.monday.css; sourceTree = "<group>"; };
+		AA75E2F5138AF992002BBF3B /* jplayer.blue.monday.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jplayer.blue.monday.jpg; sourceTree = "<group>"; };
+		AA75E2F6138AF992002BBF3B /* pbar-ani.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "pbar-ani.gif"; sourceTree = "<group>"; };
+		AA75E2F7138AF992002BBF3B /* jplayer.blue.monday.video.play.hover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jplayer.blue.monday.video.play.hover.png; sourceTree = "<group>"; };
+		AA75E2F9138AF992002BBF3B /* jqplot.canvasTextRenderer.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.canvasTextRenderer.js; sourceTree = "<group>"; };
+		AA75E2FA138AF992002BBF3B /* jqplot.mekkoAxisRenderer.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.mekkoAxisRenderer.js; sourceTree = "<group>"; };
+		AA75E2FB138AF992002BBF3B /* jqplot.pieRenderer.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.pieRenderer.min.js; sourceTree = "<group>"; };
+		AA75E2FC138AF992002BBF3B /* jqplot.categoryAxisRenderer.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.categoryAxisRenderer.min.js; sourceTree = "<group>"; };
+		AA75E2FD138AF992002BBF3B /* jqplot.highlighter.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.highlighter.min.js; sourceTree = "<group>"; };
+		AA75E2FE138AF992002BBF3B /* jqplot.enhancedLegendRenderer.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.enhancedLegendRenderer.min.js; sourceTree = "<group>"; };
+		AA75E2FF138AF992002BBF3B /* jqplot.highlighter.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.highlighter.js; sourceTree = "<group>"; };
+		AA75E300138AF992002BBF3B /* jqplot.canvasAxisLabelRenderer.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.canvasAxisLabelRenderer.min.js; sourceTree = "<group>"; };
+		AA75E301138AF992002BBF3B /* jqplot.trendline.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.trendline.min.js; sourceTree = "<group>"; };
+		AA75E302138AF992002BBF3B /* jqplot.blockRenderer.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.blockRenderer.js; sourceTree = "<group>"; };
+		AA75E303138AF992002BBF3B /* jqplot.barRenderer.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.barRenderer.js; sourceTree = "<group>"; };
+		AA75E304138AF992002BBF3B /* jqplot.canvasAxisLabelRenderer.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.canvasAxisLabelRenderer.js; sourceTree = "<group>"; };
+		AA75E305138AF992002BBF3B /* jqplot.pieRenderer.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.pieRenderer.js; sourceTree = "<group>"; };
+		AA75E306138AF992002BBF3B /* jqplot.dateAxisRenderer.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.dateAxisRenderer.min.js; sourceTree = "<group>"; };
+		AA75E307138AF992002BBF3B /* jqplot.blockRenderer.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.blockRenderer.min.js; sourceTree = "<group>"; };
+		AA75E308138AF992002BBF3B /* jqplot.dragable.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.dragable.min.js; sourceTree = "<group>"; };
+		AA75E309138AF992002BBF3B /* jqplot.ohlcRenderer.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.ohlcRenderer.min.js; sourceTree = "<group>"; };
+		AA75E30A138AF992002BBF3B /* jqplot.funnelRenderer.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.funnelRenderer.min.js; sourceTree = "<group>"; };
+		AA75E30B138AF992002BBF3B /* jqplot.ohlcRenderer.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.ohlcRenderer.js; sourceTree = "<group>"; };
+		AA75E30C138AF992002BBF3B /* jqplot.canvasAxisTickRenderer.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.canvasAxisTickRenderer.min.js; sourceTree = "<group>"; };
+		AA75E30D138AF992002BBF3B /* jqplot.mekkoAxisRenderer.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.mekkoAxisRenderer.min.js; sourceTree = "<group>"; };
+		AA75E30E138AF992002BBF3B /* jqplot.funnelRenderer.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.funnelRenderer.js; sourceTree = "<group>"; };
+		AA75E30F138AF992002BBF3B /* jqplot.logAxisRenderer.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.logAxisRenderer.js; sourceTree = "<group>"; };
+		AA75E310138AF992002BBF3B /* jqplot.canvasAxisTickRenderer.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.canvasAxisTickRenderer.js; sourceTree = "<group>"; };
+		AA75E311138AF992002BBF3B /* jqplot.donutRenderer.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.donutRenderer.js; sourceTree = "<group>"; };
+		AA75E312138AF992002BBF3B /* jqplot.cursor.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.cursor.js; sourceTree = "<group>"; };
+		AA75E313138AF992002BBF3B /* jqplot.dateAxisRenderer.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.dateAxisRenderer.js; sourceTree = "<group>"; };
+		AA75E314138AF992002BBF3B /* jqplot.dragable.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.dragable.js; sourceTree = "<group>"; };
+		AA75E315138AF992002BBF3B /* jqplot.mekkoRenderer.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.mekkoRenderer.min.js; sourceTree = "<group>"; };
+		AA75E316138AF992002BBF3B /* jqplot.trendline.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.trendline.js; sourceTree = "<group>"; };
+		AA75E317138AF992002BBF3B /* jqplot.json2.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.json2.min.js; sourceTree = "<group>"; };
+		AA75E318138AF992002BBF3B /* jqplot.meterGaugeRenderer.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.meterGaugeRenderer.min.js; sourceTree = "<group>"; };
+		AA75E319138AF992002BBF3B /* jqplot.pointLabels.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.pointLabels.js; sourceTree = "<group>"; };
+		AA75E31A138AF992002BBF3B /* jqplot.ciParser.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.ciParser.js; sourceTree = "<group>"; };
+		AA75E31B138AF992002BBF3B /* jqplot.ciParser.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.ciParser.min.js; sourceTree = "<group>"; };
+		AA75E31C138AF992002BBF3B /* jqplot.BezierCurveRenderer.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.BezierCurveRenderer.js; sourceTree = "<group>"; };
+		AA75E31D138AF992002BBF3B /* jqplot.mekkoRenderer.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.mekkoRenderer.js; sourceTree = "<group>"; };
+		AA75E31E138AF992002BBF3B /* jqplot.meterGaugeRenderer.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.meterGaugeRenderer.js; sourceTree = "<group>"; };
+		AA75E31F138AF992002BBF3B /* jqplot.BezierCurveRenderer.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.BezierCurveRenderer.min.js; sourceTree = "<group>"; };
+		AA75E320138AF992002BBF3B /* jqplot.logAxisRenderer.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.logAxisRenderer.min.js; sourceTree = "<group>"; };
+		AA75E321138AF992002BBF3B /* jqplot.categoryAxisRenderer.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.categoryAxisRenderer.js; sourceTree = "<group>"; };
+		AA75E322138AF992002BBF3B /* jqplot.enhancedLegendRenderer.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.enhancedLegendRenderer.js; sourceTree = "<group>"; };
+		AA75E323138AF992002BBF3B /* jqplot.canvasTextRenderer.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.canvasTextRenderer.min.js; sourceTree = "<group>"; };
+		AA75E324138AF992002BBF3B /* jqplot.bubbleRenderer.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.bubbleRenderer.js; sourceTree = "<group>"; };
+		AA75E325138AF992002BBF3B /* jqplot.json2.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.json2.js; sourceTree = "<group>"; };
+		AA75E326138AF992002BBF3B /* jqplot.pointLabels.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.pointLabels.min.js; sourceTree = "<group>"; };
+		AA75E327138AF992002BBF3B /* jqplot.donutRenderer.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.donutRenderer.min.js; sourceTree = "<group>"; };
+		AA75E328138AF992002BBF3B /* jqplot.bubbleRenderer.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.bubbleRenderer.min.js; sourceTree = "<group>"; };
+		AA75E329138AF992002BBF3B /* jqplot.cursor.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.cursor.min.js; sourceTree = "<group>"; };
+		AA75E32A138AF992002BBF3B /* jqplot.barRenderer.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jqplot.barRenderer.min.js; sourceTree = "<group>"; };
+		AA75E32B138AF992002BBF3B /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
+		AA75E32C138AF992002BBF3B /* ajax-loader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "ajax-loader.gif"; sourceTree = "<group>"; };
+		AA75E32D138AF992002BBF3B /* jquery.jqplot.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = jquery.jqplot.css; sourceTree = "<group>"; };
+		AA75E32E138AF992002BBF3B /* jquery.formalize.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery.formalize.js; sourceTree = "<group>"; };
+		AA75E331138AF992002BBF3B /* __init__.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
+		AA75E333138AF992002BBF3B /* models.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = models.py; sourceTree = "<group>"; };
+		AA75E334138AF992002BBF3B /* views.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = views.py; sourceTree = "<group>"; };
+		AA75E338138AF992002BBF3B /* urls.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = urls.py; sourceTree = "<group>"; };
+		AA75E33C138AF992002BBF3B /* __init__.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
+		AA75E33E138AF992002BBF3B /* models.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = models.py; sourceTree = "<group>"; };
+		AA75E33F138AF992002BBF3B /* views.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = views.py; sourceTree = "<group>"; };
+		AA75E36A138AFAB3002BBF3B /* plugui.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = plugui.js; sourceTree = "<group>"; };
+		AA75E36E138AFC82002BBF3B /* minidlna.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = minidlna.html; sourceTree = "<group>"; };
+		AA75E36F138AFC82002BBF3B /* list.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = list.html; sourceTree = "<group>"; };
+		AA75E370138AFC82002BBF3B /* install.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = install.html; sourceTree = "<group>"; };
+		AA75E371138AFC82002BBF3B /* samba.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = samba.html; sourceTree = "<group>"; };
+		AA75E373138AFC83002BBF3B /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; path = index.html; sourceTree = "<group>"; };
+		AA75E375138AFC83002BBF3B /* upload.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = upload.html; sourceTree = "<group>"; };
+		AA75E376138AFC83002BBF3B /* addshare.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = addshare.html; sourceTree = "<group>"; };
+		AA75E378138AFC83002BBF3B /* browse.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = browse.html; sourceTree = "<group>"; };
+		AA75E379138AFC83002BBF3B /* shares.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = shares.html; sourceTree = "<group>"; };
+		AA75E37B138AFC83002BBF3B /* createdefaultuser.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = createdefaultuser.html; sourceTree = "<group>"; };
+		AA75E37C138AFC83002BBF3B /* logout.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = logout.html; sourceTree = "<group>"; };
+		AA75E37D138AFC83002BBF3B /* password_change.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = password_change.html; sourceTree = "<group>"; };
+		AA75E37E138AFC83002BBF3B /* list.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = list.html; sourceTree = "<group>"; };
+		AA75E37F138AFC83002BBF3B /* create.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = create.html; sourceTree = "<group>"; };
+		AA75E380138AFC83002BBF3B /* login.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = login.html; sourceTree = "<group>"; };
+		AA75E382138AFC83002BBF3B /* software.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = software.html; sourceTree = "<group>"; };
+		AA75E383138AFC83002BBF3B /* advanced.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = advanced.html; sourceTree = "<group>"; };
+		AA75E384138AFC83002BBF3B /* reboot.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = reboot.html; sourceTree = "<group>"; };
+		AA75E385138AFC83002BBF3B /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
+		AA75E386138AFC83002BBF3B /* networking.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = networking.html; sourceTree = "<group>"; };
+		AA75E387138AFC84002BBF3B /* storage.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = storage.html; sourceTree = "<group>"; };
+		AA75E388138AFC84002BBF3B /* shell.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = shell.html; sourceTree = "<group>"; };
+		AA75E396138B0908002BBF3B /* index.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = index.py; sourceTree = "<group>"; };
+		AA75E3AB138B1C1B002BBF3B /* home.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = home.html; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		AA75E264138AF96A002BBF3B = {
+			isa = PBXGroup;
+			children = (
+				AA75E396138B0908002BBF3B /* index.py */,
+				AA75E36B138AFC82002BBF3B /* templates */,
+				AA75E277138AF991002BBF3B /* __init__.py */,
+				AA75E2BC138AF992002BBF3B /* static */,
+				AA75E279138AF991002BBF3B /* api */,
+				AA75E281138AF992002BBF3B /* apps */,
+				AA75E28A138AF992002BBF3B /* custom_context.py */,
+				AA75E28C138AF992002BBF3B /* custom_decorators.py */,
+				AA75E28E138AF992002BBF3B /* feedparser.py */,
+				AA75E290138AF992002BBF3B /* files */,
+				AA75E2A5138AF992002BBF3B /* manage.py */,
+				AA75E2A6138AF992002BBF3B /* plugmaintenance.py */,
+				AA75E2A7138AF992002BBF3B /* plugui.cherrypy */,
+				AA75E2A8138AF992002BBF3B /* privateapi */,
+				AA75E2B8138AF992002BBF3B /* README */,
+				AA75E2B9138AF992002BBF3B /* settings.py */,
+				AA75E2BB138AF992002BBF3B /* setup.sh */,
+				AA75E32F138AF992002BBF3B /* system */,
+				AA75E338138AF992002BBF3B /* urls.py */,
+				AA75E33A138AF992002BBF3B /* users */,
+			);
+			sourceTree = "<group>";
+		};
+		AA75E279138AF991002BBF3B /* api */ = {
+			isa = PBXGroup;
+			children = (
+				AA75E27A138AF991002BBF3B /* __init__.py */,
+				AA75E27C138AF991002BBF3B /* models.py */,
+				AA75E27D138AF991002BBF3B /* views.py */,
+				AA75E27F138AF991002BBF3B /* urls.py */,
+			);
+			path = api;
+			sourceTree = "<group>";
+		};
+		AA75E281138AF992002BBF3B /* apps */ = {
+			isa = PBXGroup;
+			children = (
+				AA75E282138AF992002BBF3B /* models.pyc */,
+				AA75E283138AF992002BBF3B /* __init__.py */,
+				AA75E285138AF992002BBF3B /* models.py */,
+				AA75E286138AF992002BBF3B /* views.py */,
+			);
+			path = apps;
+			sourceTree = "<group>";
+		};
+		AA75E290138AF992002BBF3B /* files */ = {
+			isa = PBXGroup;
+			children = (
+				AA75E292138AF992002BBF3B /* __init__.py */,
+				AA75E294138AF992002BBF3B /* models.py */,
+				AA75E295138AF992002BBF3B /* views.py */,
+			);
+			path = files;
+			sourceTree = "<group>";
+		};
+		AA75E2A8138AF992002BBF3B /* privateapi */ = {
+			isa = PBXGroup;
+			children = (
+				AA75E2AA138AF992002BBF3B /* core.py */,
+				AA75E2AB138AF992002BBF3B /* samba.py */,
+				AA75E2AC138AF992002BBF3B /* pacman.py */,
+				AA75E2AD138AF992002BBF3B /* samba3.py */,
+				AA75E2B1138AF992002BBF3B /* __init__.py */,
+				AA75E2B4138AF992002BBF3B /* maintenance.py */,
+				AA75E2B5138AF992002BBF3B /* minidlna.py */,
+				AA75E2B6138AF992002BBF3B /* apt.py */,
+				AA75E2B7138AF992002BBF3B /* dev.py */,
+			);
+			path = privateapi;
+			sourceTree = "<group>";
+		};
+		AA75E2BC138AF992002BBF3B /* static */ = {
+			isa = PBXGroup;
+			children = (
+				AA75E2BD138AF992002BBF3B /* Jplayer.swf */,
+				AA75E2BE138AF992002BBF3B /* jquery.jqplot.js */,
+				AA75E2BF138AF992002BBF3B /* images */,
+				AA75E2EE138AF992002BBF3B /* favicon.gif */,
+				AA75E2EF138AF992002BBF3B /* formalize.css */,
+				AA75E2F0138AF992002BBF3B /* jquery-1.5.1.min.js */,
+				AA75E2F1138AF992002BBF3B /* jquery.jplayer.min.js */,
+				AA75E2F2138AF992002BBF3B /* skins */,
+				AA75E2F8138AF992002BBF3B /* plugins */,
+				AA75E32B138AF992002BBF3B /* style.css */,
+				AA75E32C138AF992002BBF3B /* ajax-loader.gif */,
+				AA75E32D138AF992002BBF3B /* jquery.jqplot.css */,
+				AA75E32E138AF992002BBF3B /* jquery.formalize.js */,
+				AA75E36A138AFAB3002BBF3B /* plugui.js */,
+			);
+			path = static;
+			sourceTree = "<group>";
+		};
+		AA75E2BF138AF992002BBF3B /* images */ = {
+			isa = PBXGroup;
+			children = (
+				AA75E2C0138AF992002BBF3B /* logo.png */,
+				AA75E2C1138AF992002BBF3B /* ruby.png */,
+				AA75E2C2138AF992002BBF3B /* footer-back.png */,
+				AA75E2C3138AF992002BBF3B /* spinner.gif */,
+				AA75E2C4138AF992002BBF3B /* pdf.png */,
+				AA75E2C5138AF992002BBF3B /* metal-pattern5-256.jpg */,
+				AA75E2C6138AF992002BBF3B /* background.png */,
+				AA75E2C7138AF992002BBF3B /* application.png */,
+				AA75E2C8138AF992002BBF3B /* zip.png */,
+				AA75E2C9138AF992002BBF3B /* xls.png */,
+				AA75E2CA138AF992002BBF3B /* loader.gif */,
+				AA75E2CB138AF992002BBF3B /* gradient.png */,
+				AA75E2CC138AF992002BBF3B /* code.png */,
+				AA75E2CD138AF992002BBF3B /* php.png */,
+				AA75E2CE138AF992002BBF3B /* music.png */,
+				AA75E2CF138AF992002BBF3B /* topbar.png */,
+				AA75E2D0138AF992002BBF3B /* css.png */,
+				AA75E2D1138AF992002BBF3B /* file.png */,
+				AA75E2D2138AF992002BBF3B /* film.png */,
+				AA75E2D3138AF992002BBF3B /* plugapps.png */,
+				AA75E2D4138AF992002BBF3B /* sidebar-background.png */,
+				AA75E2D5138AF992002BBF3B /* header.png */,
+				AA75E2D6138AF992002BBF3B /* txt.png */,
+				AA75E2D7138AF992002BBF3B /* subnav.png */,
+				AA75E2D8138AF992002BBF3B /* flash.png */,
+				AA75E2D9138AF992002BBF3B /* doc.png */,
+				AA75E2DA138AF992002BBF3B /* html.png */,
+				AA75E2DB138AF992002BBF3B /* directory.png */,
+				AA75E2DC138AF992002BBF3B /* select_arrow.gif */,
+				AA75E2DD138AF992002BBF3B /* bottombarbg.png */,
+				AA75E2DE138AF992002BBF3B /* script.png */,
+				AA75E2DF138AF992002BBF3B /* folder_open.png */,
+				AA75E2E0138AF992002BBF3B /* downright.png */,
+				AA75E2E1138AF992002BBF3B /* db.png */,
+				AA75E2E2138AF992002BBF3B /* picture.png */,
+				AA75E2E3138AF992002BBF3B /* parent.png */,
+				AA75E2E4138AF992002BBF3B /* ppt.png */,
+				AA75E2E5138AF992002BBF3B /* nav.png */,
+				AA75E2E6138AF992002BBF3B /* linux.png */,
+				AA75E2E7138AF992002BBF3B /* bar.gif */,
+				AA75E2E8138AF992002BBF3B /* java.png */,
+				AA75E2E9138AF992002BBF3B /* psd.png */,
+				AA75E2EA138AF992002BBF3B /* tuxinbox-50px.png */,
+				AA75E2EB138AF992002BBF3B /* button.png */,
+				AA75E2EC138AF992002BBF3B /* play.png */,
+				AA75E2ED138AF992002BBF3B /* topmenubarbg.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		AA75E2F2138AF992002BBF3B /* skins */ = {
+			isa = PBXGroup;
+			children = (
+				AA75E2F3138AF992002BBF3B /* jplayer.blue.monday.video.play.png */,
+				AA75E2F4138AF992002BBF3B /* jplayer.blue.monday.css */,
+				AA75E2F5138AF992002BBF3B /* jplayer.blue.monday.jpg */,
+				AA75E2F6138AF992002BBF3B /* pbar-ani.gif */,
+				AA75E2F7138AF992002BBF3B /* jplayer.blue.monday.video.play.hover.png */,
+			);
+			path = skins;
+			sourceTree = "<group>";
+		};
+		AA75E2F8138AF992002BBF3B /* plugins */ = {
+			isa = PBXGroup;
+			children = (
+				AA75E2F9138AF992002BBF3B /* jqplot.canvasTextRenderer.js */,
+				AA75E2FA138AF992002BBF3B /* jqplot.mekkoAxisRenderer.js */,
+				AA75E2FB138AF992002BBF3B /* jqplot.pieRenderer.min.js */,
+				AA75E2FC138AF992002BBF3B /* jqplot.categoryAxisRenderer.min.js */,
+				AA75E2FD138AF992002BBF3B /* jqplot.highlighter.min.js */,
+				AA75E2FE138AF992002BBF3B /* jqplot.enhancedLegendRenderer.min.js */,
+				AA75E2FF138AF992002BBF3B /* jqplot.highlighter.js */,
+				AA75E300138AF992002BBF3B /* jqplot.canvasAxisLabelRenderer.min.js */,
+				AA75E301138AF992002BBF3B /* jqplot.trendline.min.js */,
+				AA75E302138AF992002BBF3B /* jqplot.blockRenderer.js */,
+				AA75E303138AF992002BBF3B /* jqplot.barRenderer.js */,
+				AA75E304138AF992002BBF3B /* jqplot.canvasAxisLabelRenderer.js */,
+				AA75E305138AF992002BBF3B /* jqplot.pieRenderer.js */,
+				AA75E306138AF992002BBF3B /* jqplot.dateAxisRenderer.min.js */,
+				AA75E307138AF992002BBF3B /* jqplot.blockRenderer.min.js */,
+				AA75E308138AF992002BBF3B /* jqplot.dragable.min.js */,
+				AA75E309138AF992002BBF3B /* jqplot.ohlcRenderer.min.js */,
+				AA75E30A138AF992002BBF3B /* jqplot.funnelRenderer.min.js */,
+				AA75E30B138AF992002BBF3B /* jqplot.ohlcRenderer.js */,
+				AA75E30C138AF992002BBF3B /* jqplot.canvasAxisTickRenderer.min.js */,
+				AA75E30D138AF992002BBF3B /* jqplot.mekkoAxisRenderer.min.js */,
+				AA75E30E138AF992002BBF3B /* jqplot.funnelRenderer.js */,
+				AA75E30F138AF992002BBF3B /* jqplot.logAxisRenderer.js */,
+				AA75E310138AF992002BBF3B /* jqplot.canvasAxisTickRenderer.js */,
+				AA75E311138AF992002BBF3B /* jqplot.donutRenderer.js */,
+				AA75E312138AF992002BBF3B /* jqplot.cursor.js */,
+				AA75E313138AF992002BBF3B /* jqplot.dateAxisRenderer.js */,
+				AA75E314138AF992002BBF3B /* jqplot.dragable.js */,
+				AA75E315138AF992002BBF3B /* jqplot.mekkoRenderer.min.js */,
+				AA75E316138AF992002BBF3B /* jqplot.trendline.js */,
+				AA75E317138AF992002BBF3B /* jqplot.json2.min.js */,
+				AA75E318138AF992002BBF3B /* jqplot.meterGaugeRenderer.min.js */,
+				AA75E319138AF992002BBF3B /* jqplot.pointLabels.js */,
+				AA75E31A138AF992002BBF3B /* jqplot.ciParser.js */,
+				AA75E31B138AF992002BBF3B /* jqplot.ciParser.min.js */,
+				AA75E31C138AF992002BBF3B /* jqplot.BezierCurveRenderer.js */,
+				AA75E31D138AF992002BBF3B /* jqplot.mekkoRenderer.js */,
+				AA75E31E138AF992002BBF3B /* jqplot.meterGaugeRenderer.js */,
+				AA75E31F138AF992002BBF3B /* jqplot.BezierCurveRenderer.min.js */,
+				AA75E320138AF992002BBF3B /* jqplot.logAxisRenderer.min.js */,
+				AA75E321138AF992002BBF3B /* jqplot.categoryAxisRenderer.js */,
+				AA75E322138AF992002BBF3B /* jqplot.enhancedLegendRenderer.js */,
+				AA75E323138AF992002BBF3B /* jqplot.canvasTextRenderer.min.js */,
+				AA75E324138AF992002BBF3B /* jqplot.bubbleRenderer.js */,
+				AA75E325138AF992002BBF3B /* jqplot.json2.js */,
+				AA75E326138AF992002BBF3B /* jqplot.pointLabels.min.js */,
+				AA75E327138AF992002BBF3B /* jqplot.donutRenderer.min.js */,
+				AA75E328138AF992002BBF3B /* jqplot.bubbleRenderer.min.js */,
+				AA75E329138AF992002BBF3B /* jqplot.cursor.min.js */,
+				AA75E32A138AF992002BBF3B /* jqplot.barRenderer.min.js */,
+			);
+			path = plugins;
+			sourceTree = "<group>";
+		};
+		AA75E32F138AF992002BBF3B /* system */ = {
+			isa = PBXGroup;
+			children = (
+				AA75E331138AF992002BBF3B /* __init__.py */,
+				AA75E333138AF992002BBF3B /* models.py */,
+				AA75E334138AF992002BBF3B /* views.py */,
+			);
+			path = system;
+			sourceTree = "<group>";
+		};
+		AA75E33A138AF992002BBF3B /* users */ = {
+			isa = PBXGroup;
+			children = (
+				AA75E33C138AF992002BBF3B /* __init__.py */,
+				AA75E33E138AF992002BBF3B /* models.py */,
+				AA75E33F138AF992002BBF3B /* views.py */,
+			);
+			path = users;
+			sourceTree = "<group>";
+		};
+		AA75E36B138AFC82002BBF3B /* templates */ = {
+			isa = PBXGroup;
+			children = (
+				AA75E3AB138B1C1B002BBF3B /* home.html */,
+				AA75E36C138AFC82002BBF3B /* apps */,
+				AA75E373138AFC83002BBF3B /* index.html */,
+				AA75E374138AFC83002BBF3B /* files */,
+				AA75E37A138AFC83002BBF3B /* users */,
+				AA75E381138AFC83002BBF3B /* system */,
+			);
+			path = templates;
+			sourceTree = "<group>";
+		};
+		AA75E36C138AFC82002BBF3B /* apps */ = {
+			isa = PBXGroup;
+			children = (
+				AA75E36E138AFC82002BBF3B /* minidlna.html */,
+				AA75E36F138AFC82002BBF3B /* list.html */,
+				AA75E370138AFC82002BBF3B /* install.html */,
+				AA75E371138AFC82002BBF3B /* samba.html */,
+			);
+			path = apps;
+			sourceTree = "<group>";
+		};
+		AA75E374138AFC83002BBF3B /* files */ = {
+			isa = PBXGroup;
+			children = (
+				AA75E375138AFC83002BBF3B /* upload.html */,
+				AA75E378138AFC83002BBF3B /* browse.html */,
+				AA75E379138AFC83002BBF3B /* shares.html */,
+				AA75E376138AFC83002BBF3B /* addshare.html */,
+			);
+			path = files;
+			sourceTree = "<group>";
+		};
+		AA75E37A138AFC83002BBF3B /* users */ = {
+			isa = PBXGroup;
+			children = (
+				AA75E37B138AFC83002BBF3B /* createdefaultuser.html */,
+				AA75E37C138AFC83002BBF3B /* logout.html */,
+				AA75E380138AFC83002BBF3B /* login.html */,
+				AA75E37D138AFC83002BBF3B /* password_change.html */,
+				AA75E37E138AFC83002BBF3B /* list.html */,
+				AA75E37F138AFC83002BBF3B /* create.html */,
+			);
+			path = users;
+			sourceTree = "<group>";
+		};
+		AA75E381138AFC83002BBF3B /* system */ = {
+			isa = PBXGroup;
+			children = (
+				AA75E382138AFC83002BBF3B /* software.html */,
+				AA75E383138AFC83002BBF3B /* advanced.html */,
+				AA75E384138AFC83002BBF3B /* reboot.html */,
+				AA75E385138AFC83002BBF3B /* about.html */,
+				AA75E386138AFC83002BBF3B /* networking.html */,
+				AA75E387138AFC84002BBF3B /* storage.html */,
+				AA75E388138AFC84002BBF3B /* shell.html */,
+			);
+			path = system;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		AA75E26B138AF96A002BBF3B /* PlugUI */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = AA75E26E138AF96A002BBF3B /* Build configuration list for PBXLegacyTarget "PlugUI" */;
+			buildPhases = (
+			);
+			buildToolPath = /bin/none;
+			dependencies = (
+			);
+			name = PlugUI;
+			passBuildSettingsInEnvironment = 1;
+			productName = PlugUI;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXProject section */
+		AA75E266138AF96A002BBF3B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = none;
+			};
+			buildConfigurationList = AA75E269138AF96A002BBF3B /* Build configuration list for PBXProject "PlugUI" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = AA75E264138AF96A002BBF3B;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AA75E26B138AF96A002BBF3B /* PlugUI */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		AA75E26C138AF96A002BBF3B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		AA75E26D138AF96A002BBF3B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		AA75E26F138AF96A002BBF3B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		AA75E270138AF96A002BBF3B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AA75E269138AF96A002BBF3B /* Build configuration list for PBXProject "PlugUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA75E26C138AF96A002BBF3B /* Debug */,
+				AA75E26D138AF96A002BBF3B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA75E26E138AF96A002BBF3B /* Build configuration list for PBXLegacyTarget "PlugUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA75E26F138AF96A002BBF3B /* Debug */,
+				AA75E270138AF96A002BBF3B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AA75E266138AF96A002BBF3B /* Project object */;
+}

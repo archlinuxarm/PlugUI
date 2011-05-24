@@ -1,0 +1,62 @@
+<div class="page_body_section">
+<div id="configpage">
+<h2>Advanced</h2>
+
+<div id="leftpanel">
+<div id="header">
+<div>Settings</div>
+</div><!-- header -->
+<div id="displayarea">
+<form action="" method="post">
+
+	{% if show_led.green %}
+	{{ form.green_trigger.errors }}
+	{{ form.green_trigger }}
+	<label for="id_green_trigger">Green LED Trigger</label>
+	<br/><br/>
+	{% endif %}
+	
+	{% if show_led.orange %}
+	{{ form.orange_trigger.errors }}
+	{{ form.orange_trigger }}
+	<label for="id_orange_trigger">Orange LED Trigger</label>
+	<br/><br/>
+	{% endif %}
+	
+	{% if show_led.red %}
+	{{ form.red_trigger.errors }}
+	{{ form.red_trigger }}
+	<label for="id_red_trigger">Red LED Trigger</label>
+	<br/><br/>
+	{% endif %}
+	
+	{{ form.sdautomount.errors }}
+	{{ form.sdautomount }}
+	<label for="id_sd_automount">Automount SD cards</label>
+	<br/><br/>
+	
+	{{ form.usbautomount.errors }}
+	{{ form.usbautomount }}
+	<label for="id_usb_automount">Automount USB and other storage devices</label>
+	<br/><br/>
+		
+	{% csrf_token %}
+      <input type="submit" value="Save">
+  </form>
+</div><!-- displayarea -->
+</div><!-- leftpanel -->
+
+<div id="rightpanel">
+<div id="header">System Maintenance</div><!-- header -->
+<div id="attributes">
+<div id="maintenancetitle" class="panelattributename">Last run:</div>
+<div id="maintenancestatus" class="panelattribute">{{ last_maintenance }}</div>
+<div id="loading" style="display:none;"><img id="loader" style="width:18px;height:18px;margin:0;" src="/static/images/loader.gif"/></div>
+<span id="button">
+<input type="button" value="Run now" onclick="runMaintenance();"/>
+</span>
+</div><!-- attributes -->
+</div><!-- rightpanel -->
+
+</div><!-- configpage -->
+</div><!-- page_body_section -->

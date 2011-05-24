@@ -1,0 +1,44 @@
+<div class="page_body_section">
+<div id="configpage">
+<h2>Users</h2>
+<div id="leftpanel">
+<div class="user-header" id="header">
+<div class="username">Name</div>
+<div class="useremail">Email</div>
+<div class="usergroup">Group</div>
+<div class="useractive">Active</div>
+<div class="userupload">Upload</div>
+<div class="userdownload">Download</div>
+</div><!-- header -->
+<div id="displayarea">
+
+
+{% for user in user_list %}
+<div class="user-row {% cycle 'odd' 'even' %}">
+<div class="username">{{ user.username }}</div><!-- username -->
+<div class="useremail">{{ user.email }}</div><!-- useremail -->
+<div class="usergroup">{{ user.group }}</div><!-- usergroup -->
+<div class="useractive">{{ user.is_active }}</div><!-- useractive -->
+<div class="userupload">Yes</div><!-- userupload -->
+<div class="userdownload">Yes</div><!-- userdownload -->
+<div class="userdelete">
+<form action="/users/delete" method="post">
+	  {% csrf_token %}
+	  <input type="hidden" name="name" value="{{ user.username }}"/>
+      <input type="submit" value="Delete">
+</form>
+</div><!-- userdelete -->
+
+</div><!-- userrow -->
+<div id="clear"></div><!-- clear -->
+{% endfor %}
+
+
+</div><!-- displayarea -->
+</div><!-- leftpanel -->
+
+
+
+
+</div><!-- configpage -->
+</div><!-- page_body_section -->
