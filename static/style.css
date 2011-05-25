@@ -885,7 +885,7 @@ div.jqplot-target {
 
 #current-track {
     position:absolute;
-    top:5px;
+    top:-5px;
     left:120px;
     font-size:12px;
 }

@@ -18,7 +18,7 @@ Welcome to PlugApps!
 <div id="displayarea">
 {% if updatesavailable %}
 Software updates available: {{ updatecount }} 
-<a href="#"> - <b>Update now</b></a>
+<a href="#" onclick="get_page('software');"> - <b>Update now</b></a>
 {% else %}
 No software updates available.
 {% endif %}

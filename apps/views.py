@@ -61,8 +61,8 @@ class SambaShare(forms.Form):
 
 @user_present
 @login_required
-def index(request): 
-	return render_to_response('apps/index.html', { },context_instance=RequestContext(request))
+def list(request): 
+	return render_to_response('apps/list.html', { },context_instance=RequestContext(request))
 
 @user_present
 @login_required

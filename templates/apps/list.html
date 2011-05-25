@@ -19,7 +19,7 @@ window.location = "/apps/install/" + app;
 <ul>
 <li>
 	{% if app.installed %}
-		Installed - <a href="/apps/{{ app.name }}">Configure now ></a>
+		Installed - <a href="/{{ app.name }}">Configure now ></a>
 	{% else %}
 		<a href="#" onclick="showInstall('{{ app.name }}');">Click to install</a>
 	{% endif %}

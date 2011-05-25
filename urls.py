@@ -35,10 +35,9 @@ urlpatterns = patterns('',
 	
 	(r'^fileapi$', 'api.views.fileapi'),
 	(r'^uploadapi$', 'api.views.uploadapi'),
-	(r'^songapi$', 'api.views.songapi'),
 	(r'^statusapi$', 'api.views.statusapi'),
 	(r'^userapi$', 'api.views.userapi'),
-
+	(r'^pacmanapi$', 'api.views.pacmanapi'),
 	
 	(r'^storage$', 'system.views.storage', {}, 'storage'),
 	(r'^software$', 'system.views.software', {}, 'software'),
@@ -58,7 +57,7 @@ urlpatterns = patterns('',
 	
 	(r'^samba', 'apps.views.samba', {}, 'samba'),
 	(r'^minidlna', 'apps.views.minidlna', {}, 'minidlna'),
-	(r'^app_list', 'apps.views.index', {}, 'apps'),
+	(r'^app_list', 'apps.views.list', {}, 'apps'),
 	(r'^install_app/(?P<package>\w{1,50})/$', 'apps.views.install'),
 	
 	(r'^create_user$', 'users.views.create', {}, 'createuser'),

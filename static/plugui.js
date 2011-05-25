@@ -127,7 +127,7 @@ function getTree(directory) {
 					var name = document.createElement("div");
 					name.setAttribute('id', 'name');
 					var parentlink = document.createElement("a");
-					parentlink.setAttribute('href','none');
+					parentlink.setAttribute('href','#');
 					parentlink.onclick = function(){ selectParent();return false };
 					var parenttext = document.createTextNode("Parent Directory");
 					parentlink.appendChild(parenttext);
@@ -152,7 +152,7 @@ function getTree(directory) {
 						var icon;
 						if (item.iconCls == 'file-mp3' || item.iconCls == 'file-m4a' || item.iconCls == 'file-oga') {
 						   icon = document.createElement("a");
-						   icon.setAttribute('href','none');
+						   icon.setAttribute('href','#');
 						   icon.onclick = function(){ playMedia(item);return false };
 						}
 						else {
@@ -167,7 +167,7 @@ function getTree(directory) {
 						var name = document.createElement("div");
 						name.setAttribute('id', 'name');
 						var namelink = document.createElement("a");
-						namelink.setAttribute('href','none');
+						namelink.setAttribute('href','#');
 						namelink.onclick = function(){ selectLink(item);return false };
 						var text = document.createTextNode(item.text);
 						namelink.appendChild(text);
@@ -434,9 +434,10 @@ function checkUpdates() {
 	$('#checkbuttons').hide();
 	$('#loading').show();
 	$.ajax({
-        method: 'GET',
+        method: 'POST',
         cache: false,
-        url : '/api/checkforupdates',
+        url : '/pacmanapi',
+		data: { apicmd: "check_for_updates" },
         dataType : 'json',
         success: function (json) { 
 			$('#loading').hide();
@@ -469,13 +470,15 @@ function doUpgrade() {
 	$('#upgradebuttons').hide();
 	$('#checkbuttons').hide();
 	$.ajax({
-		method: 'GET',
+		method: 'POST',
 		cache: false,
-		url : '/api/doupdateos',
-		dataType : 'html',
-		success: function (html) { 
+		url : '/pacmanapi',
+		data: { apicmd: "do_upgrade" },
+		dataType : 'json',
+		success: function (json) { 
+			var returndata = json;
 			$('#loading').hide();
-			$('#os').html(html);
+			$('#os').html(returndata.output);
 			$('<p><b>All done!</b></p>').appendTo('#os');
 			showCheck();
 			$('#updatecount').html("None");

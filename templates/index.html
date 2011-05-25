@@ -7,16 +7,34 @@
     <link href="/static/style.css" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" type="text/css" href="/static/jquery.jqplot.css" />
 	<link rel="stylesheet" href="/static/formalize.css" />
-	
-	
+	<link href="/static/skins/jplayer.blue.monday.css" rel="stylesheet" type="text/css" />
     <script language="javascript" type="text/javascript" src="/static/jquery-1.5.1.min.js"></script>
     <script language="javascript" type="text/javascript" src="/static/jquery.jqplot.js"></script>
 	<script language="javascript" type="text/javascript" src="/static/jquery.formalize.js"></script>
+	<script language="javascript" type="text/javascript" src="/static/jquery.jplayer.min.js"></script> 
 	<script language="javascript" type="text/javascript" src="/static/plugui.js"></script>
   </head>
 
 <body style="margin:0;padding:0;">
-<div id="player" style="height:0;width:0;"></div>
+<div class="jp-audio">
+		<div class="jp-type-single">
+			<div id="jp_interface_1" class="jp-interface">
+				<ul class="jp-controls">
+					<li><a href="#" class="jp-play" tabindex="1">play</a></li>
+					<li><a href="#" class="jp-pause" tabindex="1">pause</a></li>
+					<li><a href="#" class="jp-stop" tabindex="1">stop</a></li>
+					<div id="current-track"></div>
+					<div class="jp-progress">
+						<div class="jp-seek-bar">
+							<div class="jp-play-bar"></div>
+						</div>
+					</div>
+					<div class="jp-current-time">00:00</div>
+					<div class="jp-duration">00:00</div>
+				</ul>
+			</div>
+		</div>
+	</div>
 <script type="text/javascript">
 var directory = '';
 var currentpath = '';
@@ -36,9 +54,9 @@ get_page("home");
 
 <span id="login">
 {% if request.user.is_authenticated %}
-    Welcome {{ request.user.username }} - <a href="/users/logout">Logout</a>
+    Welcome {{ request.user.username }} - <a href="/logout">Logout</a>
 {% else %}
-    <a href="/users/login">Login</a>
+    <a href="/login">Login</a>
 {% endif %}
 </span><!-- login -->
 </div><!-- header -->
@@ -129,7 +147,7 @@ get_page("home");
 </ul>         
 <div id="clear"></div>
 </div>
-
+<div id="player" style="height:0;width:0;"></div>
 </body> 
 
 
