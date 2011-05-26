@@ -346,13 +346,13 @@ function playMedia(item) {
 						 warningAlerts: false
 	});
 	if (filetype == 'mp3') {
-		$('#player').jPlayer("setMedia", { mp3: "/fileapi?cmd=stream&path=" + directory + "/" + encodeURIComponent(path) }).jPlayer("play");
+		$('#player').jPlayer("setMedia", { mp3: "/fileapi?apicmd=stream&path=" + directory + "/" + encodeURIComponent(path) }).jPlayer("play");
 	}
 	else if (filetype == 'm4a') {
-		$('#player').jPlayer("setMedia", { m4a: "/fileapi?cmd=stream&path=" + directory + "/" + encodeURIComponent(path) }).jPlayer("play");
+		$('#player').jPlayer("setMedia", { m4a: "/fileapi?apicmd=stream&path=" + directory + "/" + encodeURIComponent(path) }).jPlayer("play");
 	}
 	else if (filetype == 'oga') {
-		$('#player').jPlayer("setMedia", { oga: "/fileapi?cmd=stream&path=" + directory + "/" + encodeURIComponent(path) }).jPlayer("play");
+		$('#player').jPlayer("setMedia", { oga: "/fileapi?apicmd=stream&path=" + directory + "/" + encodeURIComponent(path) }).jPlayer("play");
 	}
 	$('#current-track').text(item.text);
 }
