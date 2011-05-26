@@ -97,7 +97,7 @@ function getTree(directory) {
 		   type: 'POST',
 		   cache: false,
 		   url : '/fileapi',
-		   data: { cmd: "get", path: directory },
+		   data: { apicmd: "directory_list", path: directory },
 		   dataType : 'json',
 		   success: function (json) { 
 				$('#spinner').hide();
@@ -232,7 +232,7 @@ function downloadFile(item) {
 	// append cmd to form
 	hidden = document.createElement('input');
 	hidden.type = 'hidden';
-	hidden.name = 'cmd';
+	hidden.name = 'apicmd';
 	hidden.value = 'download';
 	form.appendChild(hidden);
 	
@@ -257,7 +257,7 @@ function viewFile(item) {
 	// append cmd to form
 	hidden = document.createElement('input');
 	hidden.type = 'hidden';
-	hidden.name = 'cmd';
+	hidden.name = 'apicmd';
 	hidden.value = 'view';
 	form.appendChild(hidden);
 	
@@ -285,7 +285,7 @@ function shareFile(item) {
 		// append cmd to form
 		hiddenField = document.createElement('input');
 		hiddenField.type = 'hidden';
-		hiddenField.name = 'cmd';
+		hiddenField.name = 'apicmd';
 		hiddenField.value = 'share';
 		form.appendChild(hiddenField);
 
@@ -434,7 +434,7 @@ function checkUpdates() {
 	$('#checkbuttons').hide();
 	$('#loading').show();
 	$.ajax({
-        method: 'POST',
+        type: 'POST',
         cache: false,
         url : '/pacmanapi',
 		data: { apicmd: "check_for_updates" },
@@ -470,7 +470,7 @@ function doUpgrade() {
 	$('#upgradebuttons').hide();
 	$('#checkbuttons').hide();
 	$.ajax({
-		method: 'POST',
+		type: 'POST',
 		cache: false,
 		url : '/pacmanapi',
 		data: { apicmd: "do_upgrade" },
@@ -501,9 +501,9 @@ $('#button').hide();
 $('#loading').show();
 $('#maintenancestatus').html('Running...');
 $.ajax({
-        method: 'GET',
+        type: 'POST',
         cache: false,
-        url : '/api/maintenance',
+        url : '/maintenanceapi',
         dataType : 'json',
         success: function (json) { 
 		
@@ -634,49 +634,52 @@ function errorRunning() {
 	$('#runstatus').html('Error!');
 }
 
-function start() {
+function start_app(appname) {
 	hidelinks();
 	showloader();
 	$.ajax({
-        method: 'GET',
+        type: 'POST',
         cache: false,
-        url : '/api/startapp/' + package_name,
-        dataType : 'text',
-        success: function (text) { 
-            setTimeout(checkStatus, 3000);
+        url : '/appapi',
+		data: { apicmd: "start_app" },
+        dataType : 'json',
+        success: function (json) { 
+            setTimeout(check_running(appname), 3000);
         }
 	});
 }
 
-function stop() {
+function stop_app(appname) {
 	hidelinks();
 	showloader();
 	$.ajax({
-        method: 'GET',
+        type: 'POST',
         cache: false,
-        url : '/api/stopapp/' + package_name,
-        dataType : 'text',
-        success: function (text) { 
-            setTimeout(checkStatus, 3000);
+        url : '/appapi',
+		data: { apicmd: "stop_app" },
+        dataType : 'json',
+        success: function (json) { 
+            setTimeout(check_running(appname), 3000);
         }
 	});
 }
 
-function checkStatus() {
+function check_running(appname) {
 showloader();
 hidelinks();
 $.ajax({
-        method: 'GET',
+        type: 'POST',
         cache: false,
-        url : '/api/isrunning/' + package_name,
-        dataType : 'text',
-        success: function (text) { 
-            if (text == "False") {
+        url : '/appapi',
+		data: { apicmd: "check_running" },
+        dataType : 'json',
+        success: function (json) { 
+            if (json.success == "False") {
 				notRunning();
                 showstart();
 				hideloader();
             }
-            else if (text == "True") {
+            else if (json.success == "True") {
 				isRunning();
                 showstop();
 				hideloader();
@@ -690,15 +693,16 @@ $.ajax({
 });
 }
 
-function installapp() {
+function install_app(appname) {
 $('#button').hide();
-$('#installstatus').html('Installing ' + packagename);
+$('#installstatus').html('Installing ' + appname);
 $('#loader').show();
 $.ajax({
-        method: 'POST',
+        type: 'POST',
         cache: false,
-        url : '/api/install/' + packagename,
+        url : '/pacmanapi',
         dataType : 'json',
+		data: { apicmd: "install", app_name: appname },
         success: function (json) { 
 			var returnlist = json;
 			if (returnlist) {

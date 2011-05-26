@@ -40,8 +40,8 @@ $(document).ready(function(){
 		} 
 		$.ajax({
 			type: "POST",
-			url: "/api/fileapi",
-			data: "cmd=addshare" + "&path=" + encodeURIComponent(path) + "&uuid=" + uuid + "&public=" + public,
+			url: "/fileapi",
+			data: "apicmd=addshare" + "&path=" + encodeURIComponent(path) + "&uuid=" + uuid + "&public=" + public,
 			dataType : 'json',
 			success: function(json){
 				var result = json;

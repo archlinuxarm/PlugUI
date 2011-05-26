@@ -11,7 +11,6 @@
 		AA75E27A138AF991002BBF3B /* __init__.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
 		AA75E27C138AF991002BBF3B /* models.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = models.py; sourceTree = "<group>"; };
 		AA75E27D138AF991002BBF3B /* views.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = views.py; sourceTree = "<group>"; };
-		AA75E27F138AF991002BBF3B /* urls.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = urls.py; sourceTree = "<group>"; };
 		AA75E282138AF992002BBF3B /* models.pyc */ = {isa = PBXFileReference; lastKnownFileType = file; path = models.pyc; sourceTree = "<group>"; };
 		AA75E283138AF992002BBF3B /* __init__.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
 		AA75E285138AF992002BBF3B /* models.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = models.py; sourceTree = "<group>"; };
@@ -160,7 +159,7 @@
 		AA75E36F138AFC82002BBF3B /* list.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = list.html; sourceTree = "<group>"; };
 		AA75E370138AFC82002BBF3B /* install.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = install.html; sourceTree = "<group>"; };
 		AA75E371138AFC82002BBF3B /* samba.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = samba.html; sourceTree = "<group>"; };
-		AA75E373138AFC83002BBF3B /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; path = index.html; sourceTree = "<group>"; };
+		AA75E373138AFC83002BBF3B /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		AA75E375138AFC83002BBF3B /* upload.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = upload.html; sourceTree = "<group>"; };
 		AA75E376138AFC83002BBF3B /* addshare.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = addshare.html; sourceTree = "<group>"; };
 		AA75E378138AFC83002BBF3B /* browse.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = browse.html; sourceTree = "<group>"; };
@@ -215,7 +214,6 @@
 				AA75E27A138AF991002BBF3B /* __init__.py */,
 				AA75E27C138AF991002BBF3B /* models.py */,
 				AA75E27D138AF991002BBF3B /* views.py */,
-				AA75E27F138AF991002BBF3B /* urls.py */,
 			);
 			path = api;
 			sourceTree = "<group>";

@@ -214,8 +214,11 @@ def fileapi(request):
 	def nodot(item): 
 		return item[0] != '.'
 		
+		
+	
 	if request.method == 'POST':
-		if request.POST['cmd'] == 'get':
+		apicmd = request.POST['apicmd']
+		if apicmd == 'directory_list':
 			dirs = []
 			response = {}
 			rawpath = request.POST['path']
@@ -263,7 +266,7 @@ def fileapi(request):
 				response['validpath'] = False
 			return HttpResponse(simplejson.dumps(response),content_type = 'application/javascript; charset=utf8')
 			
-		if request.POST['cmd'] == 'rename':
+		if apicmd == 'rename':
 				response = dict()
 				oldname = '/media/' + urllib.unquote(request.POST['oldname'])
 				newname = '/media/' + urllib.unquote(request.POST['newname'])
@@ -279,7 +282,7 @@ def fileapi(request):
 					response['error'] = 'Cannot rename file %s to %s' %(oldname,newname)
 				return HttpResponse(simplejson.dumps(response),content_type = 'application/javascript; charset=utf8')
 				
-		if request.POST['cmd'] == 'newdir':
+		if apicmd == 'newdir':
 			response = dict()
 			dir = '/media/' + urllib.unquote(request.POST['dir'])
 			try:
@@ -290,7 +293,7 @@ def fileapi(request):
 				response['error'] = 'Cannot create directory: %s' %(dir)
 			return HttpResponse(simplejson.dumps(response),content_type = 'application/javascript; charset=utf8')
 					
-		if request.POST['cmd'] == 'delete':
+		if apicmd == 'delete':
 			response = dict()
 			rawpath = request.POST['file']
 			path = "/media/" + posixpath.normpath(urllib.unquote(rawpath)).rstrip('.')
@@ -316,7 +319,7 @@ def fileapi(request):
 			
 
 
-		if request.POST['cmd'] == 'download':
+		if apicmd == 'download':
 			rawpath = request.POST['path']
 			path = "/media/" + posixpath.normpath(urllib.unquote(rawpath)).rstrip('.')
 			if re.match("/media", path):
@@ -328,7 +331,7 @@ def fileapi(request):
 				HttpResponse("Cannot download file: %s" % path)
 			return response
 
-		if request.POST['cmd'] == 'view':
+		if apicmd == 'view':
 			rawpath = request.POST['path']
 			path = "/media/" + posixpath.normpath(urllib.unquote(rawpath)).rstrip('.')
 			if re.match("/media", path):
@@ -340,7 +343,7 @@ def fileapi(request):
 				response = HttpResponse("Cannot view file: %s" % path)
 			return response
 
-		if request.POST['cmd'] == 'addshare':
+		if apicmd == 'addshare':
 			response = dict()
 			response['success'] = False
 			rawpath = request.POST['path']
@@ -351,7 +354,8 @@ def fileapi(request):
 					share.save()
 					response['success'] = True
 			return HttpResponse(simplejson.dumps(response),content_type = 'application/javascript; charset=utf8')
-		if request.POST['cmd'] == 'deleteshare':
+
+		if apicmd == 'deleteshare':
 			response = dict()
 			response['success'] = False
 			rawpath = request.POST['path']
@@ -364,7 +368,8 @@ def fileapi(request):
 			return HttpResponse(simplejson.dumps(response),content_type = 'application/javascript; charset=utf8')			
 				
 	else:
-		if request.GET['cmd'] == 'stream':
+		apicmd = request.GET['apicmd']
+		if apicmd == 'stream':
 			rawpath = request.GET['path']
 			path = "/media/" + posixpath.normpath(urllib.unquote(rawpath)).rstrip('.')
 			if re.match("/media", path):
