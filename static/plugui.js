@@ -53,42 +53,6 @@ function reboot() {
 	setTimeout("go_home()",60000);
 }
 
-function run_command() {  	
-	$('#error').empty();
-	$('#terminal').empty();
-	var runcommand = $('#commandbox').attr('value');
-	if (runcommand == "") {  
-		$('#error').text(' Command box cannot be empty');
-		$("input#commandbox").focus();  
-		return false;  
-	} 
-	$('#runloader').show();
-	$.ajax({
-		type: "POST",
-		url: "/systemapi",
-		data: { command: runcommand, cmd: "execute" },
-		dataType : 'json',
-		statusCode: {
-			500: function() {
-				$('#terminal').text("Server Error");
-			}	
-		},
-		success: function(json){
-			var result = json;
-			if (result.success == true) {
-				$('#runloader').hide();
-				$.each(result.output, function(i,line){
-					$('#terminal').append(line + "<br/>");
-				}); 
-			}
-			else {
-				$('#runloader').hide();
-				$('#terminal').text("Command failed"); 
-			}  
-		}
-	});
-}
-
 //file page stuff
 
 function getTree(directory) {
@@ -100,7 +64,7 @@ function getTree(directory) {
 		   data: { apicmd: "directory_list", path: directory },
 		   dataType : 'json',
 		   success: function (json) { 
-				$('#spinner').hide();
+				hideloader();
 				var returnlist = json;
 				if (returnlist) {
 					$('#filelist').empty();
@@ -588,6 +552,7 @@ function generate_list() {
 		storagelist.appendChild(clear);
 	});
 }
+
 function select_line(device) {
 	$('#devicename').text(device.devicename);
 }
@@ -609,13 +574,11 @@ function hidelinks() {
 }
 
 function showloader() {
-	clearRunning();
 	$('#loader').show();
 }
 
 function hideloader() {
 	$('#loader').hide();
-	$('#runstatus').show();
 }
 
 function isRunning() {

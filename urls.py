@@ -38,6 +38,7 @@ urlpatterns = patterns('',
 	(r'^statusapi$', 'api.views.statusapi'),
 	(r'^userapi$', 'api.views.userapi'),
 	(r'^pacmanapi$', 'api.views.pacmanapi'),
+	(r'^systemapi$', 'api.views.systemapi'),
 	
 	(r'^storage$', 'system.views.storage', {}, 'storage'),
 	(r'^software$', 'system.views.software', {}, 'software'),

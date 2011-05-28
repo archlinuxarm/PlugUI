@@ -1,4 +1,28 @@
 <div class="page_body_section">
+<script type="text/javascript">
+
+$(document).ready(function(){
+	$("form#advancedform").submit(function() {  
+		showloader();
+		$.ajax({
+			type: "POST",
+			url: "/advanced",
+			data: { 
+				id_green_trigger: $('#id_green_trigger').attr('value'),
+				id_orange_trigger: $('#id_orange_trigger').attr('value'),
+				id_red_trigger: $('#id_red_trigger').attr('value'),
+				id_sd_automount: $('#id_sd_automount').attr('value'),
+				id_usb_automount: $('#id_sd_automount').attr('value'),
+			},
+			dataType : 'text',
+			success: function(text){
+				hideloader();
+			}
+		});
+		return false;
+	});
+});
+</script>
 <div id="configpage">
 <h2>Advanced</h2>
 
@@ -7,7 +31,7 @@
 <div>Settings</div>
 </div><!-- header -->
 <div id="displayarea">
-<form action="" method="post">
+<form id="advancedform" method="post">
 
 	{% if show_led.green %}
 	{{ form.green_trigger.errors }}
@@ -53,7 +77,7 @@
 <div id="maintenancestatus" class="panelattribute">{{ last_maintenance }}</div>
 <div id="loading" style="display:none;"><img id="loader" style="width:18px;height:18px;margin:0;" src="/static/images/loader.gif"/></div>
 <span id="button">
-<input type="button" value="Run now" onclick="runMaintenance();"/>
+<input type="button" value="Run now" onclick="run_maintenance();"/>
 </span>
 </div><!-- attributes -->
 </div><!-- rightpanel -->

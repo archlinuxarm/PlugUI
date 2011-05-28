@@ -152,7 +152,7 @@ def systemapi(request):
 	if request.method == 'POST':
 		apicmd = request.POST['apicmd']
 		if apicmd == "execute":
-			command = formdata['command'].strip('\n')
+			command = request.POST['command'].strip('\n')
 			try:
 				response['output'] = privateapi.core.runcommand(command)
 				response['success'] = True

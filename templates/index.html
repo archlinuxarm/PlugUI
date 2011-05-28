@@ -41,7 +41,7 @@ var currentpath = '';
 {% if request.user.is_authenticated %}
 get_page("home");
 {% else %}
-    
+get_page("login");
 {% endif %}
 </script>
 <div id="wrapper">
