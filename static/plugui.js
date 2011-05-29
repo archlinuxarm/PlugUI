@@ -1,5 +1,13 @@
 // global stuff
 
+function showloader() {
+	$('#loader').show();
+}
+	
+function hideloader() {
+	setTimeout( function(){ $('#loader').hide() }, 500);
+}
+
 function get_page(title) {
 	$.ajax({
 		type: "GET",
@@ -381,14 +389,6 @@ function selectLink(item) {
 		
 	}	
 }
-	
-function showloader() {
-	$('#loader').show();
-}
-	
-function hideloader() {
-	setTimeout( function(){ $('#loader').hide() }, 500);
-}
 
 //software stuff
 
@@ -571,14 +571,6 @@ function showstop() {
 function hidelinks() {
 	$('#startlink').hide();
 	$('#stoplink').hide();
-}
-
-function showloader() {
-	$('#loader').show();
-}
-
-function hideloader() {
-	$('#loader').hide();
 }
 
 function isRunning() {
