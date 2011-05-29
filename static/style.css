@@ -460,6 +460,9 @@ div.jqplot-target {
 	  position:relative;
 }
 
+#configpage #currentpath {
+	min-height:1.2em;
+}
 #configpage #rightpanel {
 	width: 190px;
 	float: left;

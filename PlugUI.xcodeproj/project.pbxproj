@@ -156,8 +156,6 @@
 		AA75E33F138AF992002BBF3B /* views.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = views.py; sourceTree = "<group>"; };
 		AA75E36A138AFAB3002BBF3B /* plugui.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = plugui.js; sourceTree = "<group>"; };
 		AA75E36E138AFC82002BBF3B /* minidlna.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = minidlna.html; sourceTree = "<group>"; };
-		AA75E36F138AFC82002BBF3B /* list.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = list.html; sourceTree = "<group>"; };
-		AA75E370138AFC82002BBF3B /* install.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = install.html; sourceTree = "<group>"; };
 		AA75E371138AFC82002BBF3B /* samba.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = samba.html; sourceTree = "<group>"; };
 		AA75E373138AFC83002BBF3B /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		AA75E375138AFC83002BBF3B /* upload.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = upload.html; sourceTree = "<group>"; };
@@ -435,8 +433,6 @@
 			isa = PBXGroup;
 			children = (
 				AA75E36E138AFC82002BBF3B /* minidlna.html */,
-				AA75E36F138AFC82002BBF3B /* list.html */,
-				AA75E370138AFC82002BBF3B /* install.html */,
 				AA75E371138AFC82002BBF3B /* samba.html */,
 			);
 			path = apps;
