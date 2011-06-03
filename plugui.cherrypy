@@ -11,6 +11,9 @@ from django.core.management.base import BaseCommand
 from django.utils.daemonize import become_daemon
 import ConfigParser, os
 
+ssl_cert_path = '/var/lib/PlugUI/ssl.crt'
+ssl_key_path = '/var/lib/PlugUI/ssh.key'
+
 config = ConfigParser.RawConfigParser()
 
 if not os.path.exists('/etc/plugui.conf'):
@@ -151,6 +154,12 @@ def start_server(options):
         int(options['threads']), 
         options['server_name']
     )
+    try:
+        if os.path.isfile(ssl_crt_path) and os.path.isfile(ssl_key_path):
+            server.ssl_certificate = ssl_crt_path
+            server.ssl_private_key = ssl_key_path
+    except:
+        pass
     try:
         server.start()
     except KeyboardInterrupt:
