@@ -460,7 +460,7 @@ function showUpgrade() {
 	$('#checkbuttons').hide();
 }
 
-function runMaintenance() {
+function run_maintenance() {
 $('#button').hide();
 $('#loading').show();
 $('#maintenancestatus').html('Running...');
