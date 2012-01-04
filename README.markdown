@@ -80,6 +80,8 @@ PlugUI has a dynamic, javascript based file browser with an integrated music pla
 
 ##File Sharing
 
+![](http://github.com/archlinuxarm/PlugUI/raw/master/screenshots/addshare.png)
+
 The file sharing system is very simple, just find a file you want to share in the file browser, select it, and hit the share button. A window will pop up where you can select the share name and save it. 
 
 All shared files are visible from the "Share" screen, and individual shares can be deleted from there. 

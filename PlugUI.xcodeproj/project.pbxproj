@@ -13,6 +13,7 @@
 		AA05E16914B4ED5100BFAAD1 /* files.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = files.png; sourceTree = "<group>"; };
 		AA05E16A14B4ED5100BFAAD1 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
 		AA05E16B14B4ED5100BFAAD1 /* upgrades.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upgrades.png; sourceTree = "<group>"; };
+		AA67277B14B51BD1001F9E27 /* addshare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addshare.png; sourceTree = "<group>"; };
 		AA75E277138AF991002BBF3B /* __init__.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
 		AA75E27A138AF991002BBF3B /* __init__.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
 		AA75E27C138AF991002BBF3B /* models.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = models.py; sourceTree = "<group>"; };
@@ -186,6 +187,7 @@
 		AA05E16614B4ED5100BFAAD1 /* screenshots */ = {
 			isa = PBXGroup;
 			children = (
+				AA67277B14B51BD1001F9E27 /* addshare.png */,
 				AA05E16714B4ED5100BFAAD1 /* packages.png */,
 				AA05E16814B4ED5100BFAAD1 /* storage.png */,
 				AA05E16914B4ED5100BFAAD1 /* files.png */,

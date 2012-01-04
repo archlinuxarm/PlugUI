@@ -29,9 +29,6 @@ div.jp-video {
 }
 div.jp-audio {
 	width:420px;
-	position: absolute;
-	top:5px;
-	left:300px;
 }
 div.jp-video-270p {
 	width:480px;

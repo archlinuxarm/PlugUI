@@ -67,7 +67,7 @@ p {
     padding:0;
     min-height: 100%;
     height: auto !important;
-    margin: 0 auto -5.35em;
+    margin: 0 auto -5.35em 0;
 	width: 100%;
 }
 
@@ -119,13 +119,22 @@ background: -webkit-gradient(linear,left bottom,left top,from(#D7D7D7),to(#E4E4E
 }
 
 #header img#logo {
-height:42px;
-width:172px;
-float: left;
-margin: 2px 0px 0px 15px;
+	height:42px;
+	width:172px;
+	float: left;
+	margin: 2px 0px 0px 15px;
+	display:inline-block;
 }
 
-
+#header span#controls {
+	height:42px;
+	width:420px;
+	position:absolute;
+	top:4px;
+	left:200px;
+	margin: 2px 0px 0px 15px;	
+	display:inline-block;
+}
 
 #header span#login {
 color:#777;
@@ -885,15 +894,6 @@ div.jqplot-target {
 
 #configpage #leftpanel #displayarea div.share-row div.sharedelete {
 	padding-top:6px;
-}
-
-/* music player stuff */
-
-#current-track {
-    position:absolute;
-    top:-5px;
-    left:120px;
-    font-size:12px;
 }
 
 /* add share page */

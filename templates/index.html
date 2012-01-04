@@ -16,25 +16,7 @@
   </head>
 
 <body style="margin:0;padding:0;">
-<div class="jp-audio">
-		<div class="jp-type-single">
-			<div id="jp_interface_1" class="jp-interface">
-				<ul class="jp-controls">
-					<li><a href="javascript:" class="jp-play" tabindex="1">play</a></li>
-					<li><a href="javascript:" class="jp-pause" tabindex="1">pause</a></li>
-					<li><a href="javascript:" class="jp-stop" tabindex="1">stop</a></li>
-					<div id="current-track"></div>
-					<div class="jp-progress">
-						<div class="jp-seek-bar">
-							<div class="jp-play-bar"></div>
-						</div>
-					</div>
-					<div class="jp-current-time">00:00</div>
-					<div class="jp-duration">00:00</div>
-				</ul>
-			</div>
-		</div>
-	</div>
+
 <script type="text/javascript">
 var directory = '';
 var currentpath = '';
@@ -51,6 +33,25 @@ get_page("login");
 <div id="header">
 <img id="logo" src="/static/images/alarm.png"/>
 
+	
+	<span id="controls">
+		<div class="jp-audio">
+			<div class="jp-type-single">
+				<div id="jp_interface_1" class="jp-interface">
+					<ul class="jp-controls">
+						<li><a href="javascript:" class="jp-play" tabindex="1">play</a></li>
+						<li><a href="javascript:" class="jp-pause" tabindex="1">pause</a></li>
+						<li><a href="javascript:" class="jp-stop" tabindex="1">stop</a></li>
+						<div id="current-track"></div>
+						
+						<div class="jp-current-time">00:00</div>
+						<div class="jp-duration">00:00</div>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</span>
+	
 <span id="login">
 {% if request.user.is_authenticated %}
     Welcome {{ request.user.username }} - <a href="/logout">Logout</a>
@@ -133,20 +134,12 @@ get_page("login");
 </div><!-- main -->
 </div><!-- wrapper -->
 
-<div  id="footer">
-<ul>
-<li><a href="/">Home</a></li>
-<li><a href="http://plugapps.com/plugapps-linux/">PlugApps Linux</a></li>
-<li><a href="http://plugapps.com/category/news/">News</a></li>
-<li><a href="http://plugapps.com/forum/">Forum</a></li>
-<li><a href="http://plugapps.com/wiki/">Wiki</a></li>
-<li><a href="http://plugapps.com/plugui-api">PlugUI API</a></li>
-<li><a href="http://plugapps.com/credits">Credits</a></li>
-<li><a href="http://plugapps.com/legal">Legal</a></li>
-</ul>         
-<div id="clear"></div>
-</div>
-<div id="player" style="height:0;width:0;"></div>
+	
+
+	
+	
+	<div id="player" style="height:0;width:0;"></div>
+
 </body> 
 
 
