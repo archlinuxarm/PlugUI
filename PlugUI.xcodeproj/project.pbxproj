@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXFileReference section */
+		AA05E16414B4E1AF00BFAAD1 /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
+		AA05E16714B4ED5100BFAAD1 /* packages.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = packages.png; sourceTree = "<group>"; };
+		AA05E16814B4ED5100BFAAD1 /* storage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = storage.png; sourceTree = "<group>"; };
+		AA05E16914B4ED5100BFAAD1 /* files.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = files.png; sourceTree = "<group>"; };
+		AA05E16A14B4ED5100BFAAD1 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
+		AA05E16B14B4ED5100BFAAD1 /* upgrades.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upgrades.png; sourceTree = "<group>"; };
 		AA75E277138AF991002BBF3B /* __init__.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
 		AA75E27A138AF991002BBF3B /* __init__.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
 		AA75E27C138AF991002BBF3B /* models.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = models.py; sourceTree = "<group>"; };
@@ -33,7 +39,6 @@
 		AA75E2B5138AF992002BBF3B /* minidlna.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = minidlna.py; sourceTree = "<group>"; };
 		AA75E2B6138AF992002BBF3B /* apt.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = apt.py; sourceTree = "<group>"; };
 		AA75E2B7138AF992002BBF3B /* dev.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = dev.py; sourceTree = "<group>"; };
-		AA75E2B8138AF992002BBF3B /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		AA75E2B9138AF992002BBF3B /* settings.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = settings.py; sourceTree = "<group>"; };
 		AA75E2BB138AF992002BBF3B /* setup.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = setup.sh; sourceTree = "<group>"; };
 		AA75E2BD138AF992002BBF3B /* Jplayer.swf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Jplayer.swf; sourceTree = "<group>"; };
@@ -180,9 +185,23 @@
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		AA05E16614B4ED5100BFAAD1 /* screenshots */ = {
+			isa = PBXGroup;
+			children = (
+				AA05E16714B4ED5100BFAAD1 /* packages.png */,
+				AA05E16814B4ED5100BFAAD1 /* storage.png */,
+				AA05E16914B4ED5100BFAAD1 /* files.png */,
+				AA05E16A14B4ED5100BFAAD1 /* info.png */,
+				AA05E16B14B4ED5100BFAAD1 /* upgrades.png */,
+			);
+			path = screenshots;
+			sourceTree = "<group>";
+		};
 		AA75E264138AF96A002BBF3B = {
 			isa = PBXGroup;
 			children = (
+				AA05E16614B4ED5100BFAAD1 /* screenshots */,
+				AA05E16414B4E1AF00BFAAD1 /* README.markdown */,
 				AA75E396138B0908002BBF3B /* index.py */,
 				AA75E36B138AFC82002BBF3B /* templates */,
 				AA75E277138AF991002BBF3B /* __init__.py */,
@@ -197,7 +216,6 @@
 				AA75E2A6138AF992002BBF3B /* plugmaintenance.py */,
 				AA75E2A7138AF992002BBF3B /* plugui.cherrypy */,
 				AA75E2A8138AF992002BBF3B /* privateapi */,
-				AA75E2B8138AF992002BBF3B /* README */,
 				AA75E2B9138AF992002BBF3B /* settings.py */,
 				AA75E2BB138AF992002BBF3B /* setup.sh */,
 				AA75E32F138AF992002BBF3B /* system */,
@@ -498,6 +516,7 @@
 		AA75E266138AF96A002BBF3B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = none;
 			};
 			buildConfigurationList = AA75E269138AF96A002BBF3B /* Build configuration list for PBXProject "PlugUI" */;

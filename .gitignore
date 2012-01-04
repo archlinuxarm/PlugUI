@@ -2,12 +2,28 @@
 *.pyc
 *._*
 .DS_Store
-webui.pid
+
 *.bak
 db.sqlite3
 .idea
 *.pid
 test.py
 data/**
-PlugUI.xcodeproj/project.xcworkspace
-PlugUI.xcodeproj/xcuserdata
+.AppleDouble
+
+
+build/**
+ 
+# Exclude temp nibs and swap files
+*~.nib
+*.swp
+ 
+# Exclude user-specific XCode 3 and 4 files
+*.mode1
+*.mode1v3
+*.mode2v3
+*.perspective
+*.perspectivev3
+*.pbxuser
+*.xcworkspace
+xcuserdata
