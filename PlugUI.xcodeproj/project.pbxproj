@@ -62,7 +62,6 @@
 		AA75E2D0138AF992002BBF3B /* css.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = css.png; sourceTree = "<group>"; };
 		AA75E2D1138AF992002BBF3B /* file.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = file.png; sourceTree = "<group>"; };
 		AA75E2D2138AF992002BBF3B /* film.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = film.png; sourceTree = "<group>"; };
-		AA75E2D3138AF992002BBF3B /* plugapps.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plugapps.png; sourceTree = "<group>"; };
 		AA75E2D4138AF992002BBF3B /* sidebar-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sidebar-background.png"; sourceTree = "<group>"; };
 		AA75E2D5138AF992002BBF3B /* header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = header.png; sourceTree = "<group>"; };
 		AA75E2D6138AF992002BBF3B /* txt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = txt.png; sourceTree = "<group>"; };
@@ -85,7 +84,6 @@
 		AA75E2E7138AF992002BBF3B /* bar.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = bar.gif; sourceTree = "<group>"; };
 		AA75E2E8138AF992002BBF3B /* java.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = java.png; sourceTree = "<group>"; };
 		AA75E2E9138AF992002BBF3B /* psd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = psd.png; sourceTree = "<group>"; };
-		AA75E2EA138AF992002BBF3B /* tuxinbox-50px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tuxinbox-50px.png"; sourceTree = "<group>"; };
 		AA75E2EB138AF992002BBF3B /* button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button.png; sourceTree = "<group>"; };
 		AA75E2EC138AF992002BBF3B /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
 		AA75E2ED138AF992002BBF3B /* topmenubarbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = topmenubarbg.png; sourceTree = "<group>"; };
@@ -314,7 +312,6 @@
 				AA75E2D0138AF992002BBF3B /* css.png */,
 				AA75E2D1138AF992002BBF3B /* file.png */,
 				AA75E2D2138AF992002BBF3B /* film.png */,
-				AA75E2D3138AF992002BBF3B /* plugapps.png */,
 				AA75E2D4138AF992002BBF3B /* sidebar-background.png */,
 				AA75E2D5138AF992002BBF3B /* header.png */,
 				AA75E2D6138AF992002BBF3B /* txt.png */,
@@ -337,7 +334,6 @@
 				AA75E2E7138AF992002BBF3B /* bar.gif */,
 				AA75E2E8138AF992002BBF3B /* java.png */,
 				AA75E2E9138AF992002BBF3B /* psd.png */,
-				AA75E2EA138AF992002BBF3B /* tuxinbox-50px.png */,
 				AA75E2EB138AF992002BBF3B /* button.png */,
 				AA75E2EC138AF992002BBF3B /* play.png */,
 				AA75E2ED138AF992002BBF3B /* topmenubarbg.png */,

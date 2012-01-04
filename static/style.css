@@ -109,19 +109,11 @@ background: -moz-linear-gradient(bottom,#D7D7D7,#E4E4E4);
 background: -webkit-gradient(linear,left bottom,left top,from(#D7D7D7),to(#E4E4E4));
 }
 
-#header img#tuxinabox {
-height:32px;
-width:32px;
+#header img#logo {
+height:42px;
+width:172px;
 float: left;
-margin: 7px 0 0 15px;
-}
-
-#header img#plugapps-logo {
-padding: 8px 0 0 12px;
-margin: 0;
-float: left;
-height:32px;
-width:96px;
+margin: 2px 0px 0px 15px;
 }
 
 #header span#login {
