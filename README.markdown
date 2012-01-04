@@ -42,7 +42,7 @@ This little process will likely need to be cleaned up and potentially moved to u
 
 There is a periodic check to see if upgraded system packages are available, if so you will see a notification on the main screen:
 
-![](http://github.com/archlinuxarm/PlugUIy/raw/master/screenshots/upgrades.png)
+![](http://github.com/archlinuxarm/PlugUI/raw/master/screenshots/upgrades.png)
 
 
 If there are, you can go upgrade them:
