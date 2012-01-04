@@ -12,7 +12,7 @@
 <div id="displayarea">
 
 {% for share in sharelist %}
-<div class="share-row {% cycle 'odd' 'even' %}">
+<div id="share-{{ share.uuid }}" class="share-row {% cycle 'odd' 'even' %}">
 <div class="sharename">{{ share.filename }}</div><!-- sharename -->
 <div class="publicurl">
 <a href="http://plugfinder.appspot.com/dl/{{ plugid }}/{{ share.uuid }}">Public link</a>
@@ -21,11 +21,11 @@
 <a href="http://{{ publicip }}:{{ port }}/files/download/{{ share.uuid }}">Direct link</a>
 </div><!-- directurl -->
 <div class="sharedelete">
-<form action="/files/deleteshare" method="post">
-	  {% csrf_token %}
-	  <input type="hidden" name="uuid" value="{{ share.uuid }}"/>
-      <input type="submit" value="Delete">
-</form>
+
+    
+<input type="button" value="Delete" onclick="deleteShare('{{ share.uuid }}');"/>
+
+    
 </div><!-- sharedelete -->
 
 </div><!-- share-row -->

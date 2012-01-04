@@ -245,6 +245,24 @@ function viewFile(item) {
 	
 	form.submit();
 }
+
+function deleteShare(uuid) {
+    $.ajax({
+           type: "POST",
+           url: "/deleteshare",
+           data: { uuid: uuid },
+           dataType : 'json',
+           success: function(json){
+				var response = json;
+				if (json.success) {
+					$('#share-'+uuid).remove();
+				}
+				else {
+					
+				}
+           }
+    });
+}
     
 
 function shareFile(item) {

@@ -33,6 +33,7 @@ from files.models import ShareForm
 from files.models import Share
 from django.conf import settings
 from django.views.decorators.http import condition
+from django.utils import simplejson
 
 import privateapi.core
 
@@ -86,7 +87,8 @@ def deleteshare(request):
 		shareuuid = request.POST['uuid']
 		share = Share.objects.get(uuid=shareuuid)
 		share.delete()
-	return HttpResponseRedirect("/files/shares")
+		return HttpResponse(simplejson.dumps({ "success": True }),content_type = 'application/javascript; charset=utf8')
+	return HttpResponse(simplejson.dumps({ "success": False }),content_type = 'application/javascript; charset=utf8')
 			
 @user_present
 @login_required	
