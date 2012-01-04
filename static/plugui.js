@@ -9,6 +9,7 @@ function hideloader() {
 }
 
 function get_page(title) {
+    $('#pageloader').show();
 	$.ajax({
 		type: "GET",
 		url: "/" + encodeURIComponent(title),
@@ -17,6 +18,8 @@ function get_page(title) {
 			var page = html;
 			$('#page_body').empty();
 			$('#page_body').html(page);
+           setTimeout( function(){ $('#pageloader').hide() }, 300);
+
 		}
 	});
 	return false;

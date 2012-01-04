@@ -83,6 +83,15 @@ margin-left: 175px;
 
 }
 
+img#pageloader {
+	width:32px;
+	height:32px;
+    display:none;
+    position:absolute;
+	right:24px;
+	top:72px;
+}
+
 #page_body {
 float: left;
 width: 100%;
@@ -115,6 +124,8 @@ width:172px;
 float: left;
 margin: 2px 0px 0px 15px;
 }
+
+
 
 #header span#login {
 color:#777;
