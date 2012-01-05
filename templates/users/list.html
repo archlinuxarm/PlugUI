@@ -1,17 +1,21 @@
 <div class="page_body_section">
 <div id="configpage">
-<h2>Users</h2>
-<div id="leftpanel">
-<div class="user-header" id="header">
-<div class="username">Name</div>
-<div class="useremail">Email</div>
-<div class="usergroup">Group</div>
-<div class="useractive">Active</div>
-<div class="userupload">Upload</div>
-<div class="userdownload">Download</div>
+
+	<div id="leftpanel">
+<div class="boxheader">
+<div>User List</div>
 </div><!-- header -->
 <div id="displayarea">
-
+	
+	<div class="user-row">
+		<div class="username"><strong>Name</strong></div>
+		<div class="useremail"><strong>Email</strong></div>
+		<div class="usergroup"><strong>Group</strong></div>
+		<div class="useractive"><strong>Active</strong></div>
+		<div class="userupload"><strong>Upload</strong></div>
+		<div class="userdownload"><strong>Download</strong></div>
+	</div>
+	<hr/>
 
 {% for user in user_list %}
 <div class="user-row {% cycle 'odd' 'even' %}">

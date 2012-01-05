@@ -1,20 +1,21 @@
 <div class="page_body_section">
 <div id="configpage">
-<h2>Plug information</h2>
-<div id="leftpanel">
-<div id="header">
-<div>About your Device</div>
+
+	<div id="leftpanel">
+<div class="boxheader">
+<div>Device Information</div>
 </div><!-- header -->
 <div id="displayarea">
-<p><b>Device:</b> {{ devicename }}</p>
-<p><b>Processor:</b> {{ processor }}</p>
-<p><b>Architecture:</b> {{ architecture }}</p>
-<p><b>Kernel:</b> Linux {{ kernelversion }}</p>
-
+<div class="indent">
+<div><b>Device:</b> {{ devicename }}</div>
+<div><b>Processor:</b> {{ processor }}</div>
+<div><b>Architecture:</b> {{ architecture }}</div>
+<div><b>Kernel:</b> Linux {{ kernelversion }}</div>
+</div>
 </div><!-- displayarea -->
 </div><!-- leftpanel -->
 <div id="rightpanel">
-<div id="header">
+<div class="boxheader">
 Status
 </div><!-- header -->
 <div id="attributes">

@@ -1,23 +1,26 @@
 <div class="page_body_section">
 <div id="configpage">
-<h2 id="currentpath"></h2>
 <div id="leftpanel">
-<div id="header" class="fileheader">
-<img id="loader" src="/static/images/loader.gif"/>
-<div id="icon"></div>
-<div id="name">Name</div><!-- name -->
-<div id="type">Type</div><!-- type -->
-<div id="size">Size</div><!-- size -->
-<div id="date">Date</div><!-- date -->
-</div><!-- header -->
+<div class="boxheader">Path: <span id="currentpath"></span></div><!-- header -->
 <div id="displayarea">
+	<div class="line" id="line">
+	<div id="icon"><img id="loader" src="/static/images/loader.gif"/></div>
+	<div id="name"><strong>Name</strong></div><!-- name -->
+	<div id="type"><strong>Type</strong></div><!-- type -->
+	<div id="size"><strong>Size</strong></div><!-- size -->
+	<div id="date"><strong>Date</strong></div><!-- date -->
+	</div>
+	<div id="clear"></div><!-- clear -->
+	<hr/>
 <div id="filelist">
 </div><!-- filelist -->
 </div><!-- displayarea -->
 </div><!-- leftpanel -->
 
 <div id="rightpanel">
-<div id="header">Selected item</div>
+<div class="boxheader">
+	<div>Selected item</div>
+</div>
 <div id="attributes">
 
 <div id="filenametitle" class="panelattributename">Selected Item:</div>

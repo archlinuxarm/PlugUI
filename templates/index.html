@@ -30,7 +30,7 @@ get_page("login");
 <div id="main">
 
 
-<div id="header">
+<div id="pageheader">
 <img id="logo" src="/static/images/alarm.png"/>
 
 	
@@ -42,6 +42,8 @@ get_page("login");
 						<li><a href="javascript:" class="jp-play" tabindex="1">play</a></li>
 						<li><a href="javascript:" class="jp-pause" tabindex="1">pause</a></li>
 						<li><a href="javascript:" class="jp-stop" tabindex="1">stop</a></li>
+						
+						
 						<div id="current-track"></div>
 						
 						<div class="jp-current-time">00:00</div>
@@ -67,14 +69,20 @@ get_page("login");
 
 <li class="plug-menu">
 <div id="plug-menu-icon"></div>
-<a href="javascript:" onclick="get_page('home');">Home</a>
+<span class="menutitle">PlugUI</span>
 </li>
+	
+	<ul class="plug-submenu">
+		<li><a href="javascript:" onclick="get_page('home');">Dashboard</a></li>
+
+	</ul>
 
 <li class="plug-menu-sep"></li>
 
+
 <li class="plug-menu">
 <div id="plug-menu-icon"></div>
-<a href="javascript:" onclick="get_page('browse');">Files</a>
+<span class="menutitle">Files</span>
 </li>
 
 <ul class="plug-submenu">
@@ -97,12 +105,14 @@ get_page("login");
 
 <li class="plug-menu">
 <div id="plug-menu-icon"></div>
-<a href="javascript:" onclick="get_page('system');">System</a>
+<span class="menutitle">System</span>
 </li>
 <ul class="plug-submenu">
+<li><a href="javascript:" onclick="get_page('system');">Device Info</a></li>
+
 <li><a href="javascript:" onclick="get_page('storage');">Storage</a></li>
 <li><a href="javascript:" onclick="get_page('software');">Software</a></li>
-<li><a href="javascript:" onclick="get_page('advanced');">Advanced</a></li>
+<!--<li><a href="javascript:" onclick="get_page('advanced');">Maintenance</a></li>-->
 <li><a href="javascript:" onclick="get_page('shell');">Shell</a></li>
 <li><a href="javascript:" onclick="get_page('reboot');">Reboot</a></li>
 </ul>
@@ -110,9 +120,10 @@ get_page("login");
 
 <li class="plug-menu">
 <div id="plug-menu-icon"></div>
-<a href="javascript:" onclick="get_page('user_list');">Users</a>
+<span class="menutitle">Users</span>
 </li>
 <ul class="plug-submenu">
+<li><a href="javascript:" onclick="get_page('user_list');">User List</a></li>
 <li><a href="javascript:" onclick="get_page('create_user');">Create New User</a></li>
 <li><a href="javascript:" onclick="get_page('change_password');">Change Password</a></li>
 </ul>

@@ -10,14 +10,14 @@ $(document).ready(showCheck);
 
 <div class="page_body_section">
 <div id="configpage">
-<h2>Software</h2>
 
+	
 <div id="leftpanel">
-<div id="header">
+<div class="boxheader">
 <div>Software updates</div>
 </div><!-- header -->
 <div id="displayarea">
-<span id="os">
+<div class="indent" id="os">
 {% if updatesavailable %}
 {{ updatecount }} update(s) available.
 {% for package in packagelist %}
@@ -26,14 +26,14 @@ $(document).ready(showCheck);
 {% else %}
 All software is up to date!
 {% endif %}
-</span><!-- os -->
+</div><!-- os -->
 
 </div><!-- displayarea -->
 </div><!-- leftpanel -->
 
 
 <div id="rightpanel">
-<div id="header">
+<div class="boxheader">
 Status
 </div><!-- header -->
 <div id="attributes">

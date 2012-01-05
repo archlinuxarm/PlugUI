@@ -432,7 +432,7 @@ function checkUpdates() {
 				$('#os').html(returnlist.numberofpackages + " update(s) available."); 
 				$('#updatecount').html(returnlist.numberofpackages);
 				$.each(returnlist.packages, function(i,package){
-					var packageline = document.createElement("p");
+					var packageline = document.createElement("div");
 					packageline.setAttribute('class', 'package');
 					var packagename = document.createTextNode(package.name + " " + package.newversion);
 					packageline.appendChild(packagename);
@@ -534,13 +534,7 @@ function generate_list() {
 		var text = document.createTextNode(device.devicename);
 		devicename.appendChild(text);
 		storageline.appendChild(devicename);
-		
-		//create an element to hold the devicesize
-		var devicesize = document.createElement("div");
-		devicesize.setAttribute('class', 'devicesize');
-		var text = document.createTextNode(device.prettydevicesize);
-		devicesize.appendChild(text);
-		storageline.appendChild(devicesize);
+	
 		
 		//create an element to hold the filesystem
 		var filesystem = document.createElement("div");

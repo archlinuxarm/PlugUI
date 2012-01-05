@@ -24,14 +24,21 @@ $(document).ready(function(){
 });
 </script>
 <div id="configpage">
-<h2>Advanced</h2>
 
+	
 <div id="leftpanel">
-<div id="header">
-<div>Settings</div>
+<div class="boxheader">
+	<div>System Maintenance</div>
 </div><!-- header -->
+
 <div id="displayarea">
-<form id="advancedform" method="post">
+<div class="indent">
+	<div id="maintenancetitle" class="panelattributename"><strong>Last run:</strong><div id="maintenancestatus" class="panelattribute"></div></div>
+	
+	<div id="loading" style="display:none;"><img id="loader" style="width:18px;height:18px;margin:0;" src="/static/images/loader.gif"/></div>
+	<span id="button">
+		<input type="button" value="Run now" onclick="run_maintenance();"/>
+	<form id="advancedform" method="post">
 
 	{% if show_led.green %}
 	{{ form.green_trigger.errors }}
@@ -67,20 +74,9 @@ $(document).ready(function(){
 	{% csrf_token %}
       <input type="submit" value="Save">
   </form>
+	</div>
 </div><!-- displayarea -->
 </div><!-- leftpanel -->
-
-<div id="rightpanel">
-<div id="header">System Maintenance</div><!-- header -->
-<div id="attributes">
-<div id="maintenancetitle" class="panelattributename">Last run:</div>
-<div id="maintenancestatus" class="panelattribute">{{ last_maintenance }}</div>
-<div id="loading" style="display:none;"><img id="loader" style="width:18px;height:18px;margin:0;" src="/static/images/loader.gif"/></div>
-<span id="button">
-<input type="button" value="Run now" onclick="run_maintenance();"/>
-</span>
-</div><!-- attributes -->
-</div><!-- rightpanel -->
 
 </div><!-- configpage -->
 </div><!-- page_body_section -->

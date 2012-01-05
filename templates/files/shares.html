@@ -1,16 +1,18 @@
 <div class="page_body_section">
 <div id="configpage">
-<h2>File Sharing</h2>
-
 <div id="leftpanel">
 
-<div id="header" class="share-header">
-<div id="sharename">Name</div><!-- name -->
-<div id="publicurl">Public URL</div><!-- publicurl -->
-<div id="directurl">Direct URL</div><!-- directurl -->
-</div><!-- share-header -->
+<div class="boxheader">
+	<div>Shared Files</div>
+</div><!-- boxheader -->
 <div id="displayarea">
-
+	
+	<div class="share-row">
+		<div class="sharename"><strong>Name</strong></div><!-- name -->
+		<div class="publicurl"><strong>Public URL</strong></div><!-- publicurl -->
+		<div class="directurl"><strong>Direct URL</strong></div><!-- directurl -->
+	</div>
+	<hr/>
 {% for share in sharelist %}
 <div id="share-{{ share.uuid }}" class="share-row {% cycle 'odd' 'even' %}">
 <div class="sharename">{{ share.filename }}</div><!-- sharename -->

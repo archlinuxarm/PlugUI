@@ -1,20 +1,26 @@
 <div class="page_body_section">
 <div id="configpage">
 
-<h2>Storage</h2>
 
+
+	
 <div id="leftpanel">
 
-<div id="header" class="storage-header">
-<div class="mountpoint">Mountpoint</div>
-<div class="devicename">Device</div>
-<div class="devicesize">Device size</div>
-<div class="filesystem">Filesystem</div>
-<div class="spaceused">Space used</div>
-<div class="spacefree">Space free</div>
+<div class="boxheader">
+<div>Storage</div>
 </div><!-- header -->
 
 <div id="displayarea">
+<div class="device-row">
+	<div class="mountpoint"><strong>Mountpoint</strong></div>
+	<div class="devicename"><strong>Device</strong></div>
+
+	<div class="filesystem"><strong>Filesystem</strong></div>
+	<div class="spaceused"><strong>Space used</strong></div>
+	<div class="spacefree"><strong>Space free</strong></div>
+</div>
+	<div id="clear"></div><!-- clear -->
+	<hr/>
 <div id="storagelist">
 
 
@@ -24,7 +30,7 @@
 </div><!-- leftpanel -->
 
 <div id="rightpanel">
-<div id="header">Selected Device</div>
+<div class="boxheader">Selected Device</div>
 
 <div id="attributes">
 <div id="devicenametitle" class="panelattributename">Device:</div>
@@ -53,7 +59,7 @@ function store_devices() {
     device.devicename = '{{ device.devicename }}';
     device.mountpoint = '{{ device.mountpoint|default:"Not mounted" }}';
 	device.prettydevicesize = '{{ device.prettydevicesize|default:"N/A" }}';
-	device.devicesize = '{{ device.devicesize }}';
+
 	device.filesystem = '{{ device.filesystem|default:"None" }}';
 	device.prettyspaceused = '{{ device.prettyspaceused|default:"N/A" }}';
 	device.spaceused = '{{ device.spaceused|default:"0" }}';
