@@ -40,9 +40,9 @@ This little process will likely need to be cleaned up and potentially moved to u
 
 ##Package upgrade notifier
 
-There is a periodic check to see if upgraded system packages are available, if so you will see a notification on the main screen:
+There is a periodic check to see if upgraded system packages are available, if so you will see a notification on the dashboard:
 
-![](http://github.com/archlinuxarm/PlugUI/raw/master/screenshots/upgrades.png)
+![](http://github.com/archlinuxarm/PlugUI/raw/master/screenshots/dashboard.png)
 
 
 If there are, you can go upgrade them:
