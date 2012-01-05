@@ -86,6 +86,8 @@ The file sharing system is very simple, just find a file you want to share in th
 
 All shared files are visible from the "Share" screen, and individual shares can be deleted from there. 
 
+![](http://github.com/archlinuxarm/PlugUI/raw/master/screenshots/shares.png)
+
 Each share has a public link and a direct link, the former uses Plugfinder (below) to resolve your plugs current public IP dynamically (like DNS in a way), the latter uses the best guess of your public IP directly if you want to avoid plugfinder. Neither of those links are suitable for use on a local network, if you need to download a file use the links on in the file browser page.
 
 Note that the file sharing system is effectively a whitelisted sandbox in your /media directory: you cannot create shares for files outside that directory, nor can anyone (attackers, etc) access files that have not been explicitly shared (urls and user input are never used to construct a file path).
