@@ -6,7 +6,7 @@ mkdir -p /var/run/PlugUI > /dev/null 2>&1
 mkdir -p /var/lib/PlugUI > /dev/null 2>&1
 
 echo "Installing python2 and support frameworks...."
-pacman --noconfirm -S python2 django python2-cherrypy > /dev/null 2>&1
+pacman --noconfirm -S python2 django python2-cherrypy python2-pytz > /dev/null 2>&1
 
 echo "Synchronizing database...."
 cd /opt/PlugUI/ > /dev/null 2>&1

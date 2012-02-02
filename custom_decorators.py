@@ -35,7 +35,7 @@ def user_present(function=None):
 		def _view(request, *args, **kwargs):
 			usercount = User.objects.count()
 			if usercount == 0:
-				return HttpResponseRedirect('/users/createdefaultuser')
+				return HttpResponseRedirect('/create_default_user')
 			else:
 				return view_func(request, *args, **kwargs)
 
