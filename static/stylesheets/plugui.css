@@ -437,28 +437,20 @@ div.boxheader div {
 }
 
 
-#configpage {
+{
       margin-bottom:24px;
 	  position:relative;
 }
 
-#configpage #currentpath {
+#currentpath {
 	min-height:1.2em;
 	font-family:monospace;
 	font-weight:normal;
 }
-#configpage #rightpanel {
-	width: 190px;
-	float: left;
-	min-height:350px;
-	border: #DFDFDF 1px solid;
-	position:fixed;
-	top:72px;
-	right:12px;
-	border: 1px solid #ccc;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
+
+
+#rightpanel {
+
 }
 
 
@@ -467,32 +459,30 @@ div.boxheader div {
 
 
 div#displayarea,
-#homepage #widget div#displayarea {
+#homepage #widget #displayarea {
 	background:#fff;
 	
 	min-height:150px;
     font-size:12px;
 }
 
-#configpage #rightpanel div#attributes {
-	background:#fff;
-	padding: 12px;
-	min-height:350px;
+#rightpanel #attributes {
+
 }
 
-#configpage #rightpanel div#attributes div a {
+#rightpanel #attributes div a {
     text-decoration:underline;
 }
 
-#configpage #rightpanel div.panelattributename {
+#rightpanel .panelattributename {
 	color:#333;
 	font-size:12px;
 	font-weight:bold;
 	margin-bottom:4px;
 }
 
-#configpage #rightpanel div.panelattribute {
-	
+#rightpanel .panelattribute {
+	float:right;
 	color:#333;
 	font-size:12px;
 	font-weight:normal;
@@ -501,26 +491,26 @@ div#displayarea,
 	
 }
 
-#configpage #rightpanel #downloadlink a,
-#configpage #rightpanel #downloadlink a:hover,
-#configpage #rightpanel #downloadlink a:link,
-#configpage #rightpanel #downloadlink a:visited {
+#rightpanel #downloadlink a,
+#rightpanel #downloadlink a:hover,
+#rightpanel #downloadlink a:link,
+#rightpanel #downloadlink a:visited {
 	text-decoration:underline;
 	color:blue;
 }
 
-#configpage #rightpanel #sharelink a,
-#configpage #rightpanel #sharelink a:hover,
-#configpage #rightpanel #sharelink a:link,
-#configpage #rightpanel #sharelink a:visited {
+#rightpanel #sharelink a,
+#rightpanel #sharelink a:hover,
+#rightpanel #sharelink a:link,
+#rightpanel #sharelink a:visited {
 	text-decoration:underline;
 	color:blue;
 }
 
-#configpage #rightpanel #viewlink a,
-#configpage #rightpanel #viewlink a:hover,
-#configpage #rightpanel #viewlink a:link,
-#configpage #rightpanel #viewlink a:visited {
+#rightpanel #viewlink a,
+#rightpanel #viewlink a:hover,
+#rightpanel #viewlink a:link,
+#rightpanel #viewlink a:visited {
 	text-decoration:underline;
 	color:blue;
 }

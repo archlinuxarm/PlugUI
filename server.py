@@ -189,13 +189,15 @@ class Server(object):
 		
 	
 			apicmd = bottle.request.forms.apicmd
+			print apicmd
 			if apicmd == 'directory_list':
 				dirs = []
 				rawpath = bottle.request.forms.path
 				directory = "/media/" + posixpath.normpath(urllib2.unquote(rawpath)).rstrip('.').strip('/')
-			
+				print "getting dirlist"
 				
 				if re.match("/media", directory):
+					print "dir matches"
 					response['requestpath'] = directory
 					response['validpath'] = True
 					try:
@@ -230,9 +232,11 @@ class Server(object):
 						dirs.sort(key=operator.itemgetter('text'))
 						response['success'] = True
 						response['files'] = dirs
+						return response
 					except:
 						response['success'] = False
 						response['validpath'] = True
+						return response
 				else:
 					response['success'] = False
 					response['validpath'] = False
