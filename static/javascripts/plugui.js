@@ -85,6 +85,8 @@ function get_page(title) {
 		dataType : 'html',
 		success: function(html){
 			var page = html;
+			$('.adminbutton').removeClass('selected');
+			$('#' + title + '-button').addClass('selected');
 			$('#content_area').empty();
 			$('#content_area').html(page);
            setTimeout( function(){ $('#pageloader').hide() }, 300);

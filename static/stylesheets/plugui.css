@@ -151,7 +151,8 @@ img#pageloader {
 }
 
 #adminbar ul.gradient li.selected {
-	border-left:none;
+	margin-left: 1px;
+	border-left: none;
 	-moz-box-shadow: inset 0px 1px 3px #333;
 	-webkit-box-shadow: inset 0px 1px 3px #333;
 	box-shadow: inset 0px 1px 3px #333;
@@ -230,7 +231,7 @@ img#pageloader {
     padding-top:9px;
 }
 
-#adminbar ul.gradient li a span#dash-icon {
+#adminbar ul.gradient li a span#dashboard-icon {
 	padding-left:10px;
     padding-top:7px;
 }
@@ -256,7 +257,7 @@ img#pageloader {
 
 }
 
-#adminbar ul.gradient li a span#package-icon {
+#adminbar ul.gradient li a span#packages-icon {
 	padding-left:12px;
 	padding-top:8px;
 
