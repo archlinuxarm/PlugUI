@@ -311,4 +311,4 @@ application = server.application
 
 
 
-bottle.run(app=application, server='gevent', host="0.0.0.0", debug=True, port=80)
+bottle.run(app=application, reloader=True, server='gevent', host="0.0.0.0", debug=True, port=80)

@@ -25,8 +25,9 @@ function update_stats() {
 
 
 function plugui_init() {
+	get_page('dashboard');
 	update_stats();
-	//update = setInterval(update_stats, 1000);
+	update = setInterval(update_stats, 1000);
 }
 
 function showloader() {
@@ -98,12 +99,11 @@ function getTree(directory) {
 					parentdirline.setAttribute('class', 'line');
 		   
 					var icon = document.createElement("div");
-					icon.setAttribute('id', 'icon');
-					icon.setAttribute('class', 'parentdir');
+					icon.setAttribute('class', 'icon parentdir');
 					parentdirline.appendChild(icon);
 					
 					var name = document.createElement("div");
-					name.setAttribute('id', 'name');
+					name.setAttribute('class', 'name');
 					var parentlink = document.createElement("a");
 					parentlink.setAttribute('href','#');
 					parentlink.onclick = function(){ selectParent();return false };
@@ -115,7 +115,7 @@ function getTree(directory) {
 					filelist.appendChild(parentdirline);
 					
 					var clear = document.createElement("div");
-					clear.setAttribute('id', 'clear');
+					clear.setAttribute('class', 'clear');
 					filelist.appendChild(clear);
 
 					$.each(returnlist.files, function(i,item){
@@ -123,7 +123,7 @@ function getTree(directory) {
 						//new file line	
 						var fileline = document.createElement("div");
 						fileline.setAttribute('class', 'line');
-						fileline.setAttribute('id', 'line');
+
 						fileline.onclick = function(){ selectLine(item); $('.line').removeClass('highlightRow'); $(this).addClass('highlightRow'); };
 						
 						//create an icon for the file listing and add it to the line
@@ -137,13 +137,12 @@ function getTree(directory) {
 						   icon = document.createElement("div");
 						}
 						   
-						icon.setAttribute('id', 'icon');
-						icon.setAttribute('class', item.iconCls);
+						icon.setAttribute('class', 'icon ' + item.iconCls);
 						fileline.appendChild(icon);
 
 						//create an element to hold the name of the file and add it to the line
 						var name = document.createElement("div");
-						name.setAttribute('id', 'name');
+						name.setAttribute('class', 'name');
 						var namelink = document.createElement("a");
 						namelink.setAttribute('href','#');
 						namelink.onclick = function(){ selectLink(item);return false };
@@ -153,40 +152,9 @@ function getTree(directory) {
 						fileline.appendChild(name);
 						
 						
-						//create an element to show the type of file, add it to the line
-						var type = document.createElement("div");
-						type.setAttribute('id', 'type');
-						if (item.folder == true) {
-							var text = document.createTextNode("Folder");
-						}
-						else {
-							var text = document.createTextNode("File");
-						}
-						
-						type.appendChild(text);
-						fileline.appendChild(type);
-						
-						//create an element to show file size, add to line
-						var size = document.createElement("div");
-						size.setAttribute('id', 'size');
-						var text = document.createTextNode(item.size);
-						size.appendChild(text);
-						fileline.appendChild(size);
-						
-						//create an element to show date, add it to the line
-						var date = document.createElement("div");
-						date.setAttribute('id', 'date');
-						var text = document.createTextNode(item.date);
-						date.appendChild(text);
-						fileline.appendChild(date);
-						
+								
 						//append our new line to the file list
 						filelist.appendChild(fileline);
-						
-						//create a clearing element and add it to the file list to keep things from floating next to each other
-						var clear = document.createElement("div");
-						clear.setAttribute('id', 'clear');
-						filelist.appendChild(clear);
 						
 					});
 				}

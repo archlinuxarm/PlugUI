@@ -357,6 +357,14 @@ div.jqplot-target {
 	right:40px !important;
 }
 
+#displayarea {
+	-moz-border-radius: 10px;
+	-khtml-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	border:1px solid #ccc;
+}
+
 #displayarea div.device-row {
 	height:38px;
 	font-size:12px;
@@ -515,25 +523,6 @@ div#displayarea,
 	color:blue;
 }
 
-
-{
-	width: auto;
-	margin-right:240px;
-	position: relative;
-	min-height:250px;
-	min-width:600px;
-	-moz-border-radius: 4px;
-	-khtml-border-radius: 4px;
-	-webkit-border-radius: 4px;
-	border-radius: 4px;
-	border-color: #DFDFDF;
-	border-width:1px;
-	border-style:solid;
-	border-spacing:0;
-	background:white;
-	padding-bottom:12px;
-}
-
 #filelist .line,
 .line{
 	color:#333;
@@ -542,6 +531,7 @@ div#displayarea,
 	height:20px;
 	padding-top:4px;
 	padding-left:12px;
+	clear:both;
 	
 }
 
@@ -562,55 +552,32 @@ div#displayarea,
 
 }
 
-div#name,
-#filelist .line #name {
+div.name,
+#filelist .line .name {
 	float:left;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow:hidden;
-	width:280px;
+	
 	padding-left:12px;
 	z-index:100;
 }
 
-#filelist .line #name {
+#filelist .line .name {
 	text-decoration:none;
 	
 }
 
-div#type,
-#filelist .line #type {
-	float:left;
-	width:40px;
-	padding-left:6px;
-}
 
-div#size,
-#filelist .line #size {
-	float:left;
-	width:70px;
-	padding-left:6px;
-}
-
-div#date,
-#filelist .line #date {
-	float:left;
-	width:130px;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	overflow:hidden;
-	padding-left:6px;
-}
-
-#filelist .line #icon,
-.fileheader #icon,
-#icon {
+#filelist .line .icon,
+.fileheader .icon,
+.icon {
 	float:left;
 	width:20px;
 	height:20px;
 }
 
-#icon #loader {
+.icon #loader {
 	position:relative;
 	width:20px;
 	height:20px;
@@ -622,83 +589,83 @@ div#date,
 
 /* custom styles for file icons */
 
-#filelist .line #icon { background: url(images/txt.png) left top no-repeat; }
+#filelist .line #icon { background: url(/static/images/txt.png) left top no-repeat; }
 
 
 /* Core Styles */
-#filelist .line div.directory { background: url(images/directory.png) left top no-repeat !important ;}
-#filelist .line div.expanded { background: url(images/folder_open.png) left top no-repeat !important ;}
-#filelist .line div.file { background: url(images/file.png) left top no-repeat !important;}
-#filelist .line div.wait { background: url(images/spinner.gif) left top no-repeat !important; }
-#filelist .line div.parentdir { background: url(images/parent.png) left top no-repeat !important; }
+#filelist .line div.directory { background: url(/static/images/directory.png) left top no-repeat !important ;}
+#filelist .line div.expanded { background: url(/static/images/folder_open.png) left top no-repeat !important ;}
+#filelist .line div.file { background: url(/static/images/file.png) left top no-repeat !important;}
+#filelist .line div.wait { background: url(/static/images/spinner.gif) left top no-repeat !important; }
+#filelist .line div.parentdir { background: url(/static/images/parent.png) left top no-repeat !important; }
 
 /* File Extensions*/
-#filelist .line .file-3gp { background: url(images/film.png) left top no-repeat !important; }
-#filelist .line .file-afp { background: url(images/code.png) left top no-repeat !important; }
-#filelist .line .file-afpa { background: url(images/code.png) left top no-repeat !important; }
-#filelist .line .file-asp { background: url(images/code.png) left top no-repeat !important; }
-#filelist .line .file-aspx { background: url(images/code.png) left top no-repeat !important; }
-#filelist .line .file-avi { background: url(images/film.png) left top no-repeat !important; }
-#filelist .line .file-bat { background: url(images/application.png) left top no-repeat !important; }
-#filelist .line .file-bin { background: url(images/application.png) left top no-repeat !important; }
-#filelist .line .file-bmp { background: url(images/picture.png) left top no-repeat !important; }
-#filelist .line .file-c { background: url(images/code.png) left top no-repeat !important; }
-#filelist .line .file-cfm { background: url(images/code.png) left top no-repeat !important; }
-#filelist .line .file-cgi { background: url(images/code.png) left top no-repeat !important; }
-#filelist .line .file-cmd { background: url(images/application.png) left top no-repeat !important; }
-#filelist .line .file-com { background: url(images/application.png) left top no-repeat !important; }
-#filelist .line .file-cpp { background: url(images/code.png) left top no-repeat !important; }
-#filelist .line .file-css { background: url(images/css.png) left top no-repeat !important; }
-#filelist .line .file-doc { background: url(images/doc.png) left top no-repeat !important; }
-#filelist .line .file-exe { background: url(images/application.png) left top no-repeat !important; }
-#filelist .line .file-gif { background: url(images/picture.png) left top no-repeat !important; }
-#filelist .line .file-fla { background: url(images/flash.png) left top no-repeat !important; }
-#filelist .line .file-h { background: url(images/code.png) left top no-repeat !important; }
-#filelist .line .file-htm { background: url(images/html.png) left top no-repeat !important; }
-#filelist .line .file-html { background: url(images/html.png) left top no-repeat !important; }
-#filelist .line .file-jar { background: url(images/java.png) left top no-repeat !important; }
-#filelist .line .file-jpg { background: url(images/picture.png) left top no-repeat !important; }
-#filelist .line .file-jpeg { background: url(images/picture.png) left top no-repeat !important; }
-#filelist .line .file-js { background: url(images/script.png) left top no-repeat !important; }
-#filelist .line .file-lasso { background: url(images/code.png) left top no-repeat !important; }
-#filelist .line .file-log { background: url(images/txt.png) left top no-repeat !important; }
-#filelist .line .file-m4p { background: url(images/music.png) left top no-repeat !important; }
-#filelist .line .file-mov { background: url(images/film.png) left top no-repeat !important; }
-#filelist .line .file-mp3 { background: url(images/play.png) left top no-repeat !important; }
-#filelist .line .file-m4a { background: url(images/play.png) left top no-repeat !important; }
-#filelist .line .file-mp4 { background: url(images/film.png) left top no-repeat !important; }
-#filelist .line .file-mkv { background: url(images/film.png) left top no-repeat !important; }
-#filelist .line .file-m4v { background: url(images/film.png) left top no-repeat !important; }
-#filelist .line .file-mpg { background: url(images/film.png) left top no-repeat !important; }
-#filelist .line .file-mpeg { background: url(images/film.png) left top no-repeat !important; }
-#filelist .line .file-ogg { background: url(images/play.png) left top no-repeat !important; }
-#filelist .line .file-pcx { background: url(images/picture.png) left top no-repeat !important; }
-#filelist .line .file-pdf { background: url(images/pdf.png) left top no-repeat !important; }
-#filelist .line .file-php { background: url(images/php.png) left top no-repeat !important; }
-#filelist .line .file-png { background: url(images/picture.png) left top no-repeat !important; }
-#filelist .line .file-ppt { background: url(images/ppt.png) left top no-repeat !important; }
-#filelist .line .file-psd { background: url(images/psd.png) left top no-repeat !important; }
-#filelist .line .file-pl { background: url(images/script.png) left top no-repeat !important; }
-#filelist .line .file-py { background: url(images/script.png) left top no-repeat !important; }
-#filelist .line .file-rb { background: url(images/ruby.png) left top no-repeat !important; }
-#filelist .line .file-rbx { background: url(images/ruby.png) left top no-repeat !important; }
-#filelist .line .file-rhtml { background: url(images/ruby.png) left top no-repeat !important; }
-#filelist .line .file-rpm { background: url(images/linux.png) left top no-repeat !important; }
-#filelist .line .file-ruby { background: url(images/ruby.png) left top no-repeat !important; }
-#filelist .line .file-sh { background: url(images/script.png) left top no-repeat !important; }
-#filelist .line .file-sql { background: url(images/db.png) left top no-repeat !important; }
-#filelist .line .file-swf { background: url(images/flash.png) left top no-repeat !important; }
-#filelist .line .file-tif { background: url(images/picture.png) left top no-repeat !important; }
-#filelist .line .file-tiff { background: url(images/picture.png) left top no-repeat !important; }
-#filelist .line .file-txt { background: url(images/txt.png) left top no-repeat !important; }
-#filelist .line .file-vb { background: url(images/code.png) left top no-repeat !important; }
-#filelist .line .file-wav { background: url(images/music.png) left top no-repeat !important; }
-#filelist .line .file-wmv { background: url(images/film.png) left top no-repeat !important; }
-#filelist .line .file-xls { background: url(images/xls.png) left top no-repeat !important; }
-#filelist .line .file-xml { background: url(images/code.png) left top no-repeat !important; }
-#filelist .line .file-zip { background: url(images/zip.png) left top no-repeat !important; }
-#filelist .line .file-tar { background: url(images/zip.png) left top no-repeat !important; }
-#filelist .line .file-bz2 { background: url(images/zip.png) left top no-repeat !important; }
+#filelist .line .file-3gp { background: url(/static/images/film.png) left top no-repeat !important; }
+#filelist .line .file-afp { background: url(/static/images/code.png) left top no-repeat !important; }
+#filelist .line .file-afpa { background: url(/static/images/code.png) left top no-repeat !important; }
+#filelist .line .file-asp { background: url(/static/images/code.png) left top no-repeat !important; }
+#filelist .line .file-aspx { background: url(/static/images/code.png) left top no-repeat !important; }
+#filelist .line .file-avi { background: url(/static/images/film.png) left top no-repeat !important; }
+#filelist .line .file-bat { background: url(/static/images/application.png) left top no-repeat !important; }
+#filelist .line .file-bin { background: url(/static/images/application.png) left top no-repeat !important; }
+#filelist .line .file-bmp { background: url(/static/images/picture.png) left top no-repeat !important; }
+#filelist .line .file-c { background: url(/static/images/code.png) left top no-repeat !important; }
+#filelist .line .file-cfm { background: url(/static/images/code.png) left top no-repeat !important; }
+#filelist .line .file-cgi { background: url(/static/images/code.png) left top no-repeat !important; }
+#filelist .line .file-cmd { background: url(/static/images/application.png) left top no-repeat !important; }
+#filelist .line .file-com { background: url(/static/images/application.png) left top no-repeat !important; }
+#filelist .line .file-cpp { background: url(/static/images/code.png) left top no-repeat !important; }
+#filelist .line .file-css { background: url(/static/images/css.png) left top no-repeat !important; }
+#filelist .line .file-doc { background: url(/static/images/doc.png) left top no-repeat !important; }
+#filelist .line .file-exe { background: url(/static/images/application.png) left top no-repeat !important; }
+#filelist .line .file-gif { background: url(/static/images/picture.png) left top no-repeat !important; }
+#filelist .line .file-fla { background: url(/static/images/flash.png) left top no-repeat !important; }
+#filelist .line .file-h { background: url(/static/images/code.png) left top no-repeat !important; }
+#filelist .line .file-htm { background: url(/static/images/html.png) left top no-repeat !important; }
+#filelist .line .file-html { background: url(/static/images/html.png) left top no-repeat !important; }
+#filelist .line .file-jar { background: url(/static/images/java.png) left top no-repeat !important; }
+#filelist .line .file-jpg { background: url(/static/images/picture.png) left top no-repeat !important; }
+#filelist .line .file-jpeg { background: url(/static/images/picture.png) left top no-repeat !important; }
+#filelist .line .file-js { background: url(/static/images/script.png) left top no-repeat !important; }
+#filelist .line .file-lasso { background: url(/static/images/code.png) left top no-repeat !important; }
+#filelist .line .file-log { background: url(/static/images/txt.png) left top no-repeat !important; }
+#filelist .line .file-m4p { background: url(/static/images/music.png) left top no-repeat !important; }
+#filelist .line .file-mov { background: url(/static/images/film.png) left top no-repeat !important; }
+#filelist .line .file-mp3 { background: url(/static/images/play.png) left top no-repeat !important; }
+#filelist .line .file-m4a { background: url(/static/images/play.png) left top no-repeat !important; }
+#filelist .line .file-mp4 { background: url(/static/images/film.png) left top no-repeat !important; }
+#filelist .line .file-mkv { background: url(/static/images/film.png) left top no-repeat !important; }
+#filelist .line .file-m4v { background: url(/static/images/film.png) left top no-repeat !important; }
+#filelist .line .file-mpg { background: url(/static/images/film.png) left top no-repeat !important; }
+#filelist .line .file-mpeg { background: url(/static/images/film.png) left top no-repeat !important; }
+#filelist .line .file-ogg { background: url(/static/images/play.png) left top no-repeat !important; }
+#filelist .line .file-pcx { background: url(/static/images/picture.png) left top no-repeat !important; }
+#filelist .line .file-pdf { background: url(/static/images/pdf.png) left top no-repeat !important; }
+#filelist .line .file-php { background: url(/static/images/php.png) left top no-repeat !important; }
+#filelist .line .file-png { background: url(/static/images/picture.png) left top no-repeat !important; }
+#filelist .line .file-ppt { background: url(/static/images/ppt.png) left top no-repeat !important; }
+#filelist .line .file-psd { background: url(/static/images/psd.png) left top no-repeat !important; }
+#filelist .line .file-pl { background: url(/static/images/script.png) left top no-repeat !important; }
+#filelist .line .file-py { background: url(/static/images/script.png) left top no-repeat !important; }
+#filelist .line .file-rb { background: url(/static/images/ruby.png) left top no-repeat !important; }
+#filelist .line .file-rbx { background: url(/static/images/ruby.png) left top no-repeat !important; }
+#filelist .line .file-rhtml { background: url(/static/images/ruby.png) left top no-repeat !important; }
+#filelist .line .file-rpm { background: url(/static/images/linux.png) left top no-repeat !important; }
+#filelist .line .file-ruby { background: url(/static/images/ruby.png) left top no-repeat !important; }
+#filelist .line .file-sh { background: url(/static/images/script.png) left top no-repeat !important; }
+#filelist .line .file-sql { background: url(/static/images/db.png) left top no-repeat !important; }
+#filelist .line .file-swf { background: url(/static/images/flash.png) left top no-repeat !important; }
+#filelist .line .file-tif { background: url(/static/images/picture.png) left top no-repeat !important; }
+#filelist .line .file-tiff { background: url(/static/images/picture.png) left top no-repeat !important; }
+#filelist .line .file-txt { background: url(/static/images/txt.png) left top no-repeat !important; }
+#filelist .line .file-vb { background: url(/static/images/code.png) left top no-repeat !important; }
+#filelist .line .file-wav { background: url(/static/images/music.png) left top no-repeat !important; }
+#filelist .line .file-wmv { background: url(/static/images/film.png) left top no-repeat !important; }
+#filelist .line .file-xls { background: url(/static/images/xls.png) left top no-repeat !important; }
+#filelist .line .file-xml { background: url(/static/images/code.png) left top no-repeat !important; }
+#filelist .line .file-zip { background: url(/static/images/zip.png) left top no-repeat !important; }
+#filelist .line .file-tar { background: url(/static/images/zip.png) left top no-repeat !important; }
+#filelist .line .file-bz2 { background: url(/static/images/zip.png) left top no-repeat !important; }
 
 
 /* user list */
