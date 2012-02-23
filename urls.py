@@ -1,5 +1,5 @@
 """
-Copyright (c) 2011, Steve Oliver (steve@xercestech.com)
+Copyright (c) 2012, Stephen Oliver (mrsteveman1@gmail.com)
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without

@@ -6,11 +6,7 @@ mkdir -p /var/run/PlugUI > /dev/null 2>&1
 mkdir -p /var/lib/PlugUI > /dev/null 2>&1
 
 echo "Installing python2 and support frameworks...."
-pacman --noconfirm -S python2 django python2-cherrypy python2-pytz > /dev/null 2>&1
-
-echo "Synchronizing database...."
-cd /opt/PlugUI/ > /dev/null 2>&1
-python2 manage.py syncdb --noinput > /dev/null 2>&1
+pacman --noconfirm -S python2 > /dev/null 2>&1
 
 echo "Setting up maintenance system....."
 chmod +x /opt/PlugUI/plugmaintenance.py > /dev/null 2>&1
@@ -24,4 +20,4 @@ ln -s /opt/PlugUI/plugui.cherrypy /etc/rc.d/plugui > /dev/null 2>&1
 echo "Starting server...."
 /etc/rc.d/plugui start > /dev/null 2>&1
 
-echo "All done! Visit http://plugfinder.appspot.com in a browser to find your plug on the local network"
+echo "All done!"

@@ -13,6 +13,8 @@
 		<div class="directurl"><strong>Direct URL</strong></div><!-- directurl -->
 	</div>
 	<hr/>
+	
+	
 {% for share in sharelist %}
 <div id="share-{{ share.uuid }}" class="share-row {% cycle 'odd' 'even' %}">
 <div class="sharename">{{ share.filename }}</div><!-- sharename -->

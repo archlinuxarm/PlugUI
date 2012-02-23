@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+
+	<!-- Basic Page Needs
+  	================================================== -->
+
+	<title>PlugUI</title>
+
+	<meta charset="utf-8">
+	<meta name="description" content="">
+    	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="author" content="Arch Linux ARM">
+
+	<!--[if lt IE 9]>
+		<script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Mobile Specific Metas
+  	================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- CSS
+  	================================================== -->
+
+	<link rel="stylesheet" href="/static/stylesheets/base.css">
+	<link rel="stylesheet" href="/static/stylesheets/skeleton.css">
+	<link rel="stylesheet" href="/static/stylesheets/layout.css">
+	
+	<link rel="stylesheet" href="/static/stylesheets/plugui.css">	
+	
+	<script src="/static/javascripts/jquery-1.7.1.js"></script>
+	<script src="/static/javascripts/jquery.filedrop.js"></script>
+	<script src="/static/javascripts/jquery.sparkline.min.js"></script>
+	<script src="/static/javascripts/jquery.jqplot.min.js"></script>
+	<script src="/static/javascripts/jqplot.pieRenderer.js"></script>
+	<script src="/static/javascripts/jquery.event.drag-2.0.min.js"></script>
+	<script src="/static/javascripts/jquery.jplayer.min.js"></script> 
+	<script src="/static/javascripts/plugui.js"></script>
+	
+	
+	
+	
+
+
+
+</head>
+<body>
+	<div id="adminbar">
+		<ul>    
+			<li class="first"></li>
+			<li id="logo"><span style="padding-top:12px; display:block;">PlugUI</span></li>
+			<li><a href="javascript:" onClick="get_page('dashboard');"><span id="dash-icon"><img src="/static/images/81-dashboard.png" alt="dashboard"/></span></a></li>
+			<li><a href="javascript:" onClick="get_page('files');"><span id="files-icon"><img src="/static/images/33-cabinet.png" alt="files"/></span></a></li>
+			<li><a href="javascript:" onClick="get_page('packages');"><span id="package-icon"><img src="/static/images/24-gift.png" alt="packages"/></span></a></li>
+			<li><a href="javascript:" onClick="get_page('settings');"><span id="settings-icon"><img src="/static/images/19-gear.png" alt="settings"/></span></a></li>
+
+			<li class="last"></li>
+		</ul>
+	</div>
+
+<div id="content_area" class="container">
+
+
+</div><!-- container -->
+
+<script type="text/javascript">
+        $(document).ready(function(){
+				plugui_init();
+        });
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<div class="sixteen columns boxheader">
+<span>Path:</span><span id="currentpath"></span>
+</div>
+
+<div class="two-thirds column statusbox">
+	<div id="displayarea">
+		<div class="line" id="line">
+			<div id="icon"><img id="loader" src="/static/images/loader.gif"/></div>
+			<div id="name"><strong>Name</strong></div><!-- name -->
+			<div id="type"><strong>Type</strong></div><!-- type -->
+			<div id="size"><strong>Size</strong></div><!-- size -->
+			<div id="date"><strong>Date</strong></div><!-- date -->
+		</div>
+		<div id="clear"></div><!-- clear -->
+		<hr/>
+		<div id="filelist"></div><!-- filelist -->
+	</div><!-- displayarea -->
+
+
+</div>
+
+<div id="rightpanel" class="one-third column statusbox">
+
+		
+		
+	<div class="boxheader">
+
+	</div>
+	<div id="attributes">
+
+		<div id="filenametitle" class="panelattributename stat-list">
+		Selected Item:
+		<span id="filename" class="panelattribute">none </span>
+		</div>
+
+		<div id="filetypetitle" class="panelattributename stat-list">
+		Type:
+		<span id="filetype" class="panelattribute">none </span>
+		</div>
+		
+		
+		<div id="filesizetitle" class="panelattributename stat-list">
+		Size:
+		<span id="filesize" class="panelattribute">none </span>
+		</div>
+		
+		
+		<div id="filedatetitle" class="panelattributename stat-list">
+		Modified:
+		<span id="filedate" class="panelattribute">none </span>
+		</div>
+		
+		
+		<div id="fileoptions" class="panelattributename">Options:</div>
+		<div id="downloadlink" class="panelattribute"></div>
+		<div id="sharelink" class="panelattribute"></div>
+		<div id="viewlink" class="panelattribute"></div>
+
+	</div>
+</div>
+
+<script type="text/javascript">
+
+getTree(directory);
+</script>

@@ -27,9 +27,7 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."""
 
 from __future__ import division
-from django.http import HttpResponse
-from django.core.servers.basehttp import FileWrapper
-from system.models import SystemStats
+
 import shlex, subprocess, re, socket, os, mimetypes, httplib, urllib
 from operator import itemgetter
 from datetime import tzinfo, timedelta, datetime
@@ -265,63 +263,13 @@ def rebootnow():
        args = shlex.split(reboot_command_raw)
        process = subprocess.Popen(args)
        return "Done"
+	   
 
-def getlocalip():
-
-	# get the eth0 ip
-	eth0cmd = """ifconfig eth0 | grep "inet addr" | awk '{ print $2 }' | sed s/addr://"""
-	eth0process = subprocess.Popen(eth0cmd,stdout=subprocess.PIPE,shell=True)
-	eth0ip = eth0process.stdout.read()
-
-	# get the wlan0 ip
-	wlan0cmd = """ifconfig wlan0 | grep "inet addr" | awk '{ print $2 }' | sed s/addr://"""
-	wlan0process = subprocess.Popen(wlan0cmd,stdout=subprocess.PIPE,shell=True)
-	wlan0ip = wlan0process.stdout.read()
-
-	# get the usb0 ip
-	usb0cmd = """ifconfig usb0 | grep "inet addr" | awk '{ print $2 }' | sed s/addr://"""
-	usb0process = subprocess.Popen(usb0cmd,stdout=subprocess.PIPE,shell=True)
-	usb0ip = usb0process.stdout.read()
-
-	# get the usb1 ip
-	usb1cmd = """ifconfig usb1 | grep "inet addr" | awk '{ print $2 }' | sed s/addr://"""
-	usb1process = subprocess.Popen(usb1cmd,stdout=subprocess.PIPE,shell=True)
-	usb1ip = usb1process.stdout.read()
-
-	# now go through each variable to see if it has an assigned IP, most of the time unused interfaces dont have one
-	if len(eth0ip) >= 8:
-		ip = eth0ip
-	elif len(wlan0ip) >= 8:
-		ip = wlan0ip
-	elif len(usb0ip) >= 8:
-		ip = usb0ip
-	elif len(usb1ip) >= 8:
-		ip = usb1ip
-	else:
-		ip = '127.0.0.1'
-	return ip.rstrip('\n')
-
-def getstun():
+def getpublicip():
 	conn = httplib.HTTPConnection("plugfinder.appspot.com:80")
 	conn.request("GET", "/stun")
 	response = conn.getresponse()
 	return response.read()
-
-def getpublicip():
-	try:
-		systemstats = SystemStats.objects.get(id=1)
-	except:
-		systemstats = SystemStats()
-	if systemstats.ipchecktime:
-		if systemstats.ipchecktime >= datetime.now() - timedelta(hours = 1):
-			systemstats.publicip = getstun()
-		else:
-			pass
-	else:
-		systemstats.publicip = getstun()
-	
-	systemstats.save()
-	return systemstats.publicip
 
 def getport():
 	try:
@@ -335,14 +283,6 @@ def getport():
 		port = "80"
 	return port
 			
-def getethermac():
-    cmd = """ifconfig -a | grep eth0 | awk '{ print $5 }'"""
-    process = subprocess.Popen(cmd,stdout=subprocess.PIPE,shell=True)
-    ethermac = process.stdout.read()
-    return ethermac.rstrip('\n')
-
-def getplugid():
-	return hashlib.sha256(getethermac()).hexdigest()[:20]	
 
 def getkernelversion():
        kernv_cmd = "uname -rv"
@@ -440,69 +380,6 @@ def getmemory_total():
            key, value = match.groups(['key', 'value'])
            result[key] = int(value)
       return int(result.get("MemTotal")) / 1024
-
-def get_automount():
-	values = dict()
-	usbrulepath = '/etc/udev/rules.d/11-media-by-label-auto-mount.rules'
-	sdrulepath = '/etc/udev/rules.d/11-sd-cards-auto-mount.rules'
-	if os.path.isfile(usbrulepath):
-		values['usbautomount'] = True
-	else:
-		values['usbautomount'] = False
-	if os.path.isfile(sdrulepath):
-		values['sdautomount'] = True
-	else:
-		values['sdautomount'] = False
-	return values
-	
-def set_automount(usb,sd):
-	values = dict()
-	usbrulepath = '/etc/udev/rules.d/11-media-by-label-auto-mount.rules'
-	usbrulepathdisabled = '/etc/udev/rules.d/11-media-by-label-auto-mount.disabled'
-	sdrulepath = '/etc/udev/rules.d/11-sd-cards-auto-mount.rules'
-	sdrulepathdisabled = '/etc/udev/rules.d/11-sd-cards-auto-mount.disabled'
-	
-	if usb == True:
-		if os.path.isfile(usbrulepath):
-			values['usbautomountsuccess'] = True
-		elif os.path.isfile(usbrulepathdisabled):
-			os.rename(usbrulepathdisabled,usbrulepath)
-			values['usbautomountsuccess'] = True
-		else:
-			values['usbautomountsuccess'] = False
-	elif usb == False:
-		if os.path.isfile(usbrulepathdisabled):
-			values['usbautomountsuccess'] = True
-		elif os.path.isfile(usbrulepath):
-			os.rename(usbrulepath,usbrulepathdisabled)
-			values['usbautomountsuccess'] = True
-		else:
-			values['usbautomountsuccess'] = False
-
-	if sd == True:
-		if os.path.isfile(sdrulepath):
-			values['sdautomountsuccess'] = True
-		elif os.path.isfile(sdrulepathdisabled):
-			os.rename(sdrulepathdisabled,sdrulepath)
-			values['sdautomountsuccess'] = True
-		else:
-			values['sdautomountsuccess'] = False
-	elif sd == False:
-		if os.path.isfile(sdrulepathdisabled):
-			values['sdautomountsuccess'] = True
-		elif os.path.isfile(sdrulepath):
-			os.rename(sdrulepath,sdrulepathdisabled)
-			values['sdautomountsuccess'] = True
-		else:
-			values['sdautomountsuccess'] = False
-	try:
-		udevcmd = "udevadm control restart"
-		args = shlex.split(udevcmd)
-		process = subprocess.Popen(args)
-		values['udevrestart'] = True
-	except:
-		values['udevrestart'] = False
-	return values	
 
 def getmemory_free():
 	cmd = """free | grep cache: | awk '{ print $4 }'"""

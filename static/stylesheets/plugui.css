@@ -1,0 +1,839 @@
+#error {
+    display:none;
+}
+
+html {
+    background: #F1F1F1 url("/static/images/wrap_noise_bck.jpg") repeat;
+    text-shadow: 0px 1px 0px #fff;
+	
+}
+
+* {
+	font-family:Helvetica !important;
+}
+
+body {
+    background:none;
+    text-rendering: optimizeLegibility;
+
+}
+
+#clear,
+.clear {
+	clear:both;
+}
+
+img#pageloader {
+	width:20px;
+	height:20px;
+    display:none;
+    position:absolute;
+	left:132px;
+	top:74px;
+}
+
+.indent {
+	padding:12px;
+}
+
+.etch {
+	height:0px;
+	display:block;
+	border-bottom:1px solid #ffffff;
+	border-top:1px solid #ccc;
+
+}
+
+#logo {
+
+
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+	#logo {
+		text-align:center;
+	}
+}	
+
+
+#adminbar {
+    position:relative;
+    top:0px;
+    left:0px;
+    right:0px;
+    height:42px;
+    margin:0px 0px 24px 0px;
+    padding:0;
+    display:block;
+    list-style:none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+
+#adminbar ul  {
+    margin:0;
+	padding-left:0px;
+	padding-right:0px;
+	height:42px;
+	display:block;
+    -moz-box-shadow: 0px 1px 2px #565656 , inset 0px 1px 0px rgba(255, 255, 255, 0.5);
+    -webkit-box-shadow: 0px 1px 2px #565656, inset 0px 1px 0px rgba(255, 255, 255, 0.5);
+    box-shadow: 0px 1px 2px #565656 , inset 0px 1px 0px rgba(255, 255, 255, 0.5);
+    background: -webkit-gradient(linear, left top, left bottom, from(#DDD), to(#BBB));
+    background: -moz-linear-gradient(top, #DDD, #BBB);
+    background: -o-linear-gradient(top, #DDD, #BBB);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#dddddd, endColorstr=#bbbbbb);
+}
+
+
+#adminbar ul li {
+    float:left;
+    height:42px;
+	width:48px;
+    /*border-right: 1px solid #bbb;*/
+	position:relative;
+	margin-bottom:0px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#DDD), to(#BBB));
+    background: -moz-linear-gradient(top, #DDD, #BBB);
+    background: -o-linear-gradient(top, #DDD, #BBB);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#dddddd, endColorstr=#bbbbbb);
+	
+	border-left: #F4F5F6 1px solid;
+	border-right: #9BA5AE 1px solid;
+}
+
+#adminbar ul li.first {
+	border-left:none;
+	border-right: #9BA5AE 1px solid;
+}
+
+#adminbar ul li.last {
+	border-left: #F4F5F6 1px solid;
+	border-right:none;
+}
+
+#adminbar ul li#logo {
+	width: 60px;
+	padding-left: 12px;
+	padding-right: 12px;
+	font-weight:bold;
+}
+
+#adminbar ul li:active {
+	position:relative;
+	top:1px;
+}
+
+#adminbar ul li.selected a span {
+	color:#000;
+	text-shadow:0 1px 0 #fff;
+}
+
+#adminbar ul li a,
+#adminbar ul li a:visited {
+    
+    height:100%;
+    width:100%;
+    display:inline-block;
+    color:#787878;
+    text-shadow:0px 1px 0px #fff;  
+	cursor:default
+}
+
+#adminbar ul li a:hover {
+    color:#898989;
+    
+}
+#adminbar ul li a span {
+    font-size:1.0em;
+    font-weight:bold;
+    padding-top:6px;
+	padding-bottom:6px;
+
+    display:inline-block;
+	opacity:0.5;
+}
+
+#adminbar ul li a span#home-icon {
+	padding-left:12px;
+    padding-top:9px;
+}
+
+#adminbar ul li a span#dash-icon {
+	padding-left:10px;
+    padding-top:7px;
+}
+#adminbar ul li a span#posts-icon {
+	padding-left:12px;
+	padding-top:12px;
+}
+#adminbar ul li a span#files-icon {
+	padding-left:14px;
+    padding-top:8px;
+}
+#adminbar ul li a span#tickets-icon {
+	padding-left:12px;
+    padding-top:9px;
+}
+#adminbar ul li a span#settings-icon {
+	padding-left:11px;
+	padding-top:8px;
+}
+#adminbar ul li a span#logs-icon {
+	padding-left:12px;
+	padding-top:12px;
+
+}
+
+#adminbar ul li a span#package-icon {
+	padding-left:12px;
+	padding-top:8px;
+
+}
+
+
+/* dashboard */
+
+#logwindow {
+	margin-bottom:40px;
+    margin-top:36px;
+}
+
+#logwindow ul {
+	margin: 10px 0px;
+    padding-left:12px;
+    padding-right:12px;
+}
+
+#logwindow ul li.logline {
+    padding:12px 6px;
+    clear:both;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border:1px solid #e0e0e0;
+    
+}
+
+#logwindow ul li.logline div.logdate {
+   
+    display:inline-block;
+}
+
+
+#logwindow ul li.logline div.logcontent {
+
+    display:inline-block;
+}
+
+.statusbox {
+	position:relative;
+    min-height:145px;
+    margin-bottom:12px;
+    margin-top:36px;
+}
+
+.statusbox span.text {
+    color:#000;
+	text-shadow:0px 1px 0px #fff;
+    position:absolute;
+    top:-25px;
+    left:12px;
+	background:none;
+	font-size:1.1em;
+}
+
+div.statusbox div.stat-list {
+	margin-bottom:12px;
+	margin-top:12px;
+	background:  #fcfcfc;
+	
+	color: #333;
+	font-weight:bold;
+    padding: 6px 15px 4px 15px;
+
+    
+	-webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+	
+	
+    -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.8) inset;
+    -moz-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.8) inset;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.8) inset;
+}
+
+div.statusbox div.stat-list span.value {
+	float:right;
+	color:000;
+	font-weight:normal;
+}
+
+#packagegrid {
+	height:500px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* shell page */
+
+#runloader {
+	float:right;
+	margin:0;
+}
+
+form#runcommand {
+	display:inline;
+	margin-left:12px;
+	margin-right:12px;
+	margin-bottom:4px;
+}
+
+form#runcommand #commandbox {
+	width:400px;
+}
+
+form#runcommand #error {
+
+}
+
+#terminal {
+	background:#333;
+	color:#fff;
+	min-height:300px;
+	border:1px dotted #666;
+	padding-top:12px;
+	padding-left:12px;
+	padding-right:6px;
+	padding-bottom:6px;
+}
+
+/* storage page elements */
+
+span.device-stats {
+display: inline-block;
+}
+
+.plot-area {
+float:right;
+}
+
+div.jqplot-yaxis {
+width:100px;
+}
+
+div.jqplot-target {
+	width:400px !important;
+	height:300px !important;
+	right:40px !important;
+}
+
+#displayarea div.device-row {
+	height:38px;
+	font-size:12px;
+}
+
+#displayarea div.odd {
+	background:#fff;
+}
+
+#displayarea div.even {
+	background:#efefef;
+}
+
+#displayarea div.device-row div {
+	vertical-align:middle;
+	padding-top:10px;
+	padding-left:12px;
+    white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow:hidden;
+	height:24px;
+	float:left;
+}
+
+#displayarea div.mountpoint,
+#displayarea div.device-row div.mountpoint {
+	width:120px;
+}
+
+#displayarea div.devicename,
+#displayarea div.device-row div.devicename {
+	width:120px;
+}
+
+#displayarea div.filesystem,
+#displayarea div.device-row div.filesystem {
+	width:70px;
+}
+
+#displayarea div.spaceused,
+#displayarea div.device-row div.spaceused {
+	width:90px;
+}
+
+#displayarea div.spacefree,
+#displayarea div.device-row div.spacefree {
+	width:90px;
+}
+
+
+
+
+/* system config pages */
+
+div.boxheader {
+	text-shadow:rgba(255, 255, 255, 0.8) 0 1px 0;
+	background: #D9D9D9;
+	background: -moz-linear-gradient(bottom,#D7D7D7,#E4E4E4);
+	background: -webkit-gradient(linear,left bottom,left top,from(#D7D7D7),to(#E4E4E4));
+	height:20px !important;
+	padding-top: 6px;
+	padding-left:12px;
+	font-size: 12px;
+	font-weight:bold;
+	border-bottom: #C6C6C6 1px solid;
+	-webkit-border-top-left-radius: 4px;
+	-webkit-border-top-right-radius: 4px;
+	-moz-border-radius-topleft: 4px;
+	-moz-border-radius-topright: 4px;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;	
+}
+
+div.boxheader div {
+	float:left;
+	height:20px;
+	font-weight:bold;
+}
+
+
+#configpage {
+      margin-bottom:24px;
+	  position:relative;
+}
+
+#configpage #currentpath {
+	min-height:1.2em;
+	font-family:monospace;
+	font-weight:normal;
+}
+#configpage #rightpanel {
+	width: 190px;
+	float: left;
+	min-height:350px;
+	border: #DFDFDF 1px solid;
+	position:fixed;
+	top:72px;
+	right:12px;
+	border: 1px solid #ccc;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+
+
+
+
+
+
+div#displayarea,
+#homepage #widget div#displayarea {
+	background:#fff;
+	
+	min-height:150px;
+    font-size:12px;
+}
+
+#configpage #rightpanel div#attributes {
+	background:#fff;
+	padding: 12px;
+	min-height:350px;
+}
+
+#configpage #rightpanel div#attributes div a {
+    text-decoration:underline;
+}
+
+#configpage #rightpanel div.panelattributename {
+	color:#333;
+	font-size:12px;
+	font-weight:bold;
+	margin-bottom:4px;
+}
+
+#configpage #rightpanel div.panelattribute {
+	
+	color:#333;
+	font-size:12px;
+	font-weight:normal;
+	white-space: wrap;
+	margin-bottom:12px;
+	
+}
+
+#configpage #rightpanel #downloadlink a,
+#configpage #rightpanel #downloadlink a:hover,
+#configpage #rightpanel #downloadlink a:link,
+#configpage #rightpanel #downloadlink a:visited {
+	text-decoration:underline;
+	color:blue;
+}
+
+#configpage #rightpanel #sharelink a,
+#configpage #rightpanel #sharelink a:hover,
+#configpage #rightpanel #sharelink a:link,
+#configpage #rightpanel #sharelink a:visited {
+	text-decoration:underline;
+	color:blue;
+}
+
+#configpage #rightpanel #viewlink a,
+#configpage #rightpanel #viewlink a:hover,
+#configpage #rightpanel #viewlink a:link,
+#configpage #rightpanel #viewlink a:visited {
+	text-decoration:underline;
+	color:blue;
+}
+
+
+{
+	width: auto;
+	margin-right:240px;
+	position: relative;
+	min-height:250px;
+	min-width:600px;
+	-moz-border-radius: 4px;
+	-khtml-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	border-color: #DFDFDF;
+	border-width:1px;
+	border-style:solid;
+	border-spacing:0;
+	background:white;
+	padding-bottom:12px;
+}
+
+#filelist .line,
+.line{
+	color:#333;
+	font-size:12px;
+	font-weight:normal;
+	height:20px;
+	padding-top:4px;
+	padding-left:12px;
+	
+}
+
+.highlightRow {
+	background:#eaeaea;
+	color:#333;
+}
+
+.highlightRow a {
+	color:#333;
+}
+
+.fileheader {
+	padding-left:12px !important;
+}
+
+#filelist div {
+
+}
+
+div#name,
+#filelist .line #name {
+	float:left;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow:hidden;
+	width:280px;
+	padding-left:12px;
+	z-index:100;
+}
+
+#filelist .line #name {
+	text-decoration:none;
+	
+}
+
+div#type,
+#filelist .line #type {
+	float:left;
+	width:40px;
+	padding-left:6px;
+}
+
+div#size,
+#filelist .line #size {
+	float:left;
+	width:70px;
+	padding-left:6px;
+}
+
+div#date,
+#filelist .line #date {
+	float:left;
+	width:130px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow:hidden;
+	padding-left:6px;
+}
+
+#filelist .line #icon,
+.fileheader #icon,
+#icon {
+	float:left;
+	width:20px;
+	height:20px;
+}
+
+#icon #loader {
+	position:relative;
+	width:20px;
+	height:20px;
+	margin:0;
+	top:0px;
+	left:0px;
+}
+
+
+/* custom styles for file icons */
+
+#filelist .line #icon { background: url(images/txt.png) left top no-repeat; }
+
+
+/* Core Styles */
+#filelist .line div.directory { background: url(images/directory.png) left top no-repeat !important ;}
+#filelist .line div.expanded { background: url(images/folder_open.png) left top no-repeat !important ;}
+#filelist .line div.file { background: url(images/file.png) left top no-repeat !important;}
+#filelist .line div.wait { background: url(images/spinner.gif) left top no-repeat !important; }
+#filelist .line div.parentdir { background: url(images/parent.png) left top no-repeat !important; }
+
+/* File Extensions*/
+#filelist .line .file-3gp { background: url(images/film.png) left top no-repeat !important; }
+#filelist .line .file-afp { background: url(images/code.png) left top no-repeat !important; }
+#filelist .line .file-afpa { background: url(images/code.png) left top no-repeat !important; }
+#filelist .line .file-asp { background: url(images/code.png) left top no-repeat !important; }
+#filelist .line .file-aspx { background: url(images/code.png) left top no-repeat !important; }
+#filelist .line .file-avi { background: url(images/film.png) left top no-repeat !important; }
+#filelist .line .file-bat { background: url(images/application.png) left top no-repeat !important; }
+#filelist .line .file-bin { background: url(images/application.png) left top no-repeat !important; }
+#filelist .line .file-bmp { background: url(images/picture.png) left top no-repeat !important; }
+#filelist .line .file-c { background: url(images/code.png) left top no-repeat !important; }
+#filelist .line .file-cfm { background: url(images/code.png) left top no-repeat !important; }
+#filelist .line .file-cgi { background: url(images/code.png) left top no-repeat !important; }
+#filelist .line .file-cmd { background: url(images/application.png) left top no-repeat !important; }
+#filelist .line .file-com { background: url(images/application.png) left top no-repeat !important; }
+#filelist .line .file-cpp { background: url(images/code.png) left top no-repeat !important; }
+#filelist .line .file-css { background: url(images/css.png) left top no-repeat !important; }
+#filelist .line .file-doc { background: url(images/doc.png) left top no-repeat !important; }
+#filelist .line .file-exe { background: url(images/application.png) left top no-repeat !important; }
+#filelist .line .file-gif { background: url(images/picture.png) left top no-repeat !important; }
+#filelist .line .file-fla { background: url(images/flash.png) left top no-repeat !important; }
+#filelist .line .file-h { background: url(images/code.png) left top no-repeat !important; }
+#filelist .line .file-htm { background: url(images/html.png) left top no-repeat !important; }
+#filelist .line .file-html { background: url(images/html.png) left top no-repeat !important; }
+#filelist .line .file-jar { background: url(images/java.png) left top no-repeat !important; }
+#filelist .line .file-jpg { background: url(images/picture.png) left top no-repeat !important; }
+#filelist .line .file-jpeg { background: url(images/picture.png) left top no-repeat !important; }
+#filelist .line .file-js { background: url(images/script.png) left top no-repeat !important; }
+#filelist .line .file-lasso { background: url(images/code.png) left top no-repeat !important; }
+#filelist .line .file-log { background: url(images/txt.png) left top no-repeat !important; }
+#filelist .line .file-m4p { background: url(images/music.png) left top no-repeat !important; }
+#filelist .line .file-mov { background: url(images/film.png) left top no-repeat !important; }
+#filelist .line .file-mp3 { background: url(images/play.png) left top no-repeat !important; }
+#filelist .line .file-m4a { background: url(images/play.png) left top no-repeat !important; }
+#filelist .line .file-mp4 { background: url(images/film.png) left top no-repeat !important; }
+#filelist .line .file-mkv { background: url(images/film.png) left top no-repeat !important; }
+#filelist .line .file-m4v { background: url(images/film.png) left top no-repeat !important; }
+#filelist .line .file-mpg { background: url(images/film.png) left top no-repeat !important; }
+#filelist .line .file-mpeg { background: url(images/film.png) left top no-repeat !important; }
+#filelist .line .file-ogg { background: url(images/play.png) left top no-repeat !important; }
+#filelist .line .file-pcx { background: url(images/picture.png) left top no-repeat !important; }
+#filelist .line .file-pdf { background: url(images/pdf.png) left top no-repeat !important; }
+#filelist .line .file-php { background: url(images/php.png) left top no-repeat !important; }
+#filelist .line .file-png { background: url(images/picture.png) left top no-repeat !important; }
+#filelist .line .file-ppt { background: url(images/ppt.png) left top no-repeat !important; }
+#filelist .line .file-psd { background: url(images/psd.png) left top no-repeat !important; }
+#filelist .line .file-pl { background: url(images/script.png) left top no-repeat !important; }
+#filelist .line .file-py { background: url(images/script.png) left top no-repeat !important; }
+#filelist .line .file-rb { background: url(images/ruby.png) left top no-repeat !important; }
+#filelist .line .file-rbx { background: url(images/ruby.png) left top no-repeat !important; }
+#filelist .line .file-rhtml { background: url(images/ruby.png) left top no-repeat !important; }
+#filelist .line .file-rpm { background: url(images/linux.png) left top no-repeat !important; }
+#filelist .line .file-ruby { background: url(images/ruby.png) left top no-repeat !important; }
+#filelist .line .file-sh { background: url(images/script.png) left top no-repeat !important; }
+#filelist .line .file-sql { background: url(images/db.png) left top no-repeat !important; }
+#filelist .line .file-swf { background: url(images/flash.png) left top no-repeat !important; }
+#filelist .line .file-tif { background: url(images/picture.png) left top no-repeat !important; }
+#filelist .line .file-tiff { background: url(images/picture.png) left top no-repeat !important; }
+#filelist .line .file-txt { background: url(images/txt.png) left top no-repeat !important; }
+#filelist .line .file-vb { background: url(images/code.png) left top no-repeat !important; }
+#filelist .line .file-wav { background: url(images/music.png) left top no-repeat !important; }
+#filelist .line .file-wmv { background: url(images/film.png) left top no-repeat !important; }
+#filelist .line .file-xls { background: url(images/xls.png) left top no-repeat !important; }
+#filelist .line .file-xml { background: url(images/code.png) left top no-repeat !important; }
+#filelist .line .file-zip { background: url(images/zip.png) left top no-repeat !important; }
+#filelist .line .file-tar { background: url(images/zip.png) left top no-repeat !important; }
+#filelist .line .file-bz2 { background: url(images/zip.png) left top no-repeat !important; }
+
+
+/* user list */
+
+div.user-row {
+	height:34px;
+	font-size:12px;
+}
+
+div.odd {
+	background:#fff;
+}
+
+div.even {
+	background:#efefef;
+}
+
+div.user-header div {
+	height:20px;
+	float:left;
+}
+
+div.user-row div {
+	height:24px;
+	float:left;
+}
+
+
+
+div.user-row div {
+	vertical-align:middle;
+	padding-top:10px;
+	padding-left:12px;
+    white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow:hidden;
+}
+
+div.user-header div.username {
+	width:90px;
+}
+
+div.user-header div.useremail {
+
+	width:90px;
+}
+
+div.user-header div.usergroup,
+
+	width:90px;
+}
+
+div.user-header div.useractive,
+#displayarea div.user-row div.useractive,
+div.user-header div.userupload,
+#displayarea div.user-row div.userupload,
+div.user-header div.userdownload,
+#displayarea div.user-row div.userdownload,
+div.user-header div.userdelete,
+#displayarea div.user-row div.userdelete {
+	width:60px;
+}
+
+#displayarea div.user-row div.userdelete {
+	padding-top:6px;
+}
+
+
+
+
+
+
+
+
+
+/* share list */
+
+#displayarea div.share-row {
+	height:38px;
+	font-size:12px;
+}
+
+#displayarea div.odd {
+	background:#fff;
+}
+
+#displayarea div.even {
+	background:#efefef;
+}
+
+#displayarea div.share-row div {
+	height:20px;
+	float:left;
+}
+
+#displayarea div.share-row div {
+	height:24px;
+	float:left;
+}
+
+#displayarea div.share-row div {
+	vertical-align:middle;
+	padding-top:10px;
+	padding-left:12px;
+    white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow:hidden;
+}
+
+div.share-header div#sharename,
+#displayarea div.share-row div.sharename {
+	width:300px;
+}
+
+div.share-header div#publicurl,
+#displayarea div.share-row div.publicurl {
+	width:90px;
+}
+
+div.share-header div#directurl,
+#displayarea div.share-row div.directurl {
+	width:90px;
+}
+
+#displayarea div.share-row div.sharedelete {
+	padding-top:6px;
+}
+

@@ -3,18 +3,10 @@
 PlugUI is a file management and system admin web interface for small ARM based devices running Arch Linux ARM. 
 
 It will run on other distros, but the package upgrade stuff is geared to use pacman. It will likely become more dependent on pacman when the code moves to using libalpm instead of running subprocesses for upgrade and other actions.
-
-There is a periodically updated package in the Arch Linux ARM repo: "pacman -Sy plugui-git".
-
+ 
 #State of the code
 
-There are some very old spots in this code, some things need to be updated both in looks and function, but it's not dead :D
-
-PlugUI has moved repos once or twice, but the original code started life back in 2010 and has evolved quite a bit since then.
-
-The newest commits to this repo change the way pages are loaded, they're now dynamic and don't require a page reload. This is in part to facilitate keeping the music player active when the user clicks around to other parts of the UI.
-
-The screenshots below show some things that will probably be removed or hidden by default soon, like the Samba config which isn't usable at the moment.
+PlugUI is now a lightweight event based WSGI application, using the Bottle framework. 
 
 
 ##Setup
@@ -29,9 +21,7 @@ Then run the setup script
 
     /opt/PlugUI/setup.sh
 
-This runs through some dependency checks and attempts to install any packages that are required, and then does a standard django app setup to generate the database and allow you to create a user. 
-
-This little process will likely need to be cleaned up and potentially moved to using PAM authentication.
+This runs through some dependency checks and attempts to install any packages that are required. 
 
 ##Basic plug info
 
@@ -91,15 +81,3 @@ All shared files are visible from the "Share" screen, and individual shares can 
 Each share has a public link and a direct link, the former uses Plugfinder (below) to resolve your plugs current public IP dynamically (like DNS in a way), the latter uses the best guess of your public IP directly if you want to avoid plugfinder. Neither of those links are suitable for use on a local network, if you need to download a file use the links on in the file browser page.
 
 Note that the file sharing system is effectively a whitelisted sandbox in your /media directory: you cannot create shares for files outside that directory, nor can anyone (attackers, etc) access files that have not been explicitly shared (urls and user input are never used to construct a file path).
-
-
-##Plugfinder
-
-I've written a very simple App Engine app that works in conjunction with PlugUI as an intelligent dynamic DNS system.
-
-Once per hour, PlugUI will send a unique but random ID based on the MAC address of your plug to Plugfinder, which will record that ID along with the public IP address it came from. 
-
-Plugfinder will then spit this information back out when you visit plugfinder.appspot.com in a browser, along with links to the local IP address of your plugs.  You can use this if you have a lot of plugs and want to access the web interface on each one quickly, or to find a plug after installation.
-
-In addition, the file sharing system in PlugUI has a "public link" feature. When you create a shared file, you can optionally use the public link in the form plugfinder.appspot.com/dl/{PLUG_ID}/{SHARE_UUID}, which will look up the last known public IP for that plug and redirect the browser to download the file directly from the plug.
-
