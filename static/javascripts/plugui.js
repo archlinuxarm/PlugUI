@@ -22,12 +22,51 @@ function update_stats() {
     });
 }
 
+function show_controls() {
+	if ($("ul.inset").is(":hidden")) {
+		$('#controlbutton').addClass('selected');
+		$("ul.inset").slideDown({
+			duration:500,
+			easing:"swing",
+			complete:function(){
+			//alert("complete!");
+			}
+		});
+	} else {
+		$('#controlbutton').removeClass('selected');
+
+		$("ul.inset").slideUp({
+			duration:500,
+			easing:"swing",
+			complete:function(){
+			//alert("complete!");
+			}
+		});
+	}
+	
+	
+
+}
+
 
 
 function plugui_init() {
 	get_page('dashboard');
 	update_stats();
 	update = setInterval(update_stats, 1000);
+	
+	
+	soundManager.url = '/static/flash/';
+	soundManager.flashVersion = 9; // optional: shiny features (default = 8)
+	soundManager.useFlashBlock = false; // optionally, enable when you're ready to dive in
+	/*
+	* read up on HTML5 audio support, if you're feeling adventurous.
+	* iPad/iPhone and devices without flash installed will always attempt to use it.
+	*/
+	soundManager.onready(function() {
+		// Ready to use; soundManager.createSound() etc. can now be called.
+	});
+
 }
 
 function showloader() {
@@ -151,7 +190,34 @@ function getTree(directory) {
 						name.appendChild(namelink);
 						fileline.appendChild(name);
 						
-						
+						if (item.iconCls != "directory") {
+							var tools = document.createElement("ul");
+							tools.setAttribute('class', 'file-toolbar');
+
+							var downloadlink = document.createElement("li");
+							downloadlink.onclick = function(){ downloadFile(item);return false };
+							var text = document.createTextNode("D");
+							downloadlink.appendChild(text);
+							tools.appendChild(downloadlink);
+
+
+							var sharelink = document.createElement("li");
+							sharelink.onclick = function(){ shareFile(item);return false };
+							var text = document.createTextNode("S");
+							sharelink.appendChild(text);
+							tools.appendChild(sharelink);
+
+							var viewlink = document.createElement("li");
+							viewlink.onclick = function(){ viewFile(item);return false };
+							var text = document.createTextNode("V");
+							viewlink.appendChild(text);
+							tools.appendChild(viewlink);
+							
+							
+							fileline.appendChild(tools);
+
+
+						}
 								
 						//append our new line to the file list
 						filelist.appendChild(fileline);
@@ -327,36 +393,14 @@ function selectLine(item) {
 	$('#filetype').text(item.iconCls);
 	$('#filesize').text(item.size);
 	$('#filedate').text(item.date);
-	$('#downloadlink').empty();
-	$('#sharelink').empty();
-	$('#viewlink').empty();
+
 	if (item.folder == true) {
 	
 	}
 	else {
-		//create download link element and point it at the correct js function
-		var downloadlink = document.getElementById("downloadlink");
-		var link = document.createElement("button");
-		link.onclick = function(){ downloadFile(item);return false };
-		var text = document.createTextNode("Download file");
-		link.appendChild(text);
-		downloadlink.appendChild(link);
 		
-		//create share link element, yadda blah blah pants
-		var sharelink = document.getElementById("sharelink");
-		var link = document.createElement("button");
-		link.onclick = function(){ shareFile(item);return false };
-		var text = document.createTextNode("Share file");
-		link.appendChild(text);
-		sharelink.appendChild(link);
-		
-		//create view link element, scooby doo 
-		var viewlink = document.getElementById("viewlink");
-		var link = document.createElement("button");
-		link.onclick = function(){ viewFile(item);return false };
-		var text = document.createTextNode("View file");
-		link.appendChild(text);
-		viewlink.appendChild(link);
+	
+
 	}
 	
 }

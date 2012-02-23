@@ -18,6 +18,13 @@ body {
 
 }
 
+
+#content_area {
+	
+	
+}
+
+
 #clear,
 .clear {
 	clear:both;
@@ -44,17 +51,6 @@ img#pageloader {
 
 }
 
-#logo {
-
-
-}
-
-@media only screen and (min-width: 480px) and (max-width: 767px) {
-	#logo {
-		text-align:center;
-	}
-}	
-
 
 #adminbar {
     position:relative;
@@ -62,7 +58,7 @@ img#pageloader {
     left:0px;
     right:0px;
     height:42px;
-    margin:0px 0px 24px 0px;
+    margin:0px 0px 48px 0px;
     padding:0;
     display:block;
     list-style:none;
@@ -73,7 +69,35 @@ img#pageloader {
 	user-select: none;
 }
 
-#adminbar ul  {
+#adminbar ul.inset {
+    margin:0;
+	padding-left:0px;
+	padding-top:6px;
+	padding-right:0px;
+	height:42px;
+	display:block;
+	background: url(/static/images/bg_body.jpg);
+	-moz-box-shadow: 0px 1px 1px #fff , inset 0px 1px 2px #000);
+    -webkit-box-shadow: 0px 1px 1px #fff, inset 0px 1px 2px #000;
+    box-shadow: 0px 1px 1px #fff, inset 0px 1px 2px #000;
+	height:42px;
+	width:100%;
+	
+	display:none;
+	
+}
+
+#adminbar ul.inset li {
+    float:left;
+    height:42px;
+	width:48px;
+
+	position:relative;
+	margin-bottom:0px;	
+
+}
+
+#adminbar ul.gradient  {
     margin:0;
 	padding-left:0px;
 	padding-right:0px;
@@ -89,13 +113,17 @@ img#pageloader {
 }
 
 
-#adminbar ul li {
+#adminbar ul.gradient li {
     float:left;
     height:42px;
 	width:48px;
     /*border-right: 1px solid #bbb;*/
 	position:relative;
 	margin-bottom:0px;
+	-moz-box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.5);
+    -webkit-box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.5);
+    box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.5);
+	
     background: -webkit-gradient(linear, left top, left bottom, from(#DDD), to(#BBB));
     background: -moz-linear-gradient(top, #DDD, #BBB);
     background: -o-linear-gradient(top, #DDD, #BBB);
@@ -105,35 +133,75 @@ img#pageloader {
 	border-right: #9BA5AE 1px solid;
 }
 
-#adminbar ul li.first {
+#adminbar ul.gradient li.first {
 	border-left:none;
 	border-right: #9BA5AE 1px solid;
 }
 
-#adminbar ul li.last {
+#adminbar ul.gradient li.last {
 	border-left: #F4F5F6 1px solid;
 	border-right:none;
 }
 
-#adminbar ul li#logo {
-	width: 60px;
+#adminbar ul.gradient li#logo {
+	width: auto;
 	padding-left: 12px;
 	padding-right: 12px;
 	font-weight:bold;
 }
 
-#adminbar ul li:active {
+#adminbar ul.gradient li.selected {
+	border-left:none;
+	-moz-box-shadow: inset 0px 1px 3px #333;
+	-webkit-box-shadow: inset 0px 1px 3px #333;
+	box-shadow: inset 0px 1px 3px #333;
+	
+	
+	background: -webkit-gradient(linear, left top, left bottom, from(#DDD), to(#BBB));
+	background: -webkit-gradient(linear, left top, left bottom, from(#D0D0D0), to(#B0B0B0));
+	background: -moz-linear-gradient(top, #D0D0D0, #B0B0B0);
+	background: -o-linear-gradient(top, #D0D0D0, #B0B0B0);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#d0d0d0, endColorstr=#b0b0b0);
+}
+
+#adminbar ul.gradient li#controlbutton {
+	position:absolute;
+	top:0;
+	right:0;
+}
+
+
+
+#adminbar ul.gradient li#controlbutton:active {
+	top:1px;
+}
+
+#adminbar ul.gradient li#controlbutton-before {
+	border-right: #9BA5AE 1px solid;
+	border-left:none;
+	width:1px;
+	position:absolute;
+	top:0;
+	right:50px;
+}
+
+#adminbar ul.gradient li.last {
+	border-left: #F4F5F6 1px solid;
+	border-right:none;
+}
+
+#adminbar ul.gradient li:active {
 	position:relative;
 	top:1px;
 }
 
-#adminbar ul li.selected a span {
+#adminbar ul.gradient li.selected a span {
 	color:#000;
 	text-shadow:0 1px 0 #fff;
 }
 
-#adminbar ul li a,
-#adminbar ul li a:visited {
+#adminbar ul.gradient li a,
+#adminbar ul.gradient li a:visited {
     
     height:100%;
     width:100%;
@@ -143,11 +211,11 @@ img#pageloader {
 	cursor:default
 }
 
-#adminbar ul li a:hover {
+#adminbar ul.gradient li a:hover {
     color:#898989;
     
 }
-#adminbar ul li a span {
+#adminbar ul.gradient li a span {
     font-size:1.0em;
     font-weight:bold;
     padding-top:6px;
@@ -157,43 +225,50 @@ img#pageloader {
 	opacity:0.5;
 }
 
-#adminbar ul li a span#home-icon {
+#adminbar ul.gradient li a span#home-icon {
 	padding-left:12px;
     padding-top:9px;
 }
 
-#adminbar ul li a span#dash-icon {
+#adminbar ul.gradient li a span#dash-icon {
 	padding-left:10px;
     padding-top:7px;
 }
-#adminbar ul li a span#posts-icon {
+#adminbar ul.gradient li a span#posts-icon {
 	padding-left:12px;
 	padding-top:12px;
 }
-#adminbar ul li a span#files-icon {
+#adminbar ul.gradient li a span#files-icon {
 	padding-left:14px;
     padding-top:8px;
 }
-#adminbar ul li a span#tickets-icon {
+#adminbar ul.gradient li a span#tickets-icon {
 	padding-left:12px;
     padding-top:9px;
 }
-#adminbar ul li a span#settings-icon {
+#adminbar ul.gradient li a span#settings-icon {
 	padding-left:11px;
 	padding-top:8px;
 }
-#adminbar ul li a span#logs-icon {
+#adminbar ul.gradient li a span#logs-icon {
 	padding-left:12px;
 	padding-top:12px;
 
 }
 
-#adminbar ul li a span#package-icon {
+#adminbar ul.gradient li a span#package-icon {
 	padding-left:12px;
 	padding-top:8px;
 
 }
 
+
+#adminbar ul.gradient li a span#music-icon {
+	padding-left:16px;
+	padding-top:8px;
+	
+
+}
 
 /* dashboard */
 
@@ -233,7 +308,7 @@ img#pageloader {
 	position:relative;
     min-height:145px;
     margin-bottom:12px;
-    margin-top:36px;
+    margin-top:12px;
 }
 
 .statusbox span.text {
@@ -535,6 +610,24 @@ div#displayarea,
 	
 }
 
+#filelist .line .file-toolbar {
+	display:inline-block;
+	list-style:none;
+	float:right;
+	width:60px;
+	margin:0;
+	
+}
+
+#filelist .line .file-toolbar li {
+	line-height:12px;
+	margin:0;
+	padding:0;
+	float:left;
+	padding-left:6px;
+	
+}
+
 .highlightRow {
 	background:#eaeaea;
 	color:#333;
@@ -552,7 +645,17 @@ div#displayarea,
 
 }
 
-div.name,
+div.name {
+	
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow:hidden;
+	
+	padding-left:12px;
+	z-index:100;
+}
+
+
 #filelist .line .name {
 	float:left;
 	white-space: nowrap;
