@@ -7,5 +7,33 @@
 <div class="one-third column statusbox">
 	<h5>Authorized users</h5>
 	<div class="etch"></div>
-        <div id="error"></div>
+	<ul id="userlist">
+		
+	</ul>
+	<div id="error"></div>
 </div>
+
+<div class="one-third column statusbox">
+			
+	<h5>Create user</h5>
+	<div class="etch"></div>
+	
+	<div  class="whitebox"><input placeholder="Username" type="text" name="username" id="usernamefield" /></div>
+	<div  class="whitebox"><input placeholder="Password" type="password" name="password" id="passwordfield" /></div>
+	<!-- <div>
+		<strong>Is admin?</strong>
+		<select id="adminfield" name="admin">
+			<option value="1" selected="selected">Yes</option>
+			<option value="0">No</option>
+		</select>
+	</div>-->
+	<div id="buttons">
+		<button type="button" name="create" onclick="createUser();">Create</button>
+	</div> 
+	<div id="error"></div>
+</div>
+
+<script type="text/javascript">
+
+get_users();
+</script>

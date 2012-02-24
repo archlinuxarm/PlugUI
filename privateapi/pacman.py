@@ -47,20 +47,20 @@ def install(package):
 	return process.stdout.readlines()
 	
 def list_upgrades():
-	pacmanqu_command_raw = "pacman -Sup --print-format '%n %v'"
+	pacmanqu_command_raw = "pacman -Sy && pacman -Sup --print-format '%n %v'"
 	args = shlex.split(pacmanqu_command_raw)
 	process = subprocess.Popen(args,stdout=subprocess.PIPE,universal_newlines=True)
 	output_list = []
 	for line in process.stdout.readlines():
 		package = line.rstrip('\n')
-		if ":" in package:
+		if re.match("^::",package):
 			pass
 		else:
 			packagearray = shlex.split(package)
 			availableupdate = {}
 			availableupdate['name'] = packagearray[0]
 			availableupdate['newversion'] = packagearray[1]
-			output_list.push(availableupdate)
+			output_list.append(availableupdate)
 	return output_list
 
 
@@ -73,5 +73,4 @@ def upgrade():
 	for line in process.stdout.readlines():
 		newoutput = line.rstrip('\n')
 		output_list.append(newoutput)
-		output_list.append('<br/>')
 	return output_list

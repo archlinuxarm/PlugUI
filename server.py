@@ -19,7 +19,7 @@ import locale
 import re
 import operator
 import posixpath
-import uuid
+import uuid as _uuid
 import base64
 import mimetypes
 
@@ -48,10 +48,12 @@ class Server(object):
 	def auth(self,callback):
 		def wrapper(*a, **ka):
 			session = bottle.request.environ.get('beaker.session')
-			if session and 'authenticated' in session:
+			if self.database.setupmode:
+				return callback(*a, **ka)
+			elif session and 'authenticated' in session:
 				return callback(*a, **ka)
 			else:
-				return bottle.abort(401,"Access denied")
+				return { "authenticated": False }
 		return wrapper
 	
 	
@@ -69,7 +71,7 @@ class Server(object):
 		settingsTemplate	= env.get_template("settings.html")
 		fileListTemplate    = env.get_template("filelist.html")
 		packageListTemplate	= env.get_template("packagelist.html")
-		
+		loginTemplate		= env.get_template("login.html")
 	
 	
 		fourOhFourTemplate	= env.get_template("404.html")
@@ -88,22 +90,26 @@ class Server(object):
 		@self.web.get('/')
 		def dashboard():
 			return coreTemplate.render()
+			
+		@self.web.get('/login')
+		def login():
+			return { "authenticated": True, "page": loginTemplate.render()}		
 				
-		@self.web.get('/dashboard')
+		@self.web.get('/dashboard', apply=[self.auth])
 		def dashboard():
-			return dashboardTemplate.render()
+			return { "authenticated": True, "page": dashboardTemplate.render() }
 
-		@self.web.get('/files')
+		@self.web.get('/files', apply=[self.auth])
 		def dashboard():
-			return fileListTemplate.render()
+			return { "authenticated": True, "page": fileListTemplate.render() }
 			
-		@self.web.get('/packages')
+		@self.web.get('/packages', apply=[self.auth])
 		def dashboard():
-			return packageListTemplate.render()
+			return { "authenticated": True, "page": packageListTemplate.render() }
 			
-		@self.web.get('/settings')
+		@self.web.get('/settings', apply=[self.auth])
 		def dashboard():
-			return settingsTemplate.render()
+			return { "authenticated": True, "page": settingsTemplate.render() }
 			
 									
 		# static files, this wont be called in production as nginx will instead reach in and serve files directly 
@@ -111,11 +117,42 @@ class Server(object):
 		def server_static(filepath):
 			return bottle.static_file(filepath, root='/opt/PlugUI/static')
 							
+		@self.web.post('/api/login')
+		def login():
+			response = {}
+			response['success'] = False			
+			user = self.database.check_user(username=bottle.request.forms.username,password=bottle.request.forms.password)
+			if user:
+				session = bottle.request.environ.get('beaker.session')
+				session['authenticated'] = True
+				session.save()
+				response['login'] = True
+				response['success'] = True
+			else:
+				response['success'] = True
+				response['login'] = False
+			return response
 							
+		@self.web.post('/api/user', apply=[self.auth])
+		def userapi():
+			response = {}
+			response['success'] = False
+			apicmd = bottle.request.forms.apicmd
+			if apicmd == "list":
+				users = self.database.list_users()
+				response['success'] = True
+				response['users'] = users
+			elif apicmd == "create":
+				self.database.create_user(username=bottle.request.forms.username,password=bottle.request.forms.password,admin=True)
+				response['success'] = True
+			elif apicmd == "delete":
+				self.database.delete_user(uuid=bottle.request.forms.uuid)
+				response['success'] = True
+			return response
 							
 							
 		# simple server stats api, to be called from js in the client
-		@self.web.post('/statusapi')
+		@self.web.post('/api/status', apply=[self.auth])
 		def statusapi():
 			response = {}
 			response['success'] = True
@@ -124,10 +161,11 @@ class Server(object):
 			response['cpu'] = psutil.cpu_percent()
 			response['loadavg'] = privateapi.core.getloadavg()
 			response['uptime'] = privateapi.core.getuptime()
+			response['storage'] = privateapi.core.storage_details()
 			response['memory_total'] = privateapi.core.getmemory_total()
 			return response
 					
-		@self.web.post('/pacmanapi')
+		@self.web.post('/api/pacman', apply=[self.auth])
 		def pacmanapi():
 			response = {}
 			response['success'] = False
@@ -145,7 +183,7 @@ class Server(object):
 				privateapi.maintenance.update_counter()
 			return response
 
-		@self.web.post('/systemapi')
+		@self.web.post('/api/system', apply=[self.auth])
 		def systemapi():
 			response = {}
 			response['success'] = False
@@ -179,7 +217,7 @@ class Server(object):
 		
 
 	
-		@self.web.post('/fileapi')	
+		@self.web.post('/api/files', apply=[self.auth])	
 		def fileapi():
 			response = {}
 			response['success'] = False
@@ -196,8 +234,7 @@ class Server(object):
 				directory = "/media/" + posixpath.normpath(urllib2.unquote(rawpath)).rstrip('.').strip('/')
 				print "getting dirlist"
 				
-				if re.match("/media", directory):
-					print "dir matches"
+				if re.match("^/media", directory):
 					response['requestpath'] = directory
 					response['validpath'] = True
 					try:
@@ -292,11 +329,10 @@ class Server(object):
 
 		# beaker session options, configured to use memcached on localhost
 		session_opts = {
-  		  	'session.type': 'ext:memcached',
-			'session.url': '127.0.0.1:11211',
+  		  	'session.type': 'file',
+			'session.data_dir': '/var/lib/PlugUI/',
 			'session.cookie_expires'        : True,
-			'session.skip_pickle'		: True,
-			'session.lock_dir'		: './data',
+			'session.lock_dir'		: '/var/run/PlugUI/',
 		}
 		
 		# wrap the bottle wsgi app with beaker session middleware
@@ -311,4 +347,4 @@ application = server.application
 
 
 
-bottle.run(app=application, reloader=True, server='gevent', host="0.0.0.0", debug=True, port=80)
+bottle.run(app=application, server='gevent', host="0.0.0.0", debug=True, port=80)

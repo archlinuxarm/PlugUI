@@ -4,13 +4,111 @@ var currentpath = '';
 
 
 
+function update_packages() {
+	$.ajax({
+           type: "POST",
+           url: "/api/pacman",
+           dataType : 'json',
+		   data: { apicmd: "list_updates" },
+           success: function(json){
+                var result = json;
+                if (result.success == true) {
+					console.log(result);
+                    $('#package-notification').text("Success");
+					
+                }
+           }
+    });
+}
 
+function get_users() {
+	$.ajax({
+           type: "POST",
+           url: "/api/user",
+           dataType : 'json',
+		   data: { apicmd: "list" },
+           success: function(json){
+                var result = json;
+                if (result.success == true) {
+					$('#userlist').empty();
+                    $.each(result.users, function(i,user){
+						var userline = document.createElement("li");
+						
+						var span = document.createElement("span");
+						var text = document.createTextNode(user.username);
+						span.appendChild(text);
+						userline.appendChild(span);
+						
+						var del = document.createElement("a");
+						var t = document.createTextNode("D");
+						del.appendChild(t);
+						del.onclick = function(){ delete_user(user.uuid); return false };
+						
+						
+						userline.appendChild(del);
+						
+						$('#userlist').append(userline);
+						
+						
+					});
+					
+					
+							
+					
+                }
+				
+           }
+    });
+	
+}
+
+
+function login() {
+	console.log("Login");
+    var username    = $('#usernamefield').attr('value');
+	var password	= $('#passwordfield').attr('value');
+
+    if (username == "") {  
+        console.log("No username");        
+        $("#usernamefield").focus();  
+        return false;  
+    } 	
+    if (password == "") {  
+        console.log("No password");        
+        $("#passwordfield").focus();  
+        return false;  
+    } 
+	
+	
+	$.ajax({
+           type: "POST",
+           url: "/api/login",
+           dataType : 'json',
+		   data: { apicmd: "login", "username": username, "password": password },
+           success: function(json){
+				console.log("Login request succeeded");
+                var result = json;
+                if (result.success == true) {
+					console.log("Login request succeeded");
+                    if (result.login == true) {
+						console.log("Logged in");
+						get_page('dashboard');
+					}
+					else {
+						console.log("Login failed");
+						$('#error').text("Login failed");
+					}
+                }
+				
+           }
+    });
+}
 
 
 function update_stats() {
 	$.ajax({
            type: "POST",
-           url: "/statusapi",
+           url: "/api/status",
            dataType : 'json',
            success: function(json){
                 var result = json;
@@ -55,6 +153,8 @@ function plugui_init() {
 	update_stats();
 	update = setInterval(update_stats, 1000);
 	
+	update_packages();
+	update_packages = setInterval(update_stats, 600000);
 	
 	soundManager.url = '/static/flash/';
 	soundManager.flashVersion = 9; // optional: shiny features (default = 8)
@@ -82,15 +182,30 @@ function get_page(title) {
 	$.ajax({
 		type: "GET",
 		url: "/" + encodeURIComponent(title),
-		dataType : 'html',
-		success: function(html){
-			var page = html;
-			$('.adminbutton').removeClass('selected');
-			$('#' + title + '-button').addClass('selected');
-			$('#content_area').empty();
-			$('#content_area').html(page);
-           setTimeout( function(){ $('#pageloader').hide() }, 300);
-
+		dataType : 'json',
+		success: function(json){
+			var response = json;
+			
+			if (response.authenticated == true) {
+				$('.adminbutton').removeClass('selected');
+				$('#' + title + '-button').addClass('selected');
+				$('#content_area').empty();
+				$('#content_area').html(response.page);
+				setTimeout( function(){ $('#pageloader').hide() }, 300);
+			}
+			else {
+				$.ajax({
+					type: "GET",
+					url: "/login",
+					dataType : 'json',
+					success: function(json){
+						var response = json;
+						$('#content_area').empty();
+						$('#content_area').html(response.page);
+						setTimeout( function(){ $('#pageloader').hide() }, 300);
+					}
+				});
+			}
 		}
 	});
 	return false;
@@ -103,10 +218,10 @@ function reboot() {
 	$.ajax({
         type: "POST",
 		data: { command: runcommand, cmd: "reboot" },
-        url: '/systemapi',
+        url: '/api/system',
         cache: false,
 	});
-	setTimeout("go_home()",60000);
+	setTimeout("get_page('dashboard')",60000);
 }
 
 //file page stuff
@@ -116,7 +231,7 @@ function getTree(directory) {
 	$.ajax({
 		   type: 'POST',
 		   cache: false,
-		   url : '/fileapi',
+		   url : '/api/files',
 		   data: { apicmd: "directory_list", path: directory },
 		   dataType : 'json',
 		   success: function (json) { 
@@ -238,7 +353,7 @@ function getTree(directory) {
 function downloadFile(item) {
 	var form = document.createElement("form");
 	form.setAttribute("method", "post");
-	form.setAttribute("action", "/fileapi");
+	form.setAttribute("action", "/api/files");
 	document.body.appendChild(form);
 
 	var hidden;
@@ -263,7 +378,7 @@ function downloadFile(item) {
 function viewFile(item) {
 	var form = document.createElement("form");
 	form.setAttribute("method", "post");
-	form.setAttribute("action", "/fileapi");
+	form.setAttribute("action", "/api/files");
 	document.body.appendChild(form);
 
 	var hidden;
@@ -378,13 +493,13 @@ function playMedia(item) {
 						 warningAlerts: false
 	});
 	if (filetype == 'mp3') {
-		$('#player').jPlayer("setMedia", { mp3: "/fileapi?apicmd=stream&path=" + directory + "/" + encodeURIComponent(path) }).jPlayer("play");
+		$('#player').jPlayer("setMedia", { mp3: "/api/files?apicmd=stream&path=" + directory + "/" + encodeURIComponent(path) }).jPlayer("play");
 	}
 	else if (filetype == 'm4a') {
-		$('#player').jPlayer("setMedia", { m4a: "/fileapi?apicmd=stream&path=" + directory + "/" + encodeURIComponent(path) }).jPlayer("play");
+		$('#player').jPlayer("setMedia", { m4a: "/api/files?apicmd=stream&path=" + directory + "/" + encodeURIComponent(path) }).jPlayer("play");
 	}
 	else if (filetype == 'oga') {
-		$('#player').jPlayer("setMedia", { oga: "/fileapi?apicmd=stream&path=" + directory + "/" + encodeURIComponent(path) }).jPlayer("play");
+		$('#player').jPlayer("setMedia", { oga: "/api/files?apicmd=stream&path=" + directory + "/" + encodeURIComponent(path) }).jPlayer("play");
 	}
 	$('#current-track').text(item.text);
 }
@@ -438,7 +553,7 @@ function checkUpdates() {
 	$.ajax({
         type: 'POST',
         cache: false,
-        url : '/pacmanapi',
+        url : '/api/pacman',
 		data: { apicmd: "check_for_updates" },
         dataType : 'json',
         success: function (json) { 
@@ -474,7 +589,7 @@ function doUpgrade() {
 	$.ajax({
 		type: 'POST',
 		cache: false,
-		url : '/pacmanapi',
+		url : '/api/pacman',
 		data: { apicmd: "do_upgrade" },
 		dataType : 'json',
 		success: function (json) { 
@@ -553,5 +668,169 @@ function select_line(device) {
 	$('#devicename').text(device.devicename);
 }
 
+function saveSettings() {
+	
+	
+    var twitter_username       = $('#twitterfield').attr('value');
+    var github_username        = $('#githubfield').attr('value');
+    var prowl_key              = $('#prowlfield').attr('value');
+
+    $.ajax({
+           type: "POST",
+           url: "/admin/settings/save",
+           dataType : 'json',
+           data: JSON.stringify({ github_username: github_username, twitter_username: twitter_username, prowl_key: prowl_key }),
+           success: function(json){
+                var result = json;
+                if (result.success == 'true') {
+                    $('#error').html("<strong>Saved</strong>");
+                    $('#error').fadeIn('slow');
+                }
+                else {
+                    $('#error').html("Save failed");
+                    $('#error').fadeIn('slow');
+                }  
+                setTimeout('$("#error").fadeOut("slow");$("#error").html("");', 3000)
+           }
+    });
+}
+
+function setFileDropbox() {
+	var dropbox = $('#dropbox');
+	var message = $('.message', dropbox);
+	
+	dropbox.filedrop({
+
+		paramname:'file',
+		maxfiles: 1,
+		maxfilesize: 50, // in mb
+		url: '/admin/files/add',
+					 
+		uploadFinished:function(i,file,response){
+			//$.data(file).addClass('done');
+			message.html("File uploaded");
+			setTimeout(window.location="/admin/files/list",3000);
+			// response is the JSON object that post_file.php returns
+		},
+					 
+		error: function(err, file) {
+			switch(err) {
+				case 'BrowserNotSupported':
+					message.html('Your browser does not support HTML5 file uploads!');
+					break;
+				case 'TooManyFiles':
+					message.html('Too many files! Please select 5 at most!');
+					break;
+				case 'FileTooLarge':
+					message.html(file.name+' is too large! Please upload files up to 2mb.');
+					break;
+				default:
+					break;
+			}
+		},
+					 
+		// Called before each upload is started
+		beforeEach: function(file){
+			//
+		},
+						
+		uploadStarted:function(i, file, len){
+			message.html("Uploading " + file.name);
+		},
+					 
+		progressUpdated: function(i, file, progress) {
+			$('.progress').width(progress + "%");
+		}
+	});
+}
+
+function createUser() {
+    /*var admin;
+
+    if ($('#adminfield').attr('value') !== undefined) {
+        admin = $('#adminfield').attr('value');
+    }
+    else {
+        $("#adminfield").focus(); 
+        $('#error').html("No admin selection");
+        return false;
+    }*/
+
+    
+    if ($('#usernamefield').attr('value') !== undefined) {  
+        var username	= $('#usernamefield').attr('value');
+
+    } 
+	else {
+		$("#usernamefield").focus(); 
+        $('#error').html("Username blank");
+        return false;  
+	}
+	
+	
+	
+	
+    if ($('#passwordfield').attr('value') !== undefined) {  
+        var password	= $('#passwordfield').attr('value');    
+    } 	
+	else {
+		$("#passwordfield").focus();  
+        $('#error').html("No password");
+        return false;  
+	}
+	
+	
+    /*if ($('#emailfield').attr('value') !== undefined) {  
+		var email		= $('#emailfield').attr('value');
+    } 
+	else {
+		$("#emailfield").focus(); 
+        $('#error').html("No email address");
+        return false;  
+	}*/
+
+    $.ajax({
+        type: "POST",
+        url: "/api/user",
+        dataType : 'json',
+           data: { "apicmd": "create", /*"email": email,*/ "username": username, "password": password },
+			success: function(json){
+            var result = json;
+            if (result.success == true) {
+				
+                $('#error').html("<strong>User created</strong>");
+                $('#error').fadeIn('slow');
+				//setTimeout(window.location.replace("/admin/settings"), 3000);
+            }
+            else {
+                $('#error').html("Create user failed");
+                $('#error').fadeIn('slow');
+            }  
+            setTimeout('$("#error").fadeOut("slow");$("#error").html("");', 3000);
+			get_users();
+        }
+    });
+}
+
+function delete_user(uuid) {
+
+    $.ajax({
+        type: "POST",
+        url: "/api/user",
+        dataType : 'json',
+           data: { "apicmd": "delete", "uuid": uuid },
+			success: function(json){
+            var result = json;
+            if (result.success == true) {
+
+            }
+            else {
+  
+            }  
+
+			get_users();
+        }
+    });
+}
 
 
