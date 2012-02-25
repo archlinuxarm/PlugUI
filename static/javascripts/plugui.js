@@ -744,15 +744,19 @@ function setFileDropbox() {
 	});
 }
 
-function createUser() {
-    /*var admin;
+function add_user() {
+	$("#overlay").fadeIn(); 
+}
 
-    if ($('#adminfield').attr('value') !== undefined) {
+function createUser() {
+	var admin, username, password, password2, email;
+
+    /*if ($('#adminfield').attr('value') !== undefined) {
         admin = $('#adminfield').attr('value');
     }
     else {
         $("#adminfield").focus(); 
-        $('#error').html("No admin selection");
+        $('#usererror').html("No admin selection");
         return false;
     }*/
 
@@ -763,7 +767,7 @@ function createUser() {
     } 
 	else {
 		$("#usernamefield").focus(); 
-        $('#error').html("Username blank");
+        $('#usererror').html("Username blank");
         return false;  
 	}
 	
@@ -775,38 +779,54 @@ function createUser() {
     } 	
 	else {
 		$("#passwordfield").focus();  
-        $('#error').html("No password");
+        $('#usererror').html("No password");
+        return false;  
+	}
+    if ($('#password2field').attr('value') !== undefined) {  
+        var password2	= $('#password2field').attr('value');    
+    } 	
+	else {
+		$("#password2field").focus();  
+        $('#usererror').html("Repeat password");
         return false;  
 	}
 	
 	
-    /*if ($('#emailfield').attr('value') !== undefined) {  
+    if ($('#emailfield').attr('value') !== undefined) {  
 		var email		= $('#emailfield').attr('value');
     } 
 	else {
 		$("#emailfield").focus(); 
-        $('#error').html("No email address");
+        $('#usererror').html("No email address");
         return false;  
-	}*/
+	}
+	
+	
+	if (password != password2) {
+		$("#password2field").focus(); 
+        $('#usererror').html("Passwords don't match");
+        return false; 	
+	}
 
     $.ajax({
         type: "POST",
         url: "/api/user",
         dataType : 'json',
-           data: { "apicmd": "create", /*"email": email,*/ "username": username, "password": password },
+           data: { "apicmd": "create", "email": email, "username": username, "password": password, /* "admin": admin */ },
 			success: function(json){
             var result = json;
             if (result.success == true) {
 				
-                $('#error').html("<strong>User created</strong>");
-                $('#error').fadeIn('slow');
+                $('#usererror').html("<strong>User created</strong>");
+                $('#usererror').fadeIn('slow');
 				//setTimeout(window.location.replace("/admin/settings"), 3000);
             }
             else {
-                $('#error').html("Create user failed");
-                $('#error').fadeIn('slow');
+                $('#usererror').html("Create user failed");
+                $('#usererror').fadeIn('slow');
             }  
             setTimeout('$("#error").fadeOut("slow");$("#error").html("");', 3000);
+			$("#overlay").fadeOut(); 
 			get_users();
         }
     });

@@ -1,39 +1,49 @@
-<div class="one-third column statusbox">
+<div class="eight columns statusbox">
 	<h5>Global Settings</h5>
 	<div class="etch"></div>
-	<span id="error"></span>
+	<span id="settingserror"></span>
 </div>
         
-<div class="one-third column statusbox">
-	<h5>Authorized users</h5>
+<div class="eight columns statusbox">
+	<h5>Users</h5>
 	<div class="etch"></div>
 	<ul id="userlist">
 		
 	</ul>
-	<div id="error"></div>
+	<div class=""><a href="javascript:" onclick="add_user();">Add user</a></div>
+	
 </div>
 
-<div class="one-third column statusbox">
-			
-	<h5>Create user</h5>
-	<div class="etch"></div>
-	
-	<div  class="whitebox"><input placeholder="Username" type="text" name="username" id="usernamefield" /></div>
-	<div  class="whitebox"><input placeholder="Password" type="password" name="password" id="passwordfield" /></div>
+<div id="overlay">  
+    <div class="msgbox">  
+	<strong>Create user</strong>	
+	<div class="whitebox text-entry-box"><input placeholder="Username" type="text" name="username" id="usernamefield" /></div>
+	<div class="whitebox text-entry-box"><input placeholder="Email" type="text" name="email" id="emailfield" /></div>
+	<div class="whitebox text-entry-box"><input placeholder="Password" type="password" name="password" id="passwordfield" /></div>
+	<div class="whitebox text-entry-box"><input placeholder="Repeat password" type="password" name="password2" id="password2field" /></div>
+
 	<!-- <div>
 		<strong>Is admin?</strong>
 		<select id="adminfield" name="admin">
 			<option value="1" selected="selected">Yes</option>
 			<option value="0">No</option>
 		</select>
-	</div>-->
+	</div> -->
 	<div id="buttons">
 		<button type="button" name="create" onclick="createUser();">Create</button>
+		<button type="button" name="cancel" onclick="$('#overlay').fadeOut();">Cancel</button>
 	</div> 
-	<div id="error"></div>
-</div>
+	<div id="usererror"></div>
+	
+	
+    </div>  
+ </div>  
 
 <script type="text/javascript">
+$("#overlay").css("height", $(document).height()); 
+$(window).bind("resize", function(){  
+   $("#overlay").css("height", $(window).height());  
+});  
 
 get_users();
 </script>

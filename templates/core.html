@@ -50,7 +50,7 @@
 
 </head>
 <body>
-	<div id="adminbar">
+	<div id="adminbar" class="top">
 		<ul class="gradient">    
 			<li class="first" id="logo"><a style="padding-top:12px; display:block; text-decoration:none;" href="javascript:" onClick="window.open('http://github.com/archlinuxarm/plugui');">PlugUI</a></li>
 			<li id="dashboard-button" class="adminbutton"><a href="javascript:" onClick="get_page('dashboard');"><span id="dashboard-icon"><img src="/static/images/81-dashboard.png" alt="dashboard"/></span></a></li>
@@ -84,7 +84,14 @@
 
         });
 </script>
+<div id="adminbar" class="bottom">
+	<ul class="gradient">
 
+			<li id="userbutton-before"></li>
+			<li id="userbutton"><a href="javascript:" onClick="show_auth();"><span id="user-name"></span></a></li>
+					
+	</ul>
+</div>
 
 </body>
 </html>

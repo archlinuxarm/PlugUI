@@ -141,7 +141,7 @@ class Database(object):
 
 
 	def check_superuser(self):
-		superuser = self.store.find(User, User.admin == True ).one()
+		superuser = self.store.find(User, User.admin == True )
 		if superuser:
 			return False
 		else:
