@@ -1,4 +1,13 @@
+# NOTE 
+
+This is the Django based, deprecated version of PlugUI. All future development is being done on the main git branch of this repo.
+
+
 ##PlugUI
+
+
+
+
 
 PlugUI is a file management and system admin web interface for small ARM based devices running Arch Linux ARM. 
 
