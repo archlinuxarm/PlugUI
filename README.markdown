@@ -6,9 +6,9 @@ It will run on other distros, but the package upgrade stuff is geared to use pac
  
 ##State of the code
 
-PlugUI is now a lightweight event based WSGI application, using the Bottle framework. 
+PlugUI is in the process of being ported to Node.js with a clean separation between the client and server side, communicating back and forth via JSON APIs.
 
-It is currently being ported from django to bottle and cleanly separated into a client side javascript application, and a server side json API. It isn't anywhere near done yet, so if you want something usable, checkout the django branch of this repo
+It isn't anywhere near done yet, so if you want something usable, checkout the django branch of this repo
 
 ##Setup
 
@@ -16,13 +16,11 @@ Clone this repo into /opt/:
 
     cd /opt; git clone git://github.com/archlinuxarm/PlugUI.git
 
-There are some hardcoded paths and symlinks used so make sure you end up with /opt/PlugUI/ and not a subdirectory or alternate location.
+There is no setup, just run:
 
-Then run the setup script 
+	node server.js
 
-    /opt/PlugUI/setup.sh
-
-This runs through some dependency checks and attempts to install any packages that are required. 
+You'll inevitably hit some missing node modules but things will be smoothed out soon
 
 ##Dashboard
 

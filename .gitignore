@@ -1,29 +1,17 @@
-*/*.pyc
-*.pyc
-*._*
+.nide
+
+# Mac OS X
+
 .DS_Store
+.AppleDouble 
 
-*.bak
-db.sqlite3
-.idea
-*.pid
-test.py
-data/**
-.AppleDouble
-
-
-build/**
- 
-# Exclude temp nibs and swap files
-*~.nib
-*.swp
- 
-# Exclude user-specific XCode 3 and 4 files
-*.mode1
+# Xcode
+*.pbxuser
 *.mode1v3
 *.mode2v3
-*.perspective
 *.perspectivev3
-*.pbxuser
-*.xcworkspace
-xcuserdata
+*.xcuserstate
+project.xcworkspace/
+xcuserdata/
+
+build/
