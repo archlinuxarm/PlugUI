@@ -3,7 +3,7 @@
 # Mac OS X
 
 .DS_Store
-.AppleDouble 
+.AppleDouble
 
 # Xcode
 *.pbxuser
