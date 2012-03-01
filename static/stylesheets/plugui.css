@@ -848,7 +848,7 @@ div.name {
 
 /* custom styles for file icons */
 
-#filelist .line #icon { background: url(/static/images/txt.png) left top no-repeat; }
+#filelist .line .icon { background: url(/static/images/txt.png) left top no-repeat; }
 
 
 /* Core Styles */
@@ -925,6 +925,7 @@ div.name {
 #filelist .line .file-zip { background: url(/static/images/zip.png) left top no-repeat !important; }
 #filelist .line .file-tar { background: url(/static/images/zip.png) left top no-repeat !important; }
 #filelist .line .file-bz2 { background: url(/static/images/zip.png) left top no-repeat !important; }
+#filelist .line .file-gz { background: url(/static/images/zip.png) left top no-repeat !important; }
 
 
 /* user list */

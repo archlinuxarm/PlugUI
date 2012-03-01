@@ -147,11 +147,11 @@ function show_controls() {
 
 function plugui_init() {
 	get_page('dashboard');
-	update_stats();
-	update = setInterval(update_stats, 1000);
+	//update_stats();
+	//update = setInterval(update_stats, 1000);
 	
-	update_packages();
-	update_packages = setInterval(update_stats, 600000);
+	//update_packages();
+	//update_packages = setInterval(update_stats, 600000);
 	
 	soundManager.url = '/static/flash/';
 	soundManager.flashVersion = 9;
@@ -302,7 +302,9 @@ function getTree(directory) {
 						name.appendChild(namelink);
 						fileline.appendChild(name);
 						
-						if (item.iconCls != "directory") {
+						
+						// these are download, view, share links, not currently ported into the node backend yet
+						/*if (item.iconCls != "directory") {
 							var tools = document.createElement("ul");
 							tools.setAttribute('class', 'file-toolbar');
 
@@ -329,7 +331,7 @@ function getTree(directory) {
 							fileline.appendChild(tools);
 
 
-						}
+						}*/
 								
 						//append our new line to the file list
 						filelist.appendChild(fileline);

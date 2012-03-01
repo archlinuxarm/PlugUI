@@ -29,6 +29,7 @@ def setup():
 	with cd(env.path):
 		run('npm install express')
 		run('npm install unixlib')
+		run('npm install each')
 	deploy()
 	
 
