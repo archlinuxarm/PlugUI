@@ -123,10 +123,11 @@ app.get('/settings', function(req, res){
 // APIs
 
 app.post('/api/login', function(req, res){
-
-	unixlib.pamauth(service, username, password, function(result) {
-		console.log("Username: " + username + ", password: " + password + ", result: " + result);
-		//res.json({ authenticated: true, login: true });
+	var username = req.body.username;
+	var password = req.body.password;
+	unixlib.pamauth("login", username, password, function(result) {
+		req.session.authenticated = result;
+		res.json({ authenticated: result });
 
 	});
 	

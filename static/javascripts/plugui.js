@@ -88,17 +88,14 @@ function login() {
            success: function(json){
 				console.log("Login request succeeded");
                 var result = json;
-                if (result.success == true) {
+                if (result.authenticated == true) {
 					console.log("Login request succeeded");
-                    if (result.login == true) {
-						console.log("Logged in");
-						get_page('dashboard');
-					}
-					else {
-						console.log("Login failed");
-						$('#error').text("Login failed");
-					}
-                }
+					get_page('dashboard');
+				}
+				else {
+					console.log("Login failed");
+					$('#error').text("Login failed");
+				}
 				
            }
     });
@@ -150,22 +147,19 @@ function show_controls() {
 
 function plugui_init() {
 	get_page('dashboard');
-	//update_stats();
-	//update = setInterval(update_stats, 1000);
+	update_stats();
+	update = setInterval(update_stats, 1000);
 	
-	//update_packages();
-	//update_packages = setInterval(update_stats, 600000);
+	update_packages();
+	update_packages = setInterval(update_stats, 600000);
 	
-	//soundManager.url = '/static/flash/';
-	//soundManager.flashVersion = 9; // optional: shiny features (default = 8)
-	//soundManager.useFlashBlock = false; // optionally, enable when you're ready to dive in
-	/*
-	* read up on HTML5 audio support, if you're feeling adventurous.
-	* iPad/iPhone and devices without flash installed will always attempt to use it.
-	*/
-	//soundManager.onready(function() {
-	//	// Ready to use; soundManager.createSound() etc. can now be called.
-	//});
+	soundManager.url = '/static/flash/';
+	soundManager.flashVersion = 9;
+	soundManager.useFlashBlock = false;
+
+	soundManager.onready(function() {
+		// Ready to use; soundManager.createSound() etc. can now be called.
+	});
 
 }
 
