@@ -12,11 +12,13 @@
 *.perspectivev3
 *.xcuserstate
 project.xcworkspace/
-xcuserdata/
+
+*.xcodeproj/project.xcworkspace/xcuserdata
+
 
 build/
 
 
 #python/fabric
 
-.pyc
+*.pyc

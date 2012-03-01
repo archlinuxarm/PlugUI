@@ -1,7 +1,7 @@
 // global stuff
 var directory = '';
 var currentpath = '';
-
+var authenticated = false;
 
 
 function update_packages() {
@@ -187,6 +187,7 @@ function get_page(title) {
 			var response = json;
 			
 			if (response.authenticated == true) {
+				authenticated = true;
 				$('.adminbutton').removeClass('selected');
 				$('#' + title + '-button').addClass('selected');
 				$('#content_area').empty();

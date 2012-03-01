@@ -10,6 +10,46 @@ var unixlib = require('unixlib');
 var service = "system-auth";
 
 
+// templates, stored in global vars at start time so they can be tunneled in json responses
+var core;
+var dashboard;
+var files;
+var packages;
+var settings;
+var login;
+
+
+// Yes, this is probably "un-node-like", its a hack :)
+
+fs.readFile('./views/core.html', 'utf8', function (err,data) {
+	core = data;
+});
+
+fs.readFile('./views/dashboard.html', 'utf8', function (err,data) {
+	dashboard = data;
+});
+
+fs.readFile('./views/files.html', 'utf8', function (err,data) {
+	files = data;
+});
+
+fs.readFile('./views/packages.html', 'utf8', function (err,data) {
+	packages = data;
+});
+
+fs.readFile('./views/settings.html', 'utf8', function (err,data) {
+	settings = data;
+});
+
+fs.readFile('./views/login.html', 'utf8', function (err,data) {
+	login = data;
+});
+
+
+
+
+
+
 
 // create an application 
 var app = module.exports = express.createServer();
@@ -30,7 +70,6 @@ app.configure(function(){
 	// disable layout
 	app.set("view options", {layout: false});
 
-	// make a custom html template
 	app.register('.html', {
 		compile: function(str, options){
 			return function(locals){
@@ -51,8 +90,6 @@ app.configure('production', function(){
 
 
 
-
-
 // setup routes for static pages, none of these do anything but return flat html so the client side can render it inside a DOM element
 // these also require no auth because everything that can change state on the server goes through a POST'ed JSON API
 
@@ -63,23 +100,23 @@ app.get('/', function(req, res){
 });
 
 app.get('/login', function(req, res){
-	res.render('login.html');
+	res.json({ authenticated: req.session.authenticated, page: JSON.stringify(login) });
 });
 
 app.get('/dashboard', function(req, res){
-	res.render('dashboard.html');
+	res.json({ authenticated: req.session.authenticated, page: JSON.stringify(dashboard) });
 });
 
 app.get('/files', function(req, res){
-	res.render('files.html');
+	res.json({ authenticated: req.session.authenticated, page: JSON.stringify(files) });
 });
 
 app.get('/packages', function(req, res){
-	res.render('packages.html');
+	res.json({ authenticated: req.session.authenticated, page: JSON.stringify(packages) });
 });
 
 app.get('/settings', function(req, res){
-	res.render('settings.html');
+	res.json({ authenticated: req.session.authenticated, page: JSON.stringify(settings) });
 });
 
 
