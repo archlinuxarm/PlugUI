@@ -101,5 +101,3 @@ app.post('/api/login', function(req, res){
 
 // GO! :D
 app.listen(80);
-
-console.log("PlugUI running on port %d in %s mode", app.address().port, app.settings.env);

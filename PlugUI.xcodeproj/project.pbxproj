@@ -27,7 +27,8 @@
 			buildConfigurationList = AA75E26E138AF96A002BBF3B /* Build configuration list for PBXLegacyTarget "PlugUI" */;
 			buildPhases = (
 			);
-			buildToolPath = /bin/none;
+			buildToolPath = /SourceCache/Projects/PlugUI/deploy.command;
+			buildWorkingDirectory = "";
 			dependencies = (
 			);
 			name = PlugUI;
@@ -72,7 +73,7 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -87,7 +88,7 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx;
 			};
 			name = Release;
