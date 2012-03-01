@@ -100,23 +100,23 @@ app.get('/', function(req, res){
 });
 
 app.get('/login', function(req, res){
-	res.json({ authenticated: req.session.authenticated, page: JSON.stringify(login) });
+	res.json({ authenticated: req.session.authenticated, page: login });
 });
 
 app.get('/dashboard', function(req, res){
-	res.json({ authenticated: req.session.authenticated, page: JSON.stringify(dashboard) });
+	res.json({ authenticated: req.session.authenticated, page: dashboard });
 });
 
 app.get('/files', function(req, res){
-	res.json({ authenticated: req.session.authenticated, page: JSON.stringify(files) });
+	res.json({ authenticated: req.session.authenticated, page: files });
 });
 
 app.get('/packages', function(req, res){
-	res.json({ authenticated: req.session.authenticated, page: JSON.stringify(packages) });
+	res.json({ authenticated: req.session.authenticated, page: packages });
 });
 
 app.get('/settings', function(req, res){
-	res.json({ authenticated: req.session.authenticated, page: JSON.stringify(settings) });
+	res.json({ authenticated: req.session.authenticated, page: settings });
 });
 
 
