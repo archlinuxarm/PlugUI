@@ -14,47 +14,6 @@ var form	= require('connect-form');
 //pam auth connector
 var unixlib = require('unixlib');
 
-// templates, stored in global vars at start time so they can be tunneled in json responses
-var core;
-var dashboard;
-var files;
-var packages;
-var settings;
-var login;
-
-
-// Yes, this is probably "un-node-like", its a hack :)
-
-fs.readFile('./views/core.html', 'utf8', function (err,data) {
-	core = data;
-});
-
-fs.readFile('./views/dashboard.html', 'utf8', function (err,data) {
-	dashboard = data;
-});
-
-fs.readFile('./views/files.html', 'utf8', function (err,data) {
-	files = data;
-});
-
-fs.readFile('./views/packages.html', 'utf8', function (err,data) {
-	packages = data;
-});
-
-fs.readFile('./views/settings.html', 'utf8', function (err,data) {
-	settings = data;
-});
-
-fs.readFile('./views/login.html', 'utf8', function (err,data) {
-	login = data;
-});
-
-
-
-
-
-
-
 // create an application 
 var app = module.exports = express.createServer(
 	form({ keepExtensions: true })
@@ -96,34 +55,15 @@ app.configure('production', function(){
 
 
 
-// setup routes for static pages, none of these do anything but return flat html so the client side can render it inside a DOM element
-// these also require no auth because everything that can change state on the server goes through a POST'ed JSON API
-
-
+// only one page, all views and transitions handled client-side
 
 app.get('/', function(req, res){
 	res.render('core.html');
 });
 
-app.get('/login', function(req, res){
-	res.json({ authenticated: req.session.authenticated, page: login });
-});
 
-app.get('/dashboard', function(req, res){
-	res.json({ authenticated: req.session.authenticated, page: dashboard });
-});
 
-app.get('/files', function(req, res){
-	res.json({ authenticated: req.session.authenticated, page: files });
-});
 
-app.get('/packages', function(req, res){
-	res.json({ authenticated: req.session.authenticated, page: packages });
-});
-
-app.get('/settings', function(req, res){
-	res.json({ authenticated: req.session.authenticated, page: settings });
-});
 
 
 // APIs
