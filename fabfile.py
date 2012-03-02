@@ -30,6 +30,7 @@ def setup():
 		run('npm install express')
 		run('npm install unixlib')
 		run('npm install each')
+		run('npm install connect-form')
 	deploy()
 	
 

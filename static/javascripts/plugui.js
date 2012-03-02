@@ -4,65 +4,6 @@ var currentpath = '';
 var authenticated = false;
 
 
-function update_packages() {
-	$.ajax({
-           type: "POST",
-           url: "/api/pacman",
-           dataType : 'json',
-		   data: { apicmd: "list_updates" },
-           success: function(json){
-                var result = json;
-                if (result.success == true) {
-					console.log(result);
-                    $('#package-notification').text("Success");
-					
-                }
-           }
-    });
-}
-
-function get_users() {
-	$.ajax({
-           type: "POST",
-           url: "/api/user",
-           dataType : 'json',
-		   data: { apicmd: "list" },
-           success: function(json){
-                var result = json;
-                if (result.success == true) {
-					$('#userlist').empty();
-                    $.each(result.users, function(i,user){
-						var userline = document.createElement("li");
-						
-						var span = document.createElement("span");
-						var text = document.createTextNode(user.username);
-						span.appendChild(text);
-						userline.appendChild(span);
-						
-						var del = document.createElement("a");
-						var t = document.createTextNode("D");
-						del.appendChild(t);
-						del.onclick = function(){ delete_user(user.uuid); return false };
-						
-						
-						userline.appendChild(del);
-						
-						$('#userlist').append(userline);
-						
-						
-					});
-					
-					
-							
-					
-                }
-				
-           }
-    });
-	
-}
-
-
 function login() {
 	console.log("Login");
     var username    = $('#usernamefield').attr('value');
@@ -87,14 +28,14 @@ function login() {
 		   data: { apicmd: "login", "username": username, "password": password },
            success: function(json){
 				console.log("Login request succeeded");
-                var result = json;
-                if (result.authenticated == true) {
+                if (json.authenticated == true) {
+					authenticated = true;
 					console.log("Login request succeeded");
 					get_page('dashboard');
 				}
 				else {
 					console.log("Login failed");
-					$('#error').text("Login failed");
+					$('#login_error').text("Login failed");
 				}
 				
            }
@@ -102,66 +43,27 @@ function login() {
 }
 
 
-function update_stats() {
-	$.ajax({
-           type: "POST",
-           url: "/api/status",
-           dataType : 'json',
-           success: function(json){
-                var result = json;
-                if (result.success == true) {
-                    $('#loadfield').text(result.cpu + "%");
-					$('#memused').text(result.memused + "%");
-                }
-           }
-    });
-}
-
-function show_controls() {
-	if ($("ul.inset").is(":hidden")) {
-		$('#controlbutton').addClass('selected');
-		$("ul.inset").slideDown({
-			duration:500,
-			easing:"swing",
-			complete:function(){
-			//alert("complete!");
-			}
-		});
-	} else {
-		$('#controlbutton').removeClass('selected');
-
-		$("ul.inset").slideUp({
-			duration:500,
-			easing:"swing",
-			complete:function(){
-			//alert("complete!");
-			}
-		});
-	}
-	
-	
-
-}
-
-
 
 function plugui_init() {
-	get_page('dashboard');
+	//get_page('dashboard');
 	//update_stats();
 	//update = setInterval(update_stats, 1000);
 	
 	//update_packages();
 	//update_packages = setInterval(update_stats, 600000);
 	
-	soundManager.url = '/static/flash/';
-	soundManager.flashVersion = 9;
-	soundManager.useFlashBlock = false;
+	//soundManager.url = '/static/flash/';
+	//soundManager.flashVersion = 9;
+	//soundManager.useFlashBlock = false;
 
-	soundManager.onready(function() {
+	//soundManager.onready(function() {
 		// Ready to use; soundManager.createSound() etc. can now be called.
-	});
+	//});
 
 }
+
+
+
 
 function showloader() {
 	$('#loader').show();
@@ -171,40 +73,7 @@ function hideloader() {
 	setTimeout( function(){ $('#loader').hide() }, 500);
 }
 
-function get_page(title) {
-    $('#pageloader').show();
-	$.ajax({
-		type: "GET",
-		url: "/" + encodeURIComponent(title),
-		dataType : 'json',
-		success: function(json){
-			var response = json;
-			
-			if (response.authenticated == true) {
-				authenticated = true;
-				$('.adminbutton').removeClass('selected');
-				$('#' + title + '-button').addClass('selected');
-				$('#content_area').empty();
-				$('#content_area').html(response.page);
-				setTimeout( function(){ $('#pageloader').hide() }, 300);
-			}
-			else {
-				$.ajax({
-					type: "GET",
-					url: "/login",
-					dataType : 'json',
-					success: function(json){
-						var response = json;
-						$('#content_area').empty();
-						$('#content_area').html(response.page);
-						setTimeout( function(){ $('#pageloader').hide() }, 300);
-					}
-				});
-			}
-		}
-	});
-	return false;
-}
+//system stuff
 
 
 function reboot() {
@@ -233,111 +102,7 @@ function getTree(directory) {
 				hideloader();
 				var returnlist = json;
 				if (returnlist) {
-					$('#filelist').empty();
-					if (returnlist.success == false) {
-						if (returnlist.validpath == false) {
-							$('#filelist').html("Invalid path"); 
-						}
-						else {
-							$('#filelist').html("Unknown failure requesting path " + returnlist.requestpath); 
-						}
-						return;
-					}
-					currentpath = returnlist.requestpath;
-					$('#currentpath').html(currentpath);
-					var filelist = document.getElementById('filelist');
-					var parentdirline = document.createElement("div");
-					parentdirline.setAttribute('class', 'line');
-		   
-					var icon = document.createElement("div");
-					icon.setAttribute('class', 'icon parentdir');
-					parentdirline.appendChild(icon);
-					
-					var name = document.createElement("div");
-					name.setAttribute('class', 'name');
-					var parentlink = document.createElement("a");
-					parentlink.setAttribute('href','#');
-					parentlink.onclick = function(){ selectParent();return false };
-					var parenttext = document.createTextNode("Parent Directory");
-					parentlink.appendChild(parenttext);
-					name.appendChild(parentlink);
-					parentdirline.appendChild(name);
-					
-					filelist.appendChild(parentdirline);
-					
-					var clear = document.createElement("div");
-					clear.setAttribute('class', 'clear');
-					filelist.appendChild(clear);
-
-					$.each(returnlist.files, function(i,item){
-
-						//new file line	
-						var fileline = document.createElement("div");
-						fileline.setAttribute('class', 'line');
-
-						fileline.onclick = function(){ selectLine(item); $('.line').removeClass('highlightRow'); $(this).addClass('highlightRow'); };
-						
-						//create an icon for the file listing and add it to the line
-						var icon;
-						if (item.iconCls == 'file-mp3' || item.iconCls == 'file-m4a' || item.iconCls == 'file-oga') {
-						   icon = document.createElement("a");
-						   icon.setAttribute('href','#');
-						   icon.onclick = function(){ playMedia(item);return false };
-						}
-						else {
-						   icon = document.createElement("div");
-						}
-						   
-						icon.setAttribute('class', 'icon ' + item.iconCls);
-						fileline.appendChild(icon);
-
-						//create an element to hold the name of the file and add it to the line
-						var name = document.createElement("div");
-						name.setAttribute('class', 'name');
-						var namelink = document.createElement("a");
-						namelink.setAttribute('href','#');
-						namelink.onclick = function(){ selectLink(item);return false };
-						var text = document.createTextNode(item.text);
-						namelink.appendChild(text);
-						name.appendChild(namelink);
-						fileline.appendChild(name);
-						
-						
-						// these are download, view, share links, not currently ported into the node backend yet
-						/*if (item.iconCls != "directory") {
-							var tools = document.createElement("ul");
-							tools.setAttribute('class', 'file-toolbar');
-
-							var downloadlink = document.createElement("li");
-							downloadlink.onclick = function(){ downloadFile(item);return false };
-							var text = document.createTextNode("D");
-							downloadlink.appendChild(text);
-							tools.appendChild(downloadlink);
-
-
-							var sharelink = document.createElement("li");
-							sharelink.onclick = function(){ shareFile(item);return false };
-							var text = document.createTextNode("S");
-							sharelink.appendChild(text);
-							tools.appendChild(sharelink);
-
-							var viewlink = document.createElement("li");
-							viewlink.onclick = function(){ viewFile(item);return false };
-							var text = document.createTextNode("V");
-							viewlink.appendChild(text);
-							tools.appendChild(viewlink);
-							
-							
-							fileline.appendChild(tools);
-
-
-						}*/
-								
-						//append our new line to the file list
-						filelist.appendChild(fileline);
-						
-					});
-				}
+									}
 				else {
 					$('#filelist').html("Did not receive a response"); 
 				}
@@ -512,8 +277,6 @@ function selectLine(item) {
 	
 	}
 	else {
-		
-	
 
 	}
 	
@@ -599,6 +362,24 @@ function doUpgrade() {
 		}
 	});
 }
+
+function update_packages() {
+	$.ajax({
+           type: "POST",
+           url: "/api/pacman",
+           dataType : 'json',
+		   data: { apicmd: "list_updates" },
+           success: function(json){
+                var result = json;
+                if (result.success == true) {
+					console.log(result);
+                    $('#package-notification').text("Success");
+					
+                }
+           }
+    });
+}
+
 
 
 //storage page stuff
@@ -700,26 +481,26 @@ function setFileDropbox() {
 
 		paramname:'file',
 		maxfiles: 1,
-		maxfilesize: 50, // in mb
-		url: '/admin/files/add',
+		maxfilesize: 500, // in mb
+		url: '/api/files/upload',
 					 
 		uploadFinished:function(i,file,response){
 			//$.data(file).addClass('done');
 			message.html("File uploaded");
-			setTimeout(window.location="/admin/files/list",3000);
+			//setTimeout(window.location="/admin/files/list",3000);
 			// response is the JSON object that post_file.php returns
 		},
 					 
 		error: function(err, file) {
 			switch(err) {
 				case 'BrowserNotSupported':
-					message.html('Your browser does not support HTML5 file uploads!');
+					message.html('Browser unsupported');
 					break;
 				case 'TooManyFiles':
-					message.html('Too many files! Please select 5 at most!');
+					message.html('Limit 1 file');
 					break;
 				case 'FileTooLarge':
-					message.html(file.name+' is too large! Please upload files up to 2mb.');
+					message.html(file.name+' is too large');
 					break;
 				default:
 					break;
@@ -739,6 +520,107 @@ function setFileDropbox() {
 			$('.progress').width(progress + "%");
 		}
 	});
+}
+
+
+
+
+
+
+function update_stats() {
+	$.ajax({
+           type: "POST",
+           url: "/api/status",
+           dataType : 'json',
+           success: function(json){
+                var result = json;
+                if (result.success == true) {
+                    $('#loadfield').text(result.cpu + "%");
+					$('#memused').text(result.memused + "%");
+                }
+           }
+    });
+}
+
+function show_controls() {
+	if ($("ul.inset").is(":hidden")) {
+		$('#controlbutton').addClass('selected');
+		$("ul.inset").slideDown({
+			duration:500,
+			easing:"swing",
+			complete:function(){
+			//alert("complete!");
+			}
+		});
+	} else {
+		$('#controlbutton').removeClass('selected');
+
+		$("ul.inset").slideUp({
+			duration:500,
+			easing:"swing",
+			complete:function(){
+			//alert("complete!");
+			}
+		});
+	}
+	
+	
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+// User stuff
+
+
+function get_users() {
+	$.ajax({
+           type: "POST",
+           url: "/api/user",
+           dataType : 'json',
+		   data: { apicmd: "list" },
+           success: function(json){
+                var result = json;
+                if (result.success == true) {
+					$('#userlist').empty();
+                    $.each(result.users, function(i,user){
+						var userline = document.createElement("li");
+						
+						var span = document.createElement("span");
+						var text = document.createTextNode(user.username);
+						span.appendChild(text);
+						userline.appendChild(span);
+						
+						var del = document.createElement("a");
+						var t = document.createTextNode("D");
+						del.appendChild(t);
+						del.onclick = function(){ delete_user(user.uuid); return false };
+						
+						
+						userline.appendChild(del);
+						
+						$('#userlist').append(userline);
+						
+						
+					});
+					
+					
+							
+					
+                }
+				
+           }
+    });
+	
 }
 
 function add_user() {

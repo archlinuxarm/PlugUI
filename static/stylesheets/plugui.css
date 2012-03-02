@@ -34,7 +34,30 @@ body {
 	display:none; 
 	text-align:left; 
 }  
-  
+
+#dropbox {
+	border:5px dotted #ccc;
+	-webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;	
+	text-align:center;
+	font-size:14px;
+	font-weight:bold;
+
+	
+
+	height:64px;
+	
+	color: #787878;
+	text-shadow: 0px 1px 0px white;
+	
+}
+
+#dropbox .message {
+	margin-top:20px;
+}
+
+
   
 .msgbox * {
 	margin-left:12px;

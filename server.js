@@ -8,11 +8,11 @@ var fs		= require('fs');
 var util	= require('util');
 var express = require('express');
 var each	= require('each');
+var form	= require('connect-form');
+
 
 //pam auth connector
 var unixlib = require('unixlib');
-var service = "system-auth";
-
 
 // templates, stored in global vars at start time so they can be tunneled in json responses
 var core;
@@ -56,7 +56,9 @@ fs.readFile('./views/login.html', 'utf8', function (err,data) {
 
 
 // create an application 
-var app = module.exports = express.createServer();
+var app = module.exports = express.createServer(
+	form({ keepExtensions: true })
+);
 
 
 
@@ -157,11 +159,29 @@ app.post('/api/user', function(req, res){
 		//database.delete_user(uuid=bottle.request.forms.uuid)
 		//response.success = true;
 	}
-	res.write(response);
+	res.json(response);
 });
 
-
-
+app.post('/api/files/upload', function(req, res) {
+	req.form.complete(function(err, fields, files){
+		if (err) {
+			next(err);
+		} 
+		else {
+			console.log('\nuploaded %s to %s',  files.image.filename, files.image.path);
+			//res.redirect('back');
+			res.json( { "success": success });
+		}
+	});
+	
+	// We can add listeners for several form
+	// events such as "progress"
+	req.form.on('progress', function(bytesReceived, bytesExpected){
+		var percent = (bytesReceived / bytesExpected * 100) | 0;
+		console.log('Uploading: %' + percent + '\r');
+	});
+	
+});
 
 app.post('/api/files', function(req, res){
 	console.log("Getting directory list");

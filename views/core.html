@@ -39,29 +39,61 @@
 	<script src="/static/javascripts/jqplot.pieRenderer.js"></script>
 	<script src="/static/javascripts/jquery.event.drag-2.0.min.js"></script>
 	<script src="/static/javascripts/jquery.jplayer.min.js"></script> 
-	<script src="/static/javascripts/plugui.js"></script>
-	
 	<script type="text/javascript" src="/static/javascripts/soundmanager2.js"></script>
 
+	<script src="/static/javascripts/underscore-min.js"></script>
+    <script src="/static/javascripts/backbone-min.js"></script>
+	<script src="/static/javascripts/plugui.js"></script>
+	
+	<script src="/static/javascripts/main.js"></script>
 	
 	
-
-
-
 </head>
 <body>
 	<div id="adminbar" class="top">
 		<ul class="gradient">    
-			<li class="first" id="logo"><a style="padding-top:12px; display:block; text-decoration:none;" href="javascript:" onClick="window.open('http://github.com/archlinuxarm/plugui');">PlugUI</a></li>
-			<li id="dashboard-button" class="adminbutton"><a href="javascript:" onClick="get_page('dashboard');"><span id="dashboard-icon"><img src="/static/images/81-dashboard.png" alt="dashboard"/></span></a></li>
-			<li id="files-button"class="adminbutton"><a href="javascript:" onClick="get_page('files');"><span id="files-icon"><img src="/static/images/33-cabinet.png" alt="files"/></span></a></li>
-			<li id="packages-button"class="adminbutton"><a href="javascript:" onClick="get_page('packages');"><span id="packages-icon"><img src="/static/images/24-gift.png" alt="packages"/></span></a></li>
-			<li id="settings-button"class="adminbutton"><a href="javascript:" onClick="get_page('settings');"><span id="settings-icon"><img src="/static/images/19-gear.png" alt="settings"/></span></a></li>
+			<li class="first" id="logo">
+				<a style="padding-top:12px; display:block; text-decoration:none;" href="javascript:" onClick="window.open('http://github.com/archlinuxarm/plugui');">PlugUI</a>
+			</li>
+			<li id="dashboard-button" class="adminbutton">
+				<a href="/#/dashboard">
+					<span id="dashboard-icon">
+						<img src="/static/images/81-dashboard.png" alt="dashboard"/>
+					</span>
+				</a>
+			</li>
+			<li id="files-button"class="adminbutton">
+				<a href="/#/files">
+					<span id="files-icon">
+						<img src="/static/images/33-cabinet.png" alt="files"/>
+					</span>
+				</a>
+			</li>
+			<li id="packages-button"class="adminbutton">
+				<a href="/#/packages">
+					<span id="packages-icon">
+						<img src="/static/images/24-gift.png" alt="packages"/>
+					</span>
+				</a>
+			</li>
+			<li id="settings-button"class="adminbutton">
+				<a href="/#/settings">
+					<span id="settings-icon">
+						<img src="/static/images/19-gear.png" alt="settings"/>
+					</span>
+				</a>
+			</li>
 
 			<li class="last"></li>
 
 			<li id="controlbutton-before"></li>
-			<li id="controlbutton"><a href="javascript:" onClick="show_controls();"><span id="music-icon"><img src="/static/images/65-note.png" alt="music controls"/></span></a></li>
+			<li id="controlbutton">
+				<a href="javascript:" onClick="show_controls();">
+					<span id="music-icon">
+						<img src="/static/images/65-note.png" alt="music controls"/>
+					</span>
+				</a>
+			</li>
 			
 			
 		</ul>
@@ -72,18 +104,12 @@
 		</ul>
 	</div>
 
-<div id="content_area" class="container">
+<div id="content_area" id="container" class="container">
 
 
 </div><!-- container -->
 
-<script type="text/javascript">
-        $(document).ready(function(){
-				plugui_init();
 
-
-        });
-</script>
 <div id="adminbar" class="bottom">
 	<ul class="gradient">
 
@@ -93,5 +119,168 @@
 	</ul>
 </div>
 
+
+
+
+
+
+
+
+
+
+
+
+	<!-- templates -->
+	
+	
+	
+	<script type="text/template" id="login-template">
+		<div class="two-thirds column" id="login">      
+			<h4>Login</h4>
+			<div  class="whitebox"><input placeholder="Username" type="text" name="username" id="usernamefield"></div>
+			<div  class="whitebox"><input placeholder="Password" type="password" name="password" id="passwordfield"></div>
+			<button type="button" name="login" onclick="login();">Login</button>
+			<div id="login_error"></div>
+		</div>
+
+	</script>
+    
+	
+	<script type="text/template" id="files-template">
+		<div class="two-thirds column statusbox">
+			<div id="displayarea">
+				<div class="line">
+					<div class="icon"><img id="loader" src="/static/images/loader.gif"/></div>
+					<div class="name"><span id="currentpath"></span></div><!-- name -->
+				</div>
+				<div id="clear"></div><!-- clear -->
+				<div class="etch"></div>
+				<div id="filelist"></div><!-- filelist -->
+			</div><!-- displayarea -->
+	
+
+		</div>
+
+		<div id="rightpanel" class="one-third column statusbox">
+			<div id="dropbox">
+				<div class="message">Drop file to upload</div>
+				<div class="progressHolder">
+					<div class="progress"></div>
+				</div>
+			</div>
+			
+			
+			<div id="attributes">
+
+				<div id="filetypetitle" class="panelattributename stat-list">
+					Type:
+					<span id="filetype" class="panelattribute">none </span>
+				</div>
+		
+		
+				<div id="filesizetitle" class="panelattributename stat-list">
+					Size:
+					<span id="filesize" class="panelattribute">none </span>
+				</div>
+		
+		
+				<div id="filedatetitle" class="panelattributename stat-list">
+					Modified:
+					<span id="filedate" class="panelattribute">none </span>
+				</div>
+		
+
+
+			</div>
+
+		</div>
+
+    </script>
+	<script type="text/template" id="dashboard-template">
+		<div class="one-third column statusbox">
+			<h5>Status</h5>
+			<div class="etch"></div>
+			<div class="stat-list">CPU usage:<span class="value" id="loadfield"></span></div>
+			<div class="stat-list">RAM used:<span class="value" id="memused"></span></div>
+		</div>
+
+		<div class="one-third column statusbox">
+			<h5>Packages</h5>
+			<div class="etch"></div>
+			<div id="package-notification">Checking</div>
+		</div>
+
+		<div class="one-third column statusbox">
+			<h5>Storage</h5>
+			<div class="etch"></div>
+			<div>No drives connected</div>
+		</div>
+
+	</script>
+	<script type="text/template" id="packages-template">
+
+
+	</script>
+	<script type="text/template" id="settings-template">
+		<div class="eight columns statusbox">
+			<h5>Global Settings</h5>
+			<div class="etch"></div>
+			<span id="settingserror"></span>
+		</div>
+        
+		<div class="eight columns statusbox">
+			<h5>Users</h5>
+			<div class="etch"></div>
+			<ul id="userlist">
+		
+			</ul>
+			<div class=""><a href="javascript:" onclick="add_user();">Add user</a></div>
+	
+		</div>
+
+		<div id="overlay">  
+			<div class="msgbox">  
+			<strong>Create user</strong>	
+			<div class="whitebox text-entry-box"><input placeholder="Username" type="text" name="username" id="usernamefield" /></div>
+			<div class="whitebox text-entry-box"><input placeholder="Email" type="text" name="email" id="emailfield" /></div>
+			<div class="whitebox text-entry-box"><input placeholder="Password" type="password" name="password" id="passwordfield" /></div>
+			<div class="whitebox text-entry-box"><input placeholder="Repeat password" type="password" name="password2" id="password2field" /></div>
+
+			<!-- <div>
+				<strong>Is admin?</strong>
+				<select id="adminfield" name="admin">
+					<option value="1" selected="selected">Yes</option>
+					<option value="0">No</option>
+				</select>
+			</div> -->
+			<div id="buttons">
+				<button type="button" name="create" onclick="createUser();">Create</button>
+				<button style="float:right;" type="button" name="cancel" onclick="$('#overlay').fadeOut();">Cancel</button>
+			</div> 
+			<div id="usererror"></div>
+	
+	
+			</div>  
+		</div> 
+
+	</script>
+
+
+	
+	<!-- onload -->
+	
+	<script type="text/javascript">
+        $(document).ready(function(){
+			//plugui_init();
+			//setFileDropbox();
+			//getTree(directory);
+			//get_users();
+			$("#overlay").css("height", $(document).height()); 
+			$(window).bind("resize", function(){  
+				$("#overlay").css("height", $(window).height());  
+			}); 
+
+        });
+	</script>
 </body>
 </html>
