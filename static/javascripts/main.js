@@ -84,7 +84,15 @@
 
 			fileline.onclick = function(){ 
 				$('#filename').text(item.get('name'));
-				$('#filetype').text(item.get('type'));
+				
+				if (item.get('isFolder') == true ) {
+					$('#filetype').text("Folder");
+				}
+				else {
+					var filetype = window.fileMap[item.get('type')];
+					if (!filetype) filetype = "Unknown";
+					$('#filetype').text(filetype);
+				}
 				$('#filesize').text(item.get('size'));
 				$('#filedate').text(item.get('date'));
 
