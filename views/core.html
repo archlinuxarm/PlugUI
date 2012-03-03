@@ -39,7 +39,7 @@
 	<script src="/static/javascripts/jqplot.pieRenderer.js"></script>
 	<script src="/static/javascripts/jquery.event.drag-2.0.min.js"></script>
 	<script src="/static/javascripts/jquery.jplayer.min.js"></script> 
-	<script type="text/javascript" src="/static/javascripts/soundmanager2.js"></script>
+	<!-- <script type="text/javascript" src="/static/javascripts/soundmanager2.js"></script> -->
 
 	<script src="/static/javascripts/underscore-min.js"></script>
     <script src="/static/javascripts/backbone-min.js"></script>
@@ -114,7 +114,7 @@
 	<ul class="gradient">
 
 			<li id="userbutton-before"></li>
-			<li id="userbutton"><a href="javascript:" onClick="show_auth();"><span id="user-name"></span></a></li>
+			<li id="userbutton"><a href="/#/login"><span id="user-name"></span></a></li>
 					
 	</ul>
 </div>
@@ -149,13 +149,7 @@
 	<script type="text/template" id="files-template">
 		<div class="two-thirds column statusbox">
 			<div id="displayarea">
-				<div class="line">
-					<div class="icon"><img id="loader" src="/static/images/loader.gif"/></div>
-					<div class="name"><span id="currentpath"></span></div><!-- name -->
-				</div>
-				<div id="clear"></div><!-- clear -->
-				<div class="etch"></div>
-				<div id="filelist"></div><!-- filelist -->
+				<table id="filelist"></table>
 			</div><!-- displayarea -->
 	
 

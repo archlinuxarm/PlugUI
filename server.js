@@ -147,24 +147,33 @@ app.post('/api/files', function(req, res){
 					fullpath = path.join(directory,file);
 					if ( fs.statSync(fullpath).isDirectory() ) {
 
+
+						/* frontend model 
+						
+								fullpath: null,
+								directory: null,
+								isFolder: false,
+								name: null,
+								size: null,
+								type: null
+						*/
+						currentfile.type = 'folder';
 						currentfile.fullpath = fullpath;
 						currentfile.directory = directory;
-						currentfile.text = file;
-						currentfile.iconCls = 'directory';
-						currentfile.folder = true;
-						currentfile.disabled = false;
+						currentfile.name = file;
+						currentfile.isFolder = true;
+						
 						currentfile.size = util.inspect(fs.statSync(fullpath)).size;
 						//currentfile.date = str(datetime.datetime.fromtimestamp(os.path.getmtime(fullpath)))
 					}
 					else {
 
-						extension = path.extname(fullpath).substring(1);
+						currentfile.type = path.extname(fullpath).substring(1);
 						currentfile.fullpath = fullpath;
 						currentfile.directory = directory;
-						currentfile.text = file;
-						currentfile.iconCls = 'file-' + extension;
-						currentfile.folder = false;
-						currentfile.disabled = false;
+						currentfile.name = file;
+						currentfile.isFolder = false;
+
 						currentfile.size = util.inspect(fs.statSync(fullpath)).size;
 						//currentfile.date = str(datetime.datetime.fromtimestamp(os.path.getmtime(fullpath)))
 					}

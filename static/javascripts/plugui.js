@@ -1,7 +1,5 @@
 // global stuff
-var directory = '';
-var currentpath = '';
-var authenticated = false;
+
 
 
 function login() {
@@ -29,9 +27,9 @@ function login() {
            success: function(json){
 				console.log("Login request succeeded");
                 if (json.authenticated == true) {
-					authenticated = true;
+					window.authenticated = true;
 					console.log("Login request succeeded");
-					get_page('dashboard');
+					window.App.navigate("/dashboard", {trigger: true});
 				}
 				else {
 					console.log("Login failed");
@@ -90,27 +88,7 @@ function reboot() {
 
 //file page stuff
 
-function getTree(directory) {
-	showloader();
-	$.ajax({
-		   type: 'POST',
-		   cache: false,
-		   url : '/api/files',
-		   data: { apicmd: "directory_list", path: directory },
-		   dataType : 'json',
-		   success: function (json) { 
-				hideloader();
-				var returnlist = json;
-				if (returnlist) {
-									}
-				else {
-					$('#filelist').html("Did not receive a response"); 
-				}
-				
-		   }
-	});
-	hideloader();
-}
+
 
 function downloadFile(item) {
 	var form = document.createElement("form");
@@ -266,42 +244,6 @@ function playMedia(item) {
 	$('#current-track').text(item.text);
 }
 	
-
-function selectLine(item) {
-	$('#filename').text(item.text);
-	$('#filetype').text(item.iconCls);
-	$('#filesize').text(item.size);
-	$('#filedate').text(item.date);
-
-	if (item.folder == true) {
-	
-	}
-	else {
-
-	}
-	
-}
-
-function selectParent() {
-	var directory_array = directory.split("/");
-	directory_array.pop();
-	var newdir = directory_array.join("/");
-	directory = newdir;
-	getTree(newdir);
-}
-
-function selectLink(item) {
-	if (item.folder == true) {
-		var directory_array = directory.split("/");
-		directory_array.push(item.text);
-		var newdir = directory_array.join("/");
-		directory = newdir;
-		getTree(newdir);
-	}
-	else {
-		
-	}	
-}
 
 //software stuff
 
