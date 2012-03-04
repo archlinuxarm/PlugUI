@@ -4,6 +4,7 @@
  */
  
 var path	= require('path');
+var os		= require('os');
 var fs		= require('fs');
 var util	= require('util');
 var express = require('express');
@@ -68,15 +69,43 @@ app.get('/', function(req, res){
 
 // APIs
 
-app.post('/api/login', function(req, res){
-	var username = req.body.username;
-	var password = req.body.password;
-	unixlib.pamauth("login", username, password, function(result) {
-		req.session.authenticated = result;
-		res.json({ authenticated: result });
 
-	});
-	
+
+app.post('/api/status', function(req,res) {
+	response = {};
+	response.success		= true;
+	response.freemem		= os.freemem();
+	response.memused		= os.totalmem() - os.freemem();
+	response.loadavg		= os.loadavg();
+	response.uptime			= os.uptime();
+	response.memory_total	= os.totalmem();
+	res.json(response);
+});
+
+
+app.post('/api/auth', function(req, res) {
+	response = {};
+	response.success = false;
+	apicmd = req.body.apicmd;
+	if (apicmd == "check") {
+		response.authenticated = req.session.authenticated;
+		response.username = req.session.username;
+		response.success = true;
+		res.json(response);	
+	}
+	else if ( apicmd == "login" ) {
+		var username = req.body.username;
+		var password = req.body.password;
+		unixlib.pamauth("login", username, password, function(result) {
+			req.session.authenticated = result;
+			req.session.username = username;
+			res.json({ authenticated: result, username: username });
+		});
+	}
+	else if ( apicmd == "logout" ) {
+		req.session.destroy();
+		res.json({ success: true });
+	}	
 	
 });							
 		
@@ -163,7 +192,7 @@ app.post('/api/files', function(req, res){
 						currentfile.name = file;
 						currentfile.isFolder = true;
 						
-						currentfile.size = util.inspect(fs.statSync(fullpath)).size;
+						currentfile.size = fs.statSync(fullpath).size;
 						//currentfile.date = str(datetime.datetime.fromtimestamp(os.path.getmtime(fullpath)))
 					}
 					else {
@@ -174,7 +203,7 @@ app.post('/api/files', function(req, res){
 						currentfile.name = file;
 						currentfile.isFolder = false;
 
-						currentfile.size = util.inspect(fs.statSync(fullpath)).size;
+						currentfile.size = fs.statSync(fullpath).size;
 						//currentfile.date = str(datetime.datetime.fromtimestamp(os.path.getmtime(fullpath)))
 					}
 					dirs.push(currentfile);

@@ -10,13 +10,7 @@ html {
 
 * {
 	font-family:Helvetica !important;
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	-o-user-select: none;
-	user-select: none;
+
 }
 
 body {
@@ -127,15 +121,15 @@ body {
     background:#FCFCFC;
 	
 
-color: #333;
-font-weight: bold;
-padding: 6px 15px 4px 15px;
--webkit-border-radius: 20px;
--moz-border-radius: 20px;
-border-radius: 20px;
--webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.8) inset;
--moz-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.8) inset;
-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.8) inset;
+	color: #333;
+	font-weight: bold;
+	padding: 6px 15px 4px 15px;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+	-webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.8) inset;
+	-moz-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.8) inset;
+	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.8) inset;
 
 }
 
@@ -185,11 +179,10 @@ img#pageloader {
 	display:block;
 	border-bottom:1px solid #ffffff;
 	border-top:1px solid #ccc;
-
 }
 
 
-#adminbar {
+.ui-panel {
     
     height:42px;
     
@@ -211,7 +204,7 @@ img#pageloader {
 	margin:0px 0px 48px 0px;
 }
 
-#adminbar.bottom {
+#notificationbar.bottom {
 	position:fixed;
     bottom:0px;
     left:0px;
@@ -219,7 +212,7 @@ img#pageloader {
 	margin:48px 0px 0px 0px;
 }
 
-#adminbar ul.inset {
+#adminbar div.inset {
     margin:0;
 	padding-left:0px;
 	padding-top:6px;
@@ -237,7 +230,7 @@ img#pageloader {
 	
 }
 
-#adminbar ul.inset li {
+#adminbar div.inset ul li {
     float:left;
     height:42px;
 	width:48px;
@@ -247,7 +240,7 @@ img#pageloader {
 
 }
 
-#adminbar ul.gradient  {
+.ui-panel ul.gradient  {
     margin:0;
 	padding-left:0px;
 	padding-right:0px;
@@ -263,7 +256,7 @@ img#pageloader {
 }
 
 
-#adminbar ul.gradient li {
+.ui-panel ul.gradient li {
     float:left;
     height:42px;
 	width:48px;
@@ -283,24 +276,24 @@ img#pageloader {
 	border-right: #9BA5AE 1px solid;
 }
 
-#adminbar ul.gradient li.first {
+.ui-panel ul.gradient li.first {
 	border-left:none;
 	border-right: #9BA5AE 1px solid;
 }
 
-#adminbar ul.gradient li.last {
+.ui-panel ul.gradient li.last {
 	border-left: #F4F5F6 1px solid;
 	border-right:none;
 }
 
-#adminbar ul.gradient li#logo {
+.ui-panel ul.gradient li#logo {
 	width: auto;
 	padding-left: 12px;
 	padding-right: 12px;
 	font-weight:bold;
 }
 
-#adminbar ul.gradient li.selected {
+.ui-panel ul.gradient li.selected {
 	margin-left: 1px;
 	border-left: none;
 	-moz-box-shadow: inset 0px 1px 3px #333;
@@ -315,19 +308,24 @@ img#pageloader {
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#d0d0d0, endColorstr=#b0b0b0);
 }
 
-#adminbar ul.gradient li#controlbutton {
+.ui-panel ul.gradient li.adminbutton {
+	cursor:pointer;
+}
+
+.ui-panel ul.gradient li#controlbutton {
 	position:absolute;
 	top:0;
 	right:0;
+	cursor:pointer;
 }
 
 
 
-#adminbar ul.gradient li#controlbutton:active {
+.ui-panel ul.gradient li#controlbutton:active {
 	top:1px;
 }
 
-#adminbar ul.gradient li#controlbutton-before {
+.ui-panel ul.gradient li#controlbutton-before {
 	border-right: #9BA5AE 1px solid;
 	border-left:none;
 	width:1px;
@@ -339,19 +337,28 @@ img#pageloader {
 
 
 
-#adminbar ul.gradient li#userbutton {
+.ui-panel ul.gradient li#userbutton {
 	position:absolute;
 	bottom:0;
 	right:0;
+	width:48px;
+	text-align:center;
+	cursor:pointer;
+	
+}
+
+.ui-panel ul.gradient li#userbutton #user-icon {
+	padding-top: 11px;
+	padding-left: 2px;	
+	opacity:0.5;
 }
 
 
-
-#adminbar ul.gradient li#userbutton:active {
+.ui-panel ul.gradient li#userbutton:active {
 	top:1px;
 }
 
-#adminbar ul.gradient li#userbutton-before {
+.ui-panel ul.gradient li#userbutton-before {
 	border-right: #9BA5AE 1px solid;
 	border-left:none;
 	width:1px;
@@ -363,25 +370,25 @@ img#pageloader {
 
 
 
-#adminbar ul.gradient li.last {
+.ui-panel ul.gradient li.last {
 	border-left: #F4F5F6 1px solid;
 	border-right:none;
 }
 
-#adminbar ul.gradient li:active {
+.ui-panel ul.gradient li:active {
 	position:relative;
 	top:1px;
 	
 	
 }
 
-#adminbar ul.gradient li.selected a span {
+.ui-panel ul.gradient li.selected a span {
 	color:#000;
 	text-shadow:0 1px 0 #fff;
 }
 
-#adminbar ul.gradient li a,
-#adminbar ul.gradient li a:visited {
+.ui-panel ul.gradient li a,
+.ui-panel ul.gradient li a:visited {
     
     height:100%;
     width:100%;
@@ -391,11 +398,11 @@ img#pageloader {
 	cursor:default
 }
 
-#adminbar ul.gradient li a:hover {
+.ui-panel ul.gradient li a:hover {
     color:#898989;
     
 }
-#adminbar ul.gradient li a span {
+.ui-panel ul.gradient li a span {
     font-size:1.0em;
     font-weight:bold;
     padding-top:6px;
@@ -405,45 +412,45 @@ img#pageloader {
 	opacity:0.5;
 }
 
-#adminbar ul.gradient li a span#home-icon {
+.ui-panel ul.gradient li a span#home-icon {
 	padding-left:12px;
     padding-top:9px;
 }
 
-#adminbar ul.gradient li a span#dashboard-icon {
+.ui-panel ul.gradient li a span#dashboard-icon {
 	padding-left:10px;
     padding-top:7px;
 }
-#adminbar ul.gradient li a span#posts-icon {
+.ui-panel ul.gradient li a span#posts-icon {
 	padding-left:12px;
 	padding-top:12px;
 }
-#adminbar ul.gradient li a span#files-icon {
+.ui-panel ul.gradient li a span#files-icon {
 	padding-left:14px;
     padding-top:8px;
 }
-#adminbar ul.gradient li a span#tickets-icon {
+.ui-panel ul.gradient li a span#tickets-icon {
 	padding-left:12px;
     padding-top:9px;
 }
-#adminbar ul.gradient li a span#settings-icon {
+.ui-panel ul.gradient li a span#settings-icon {
 	padding-left:11px;
 	padding-top:8px;
 }
-#adminbar ul.gradient li a span#logs-icon {
+.ui-panel ul.gradient li a span#logs-icon {
 	padding-left:12px;
 	padding-top:12px;
 
 }
 
-#adminbar ul.gradient li a span#packages-icon {
+.ui-panel ul.gradient li a span#packages-icon {
 	padding-left:12px;
 	padding-top:8px;
 
 }
 
 
-#adminbar ul.gradient li a span#music-icon {
+.ui-panel ul.gradient li a span#music-icon {
 	padding-left:16px;
 	padding-top:8px;
 	
@@ -550,7 +557,35 @@ div.statusbox div.stat-list span.value {
 
 
 
+div.authpanel {
 
+    width: 275px;
+	height: 200px;
+	bottom: 72px;
+	right: 12px;
+	position: fixed;
+	padding-top:12px;
+	padding-bottom:12px;
+	-moz-border-radius: 10px;
+	-khtml-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	border:1px solid #ccc;
+	
+	background:# eaeaea;
+	
+	-webkit-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.7);
+	-moz-box-shadow:	0px 1px 4px rgba(0, 0, 0, 0.7);
+	box-shadow:			0px 1px 4px rgba(0, 0, 0, 0.7);
+	
+}
+
+div.authpanel div,
+div.authpanel h4,
+div.authpanel button {
+	margin-left:12px;
+	margin-right:12px;
+}
 
 
 
@@ -787,8 +822,20 @@ div#displayarea,
 	color:blue;
 }
 
+#fileheader {
+	border-bottom: 1px solid #CACACA;
+}
+
 #filelist {
 	width:100%;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+	table-layout:fixed;
 }
 
 #filelist .line,
@@ -808,6 +855,11 @@ div#displayarea,
     background: -moz-linear-gradient(top, #3E8FFF, #305FE6);
     background: -o-linear-gradient(top, #3E8FFF), #305FE6);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#3E8FFF, endColorstr=#305FE6);
+	
+	
+	-moz-box-shadow: 0px 1px 0px #fff , inset 0px 1px 0px #000);
+    -webkit-box-shadow: 0px 1px 0px #fff, inset 0px 1px 0px #000;
+    box-shadow: 0px 1px 0px #fff, inset 0px 1px 0px #000;
 
 }
 
@@ -820,41 +872,41 @@ div#displayarea,
 }
 
 #filelist .line .file-toolbar {
-
-
 	vertical-align: middle;
 	width:60px;
 	margin:0;
-	
 }
 
-#filelist .line .file-toolbar span {
-
+#filelist .line .file-toolbar .file-toolbar-button {
 	margin:0;
 	padding:0;
-
 	padding-left:6px;
-	
+	cursor:pointer;
 }
 
 
 #filelist .line .name {
-
+	cursor: pointer;
 	text-overflow: ellipsis;
 	overflow:hidden;
 	text-shadow:none !important;
 	font-weight:bold;
 	vertical-align: middle;
-	
+	word-break: break-all;
 }
 
 #filelist .line .name span {
 	cursor: pointer;
+	text-overflow: ellipsis;
+	overflow:hidden;
+	text-shadow:none !important;
+	font-weight:bold;
+	vertical-align: middle;
+	word-break: break-all;
 }
 
 #filelist .line .name {
-	text-decoration:none;
-	
+	text-decoration:none;	
 }
 
 #filelist .line .name a,
@@ -869,7 +921,6 @@ div#displayarea,
 .icon {
 	height:32px;
 	width:32px;
-	
 }
 
 #filelist .line #loader {
@@ -889,14 +940,14 @@ div#displayarea,
 
 /* custom styles for file icons */
 
-#filelist .line .icon { background: url(/static/images/txt.png) 8px 7px no-repeat; }
+#filelist .line .file { background: url(/static/images/file.png) 8px 7px no-repeat; }
 
 
 /* Core Styles */
 #filelist .line #loader { background: url(/static/images/loader.gif) top left no-repeat !important; }
 #filelist .line .folder { background: url(/static/images/directory.png) 8px 7px no-repeat !important ;}
 #filelist .line .expanded { background: url(/static/images/folder_open.png) 8px 7px no-repeat !important ;}
-#filelist .line .file { background: url(/static/images/file.png) 8px 7px no-repeat !important;}
+
 #filelist .line .wait { background: url(/static/images/spinner.gif) 8px 7px no-repeat !important; }
 #filelist .line .parentdir { background: url(/static/images/parent.png) 8px 7px no-repeat !important; }
 

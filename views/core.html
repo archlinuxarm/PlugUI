@@ -50,74 +50,14 @@
 	
 </head>
 <body>
-	<div id="adminbar" class="top">
-		<ul class="gradient">    
-			<li class="first" id="logo">
-				<a style="padding-top:12px; display:block; text-decoration:none;" href="javascript:" onClick="window.open('http://github.com/archlinuxarm/plugui');">PlugUI</a>
-			</li>
-			<li id="dashboard-button" class="adminbutton">
-				<a href="/#/dashboard">
-					<span id="dashboard-icon">
-						<img src="/static/images/81-dashboard.png" alt="dashboard"/>
-					</span>
-				</a>
-			</li>
-			<li id="files-button"class="adminbutton">
-				<a href="/#/files">
-					<span id="files-icon">
-						<img src="/static/images/33-cabinet.png" alt="files"/>
-					</span>
-				</a>
-			</li>
-			<li id="packages-button"class="adminbutton">
-				<a href="/#/packages">
-					<span id="packages-icon">
-						<img src="/static/images/24-gift.png" alt="packages"/>
-					</span>
-				</a>
-			</li>
-			<li id="settings-button"class="adminbutton">
-				<a href="/#/settings">
-					<span id="settings-icon">
-						<img src="/static/images/19-gear.png" alt="settings"/>
-					</span>
-				</a>
-			</li>
-
-			<li class="last"></li>
-
-			<li id="controlbutton-before"></li>
-			<li id="controlbutton">
-				<a href="javascript:" onClick="show_controls();">
-					<span id="music-icon">
-						<img src="/static/images/65-note.png" alt="music controls"/>
-					</span>
-				</a>
-			</li>
-			
-			
-		</ul>
-		<ul class="inset">    
 
 
-			
-		</ul>
-	</div>
+	<div id="adminbar" class="top ui-panel">    </div>
 
-<div id="content_area" id="container" class="container">
+	<div id="content_area" id="container" class="container">   </div><!-- container -->
 
 
-</div><!-- container -->
-
-
-<div id="adminbar" class="bottom">
-	<ul class="gradient">
-
-			<li id="userbutton-before"></li>
-			<li id="userbutton"><a href="/#/login"><span id="user-name"></span></a></li>
-					
-	</ul>
-</div>
+	<div id="notificationbar" class="bottom ui-panel">    </div>
 
 
 
@@ -131,18 +71,94 @@
 
 
 	<!-- templates -->
-	
+	<script type="text/template" id="auth-template">
+
+		<h4><%= username %></h4>
+		<button type='button' id='logoutbutton' name='logout'>Logout</button>
+				
+		<div id='logout_error'></div>
+				
+
+	</script>	
 	
 	
 	<script type="text/template" id="login-template">
-		<div class="two-thirds column" id="login">      
-			<h4>Login</h4>
-			<div  class="whitebox"><input placeholder="Username" type="text" name="username" id="usernamefield"></div>
-			<div  class="whitebox"><input placeholder="Password" type="password" name="password" id="passwordfield"></div>
-			<button type="button" name="login" onclick="login();">Login</button>
-			<div id="login_error"></div>
-		</div>
+				<h4>Login</h4>
+				<div class='whitebox'>
+					<input placeholder='Username' type='text' name='username' id='usernamefield'>
+				</div>	
+				<div class='whitebox'>
+					<input placeholder='Password' type='text' name='password' id='passwordfield'>
+				</div>	
+					
+					
+				<button type='button' id='loginbutton' name='login'>Login</button>
+				
+				<div id='login_error'></div>
 
+	</script>
+	
+	<script type="text/template" id="mediabar-template">
+	
+	</script>
+	
+	<script type="text/template" id="notificationbar-template">
+
+			<li id="userbutton-before"></li>
+			<li id="userbutton">
+				<div id="user-icon">
+					<img src="/static/images/111-user.png" title="user panel"/>
+				</div>
+			
+			</li>
+					
+	</script>
+	
+	<script type="text/template" id="adminbar-template">
+
+			<li class="first" id="logo">
+				<a style="padding-top:12px; display:block; text-decoration:none;" href="javascript:" onClick="window.open('http://github.com/archlinuxarm/plugui');">PlugUI</a>
+			</li>
+			<li id="dashboard-button" class="adminbutton">
+				<a href="/#/dashboard">
+					<span id="dashboard-icon">
+						<img src="/static/images/81-dashboard.png" title="dashboard"/>
+					</span>
+				</a>
+			</li>
+			<li id="files-button" class="adminbutton">
+				<a href="/#/files">
+					<span id="files-icon">
+						<img src="/static/images/33-cabinet.png" title="files"/>
+					</span>
+				</a>
+			</li>
+			<li id="packages-button" class="adminbutton">
+				<a href="/#/packages">
+					<span id="packages-icon">
+						<img src="/static/images/24-gift.png" title="packages"/>
+					</span>
+				</a>
+			</li>
+			<li id="settings-button" class="adminbutton">
+				<a href="/#/settings">
+					<span id="settings-icon">
+						<img src="/static/images/19-gear.png" title="settings"/>
+					</span>
+				</a>
+			</li>
+
+			<li class="last"></li>
+
+			<li id="controlbutton-before"></li>
+			<li id="controlbutton">
+				<a>
+					<span id="music-icon">
+						<img src="/static/images/65-note.png" title="music controls"/>
+					</span>
+				</a>
+			</li>
+			
 	</script>
     
 	
@@ -190,13 +206,16 @@
 		</div>
 
     </script>
+	
+	<script type="text/template" id="status-template">
+		<h5>Status</h5>
+		<div class="etch"></div>
+		<div class="stat-list">Load:<span class="value" id="loadfield"><%= loadavg %></span></div>
+		<div class="stat-list">RAM used:<span class="value" id="memused"><%= memused %></span></div>
+	
+	</script>
 	<script type="text/template" id="dashboard-template">
-		<div class="one-third column statusbox">
-			<h5>Status</h5>
-			<div class="etch"></div>
-			<div class="stat-list">CPU usage:<span class="value" id="loadfield"></span></div>
-			<div class="stat-list">RAM used:<span class="value" id="memused"></span></div>
-		</div>
+
 
 		<div class="one-third column statusbox">
 			<h5>Packages</h5>
@@ -204,13 +223,21 @@
 			<div id="package-notification">Checking</div>
 		</div>
 
-		<div class="one-third column statusbox">
-			<h5>Storage</h5>
-			<div class="etch"></div>
-			<div>No drives connected</div>
-		</div>
+
 
 	</script>
+	
+	
+	<!-- 
+	
+		<div class="one-third column statusbox">
+		<h5>Storage</h5>
+		<div class="etch"></div>
+		<div>No drives connected</div>
+		</div>
+		
+		-->
+		
 	<script type="text/template" id="packages-template">
 
 

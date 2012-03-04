@@ -71,50 +71,41 @@ window.fileMap = {
 	"gz":	"GZIP Archive"
 }
 
-function login() {
-	console.log("Login");
-    var username    = $('#usernamefield').attr('value');
-	var password	= $('#passwordfield').attr('value');
-
-    if (username == "") {  
-        console.log("No username");        
-        $("#usernamefield").focus();  
-        return false;  
-    } 	
-    if (password == "") {  
-        console.log("No password");        
-        $("#passwordfield").focus();  
-        return false;  
-    } 
+function prettysize(bytes) {
+	if (bytes == 0) {
+		$('#filesize').text('Zero' );
+	}
 	
-	
-	$.ajax({
-           type: "POST",
-           url: "/api/login",
-           dataType : 'json',
-		   data: { apicmd: "login", "username": username, "password": password },
-           success: function(json){
-				console.log("Login request succeeded");
-                if (json.authenticated == true) {
-					window.authenticated = true;
-					console.log("Login request succeeded");
-					window.App.navigate("/dashboard", {trigger: true});
-				}
-				else {
-					console.log("Login failed");
-					$('#login_error').text("Login failed");
-				}
-				
-           }
-    });
+	else if (bytes >= 1000000000000) {
+		//tb
+		var terabytes =  bytes / 1000000000000;
+		return terabytes.toFixed(1) + ' TB';
+	}
+	else if (bytes >= 1000000000) {
+		//gb
+		var gigabytes = bytes / 1000000000;
+		return gigabytes.toFixed(1) + ' GB';
+	}
+	else if (bytes >= 1000000) {
+		//mb
+		var megabytes = bytes / 1000000;
+		return megabytes.toFixed(1) + ' MB';
+	}
+	else if (bytes >= 1000) {
+		//kb
+		var kilobytes = bytes / 1000;
+		return  kilobytes.toFixed(1) + ' KB';
+		
+	}
+	else {
+		return bytes.toFixed(1)  + ' B';
+	}	
 }
 
 
-
 function plugui_init() {
-	//get_page('dashboard');
-	//update_stats();
-	//update = setInterval(update_stats, 1000);
+
+	//
 	
 	//update_packages();
 	//update_packages = setInterval(update_stats, 600000);
@@ -532,62 +523,6 @@ function setFileDropbox() {
 		}
 	});
 }
-
-
-
-
-
-
-function update_stats() {
-	$.ajax({
-           type: "POST",
-           url: "/api/status",
-           dataType : 'json',
-           success: function(json){
-                var result = json;
-                if (result.success == true) {
-                    $('#loadfield').text(result.cpu + "%");
-					$('#memused').text(result.memused + "%");
-                }
-           }
-    });
-}
-
-function show_controls() {
-	if ($("ul.inset").is(":hidden")) {
-		$('#controlbutton').addClass('selected');
-		$("ul.inset").slideDown({
-			duration:500,
-			easing:"swing",
-			complete:function(){
-			//alert("complete!");
-			}
-		});
-	} else {
-		$('#controlbutton').removeClass('selected');
-
-		$("ul.inset").slideUp({
-			duration:500,
-			easing:"swing",
-			complete:function(){
-			//alert("complete!");
-			}
-		});
-	}
-	
-	
-
-}
-
-
-
-
-
-
-
-
-
-
 
 
 // User stuff
