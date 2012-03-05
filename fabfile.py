@@ -24,7 +24,6 @@ def setup():
 	require('path')
 	run('pacman -S --noprogressbar --noconfirm nodejs')
 	run('pacman -S --noprogressbar --noconfirm rsync')
-	run('pacman -S --noprogressbar --noconfirm supervisor')
 	run('mkdir -p %(path)s' % env, pty=True)
 	if not exists('/etc/rc.d/plugui'):
 		run('ln -s %(path)s/plugui.sh /etc/rc.d/plugui' % env, pty=True)
