@@ -26,6 +26,8 @@ def setup():
 	run('pacman -S --noprogressbar --noconfirm rsync')
 	run('pacman -S --noprogressbar --noconfirm supervisor')
 	run('mkdir -p %(path)s' % env, pty=True)
+	if not exists('/etc/rc.d/plugui'):
+		run('ln -s %(path)s/plugui.sh /etc/rc.d/plugui' % env, pty=True)
 	with cd(env.path):
 		run('npm install express')
 		run('npm install unixlib')
@@ -49,11 +51,8 @@ def upload():
 	run('chown -R root %(path)s' % env)
 	
 def restart_appserver():
-	if not exists('/etc/supervisor.d/plugui.ini'):
-		run('ln -s %(path)s/plugui.ini /etc/supervisor.d/plugui.ini' % env, pty=True)
-	run('/etc/rc.d/supervisord start')
-	run('supervisorctl update')
-	run('supervisorctl restart plugui')
+	run('chmod +x /opt/PlugUI/plugui.sh')
+	run('/etc/rc.d/plugui restart')
 	
 	
 	
