@@ -126,7 +126,7 @@ app.post('/api/auth', function(req, res) {
 		unixlib.pamauth("login", username, password, function(result) {
 			req.session.authenticated = result;
 			req.session.username = username;
-			res.json({ authenticated: result, username: username });
+			res.json({ success: true, authenticated: result, username: username });
 		});
 	}
 	else if ( apicmd == "logout" ) {

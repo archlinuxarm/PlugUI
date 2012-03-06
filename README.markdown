@@ -70,3 +70,152 @@ Not implemented yet but planned to be a simple list of all packages available vs
 Currently has a simple list of system users (pulls from /etc/passwd), will be able to add and delete users, change their shell, home folder, password and other basic things.
 
 Settings area will also have basic network settings of some kind, perhaps using NetworkManager but that is not the Arch default so requires more testing.
+
+
+##API
+
+Note: This is all subject to change, most of the APIs aren't even implemented yet and will morph as the needs of the frontend dictate.
+
+Right now none of these are protected at all, but at some point in the near future you will have to use the auth API to start a session before using any other API. That means storing the cookie and returning it just like a web browser would, if using another tool.
+
+All API methods return a top level 'success' boolean indicating whether or not the API command successfully completed and can return the right data, check if this is false before doing anything else with a result.
+
+Any method which accepts json can also technically accept a standard url encoded form too, so for instance Curl posts will work fine. They're still intended for json, so if you hit an API that requires multi-level structure requests, use json :D
+
+###Status 
+
+Simple device information, memory stats, load average and uptime. May add more stats in the future.
+
+	POST: /api/status
+	
+	Accepts: nothing
+	
+	Returns: json
+	
+	Details: All sizes are in bytes, all times are in seconds.
+	
+	Sample: { "success":true, 
+			  "freemem":14774272,
+			  "memused":238837760, 
+			  "loadavg":[5.8623046875,5.5654296875,5.21826171875], 
+			  "uptime":498867.340181713, 
+			  "memory_total":253612032 }
+	
+###Auth
+
+Assists the frontend in validating existing sessions or authenticating a user, creates a cookie session if successful.
+
+	POST: /api/auth
+	
+	Accepts: json
+	
+	Returns: json
+	
+	Details: 3 commands so far, 'check', 'login' and 'logout'. Check avoids requiring the frontend to authenticate when a session already exists.
+	
+	
+####Check for a session 
+
+	Request: { apicmd: 'check' }
+	
+	Response: { success: true|false, authenticated: true|false, username: username }
+	
+	
+####Login 
+
+	Request: { apicmd: 'login', username: 'username', password: 'password' }
+	
+	Response: { success: true|false, authenticated: true|false, username: username }
+	
+####Logout
+
+	Request: { apicmd: 'logout' }
+	
+	Response: { success: true|false }
+
+###Users
+
+Allows the frontend to manage system users
+
+	POST: /api/users
+	
+	Accepts: json
+	
+	Returns: json
+	
+	Details: This is a jsonified wrapper around some unix tools for working with system users. The user list is all inclusive, it is up to the frontend to show or hide users that arent relevant or shouldn't be editable.
+	
+####List users 
+
+	Request: { apicmd: 'list' }
+	
+	Response: { "success":true,
+				"userlist": [
+					{"username":"root","uid":"0","gid":"0","homedir":"/root","shell":"/bin/bash"},
+					{"username":"bin","uid":"1","gid":"1","homedir":"/bin","shell":"/bin/false"},
+					{"username":"daemon","uid":"2","gid":"2","homedir":"/sbin","shell":"/bin/false"},
+					{"username":"mail","uid":"8","gid":"12","homedir":"/var/spool/mail","shell":"/bin/false"},
+					{"username":"ftp","uid":"14","gid":"11","homedir":"/srv/ftp","shell":"/bin/false"},
+					{"username":"http","uid":"33","gid":"33","homedir":"/srv/http","shell":"/bin/false"},
+					{"username":"nobody","uid":"99","gid":"99","homedir":"/","shell":"/bin/false"},
+					{"username":"dbus","uid":"81","gid":"81","homedir":"/","shell":"/bin/false"},
+					{"username":"ntp","uid":"87","gid":"87","homedir":"/var/empty","shell":"/bin/false"},
+					{"username":"steve","uid":"501","gid":"100","homedir":"/home/steve","shell":"/bin/bash"}
+				]
+			 }
+	
+	
+####Create a user
+
+	Unimplemented
+	
+####Delete a user
+
+	Unimplemented
+
+
+###Files 
+
+Allows for simple directory listing, file download, delete
+
+	POST: /api/files
+ 
+	Accepts: json
+ 
+	Returns: json|binary file (depending on the command)
+ 
+	Details: File list is sandboxed inside /media by path standardization followed by regex matching, all requested paths are relative to that directory. This may change in the future.
+	
+
+####Directory list
+
+		Request: { apicmd: 'directory_list', path: "/build" }
+		
+		Response: { "success":true, 
+					"requestpath": "/media/build",
+					"validpath": true,
+					"files": [ 
+						{"type":"conf","fullpath":"/media/build/motion.conf","directory":"/media/build","name":"motion.conf","isFolder":false,"size":23997},
+						{"type":"tar","fullpath":"/media/build/clang_3.0-3ubuntu1.debian.tar","directory":"/media/build","name":"clang_3.0-3ubuntu1.debian.tar","isFolder":false,"size":112640},
+						{"type":"folder","fullpath":"/media/build/PKGBUILDs","directory":"/media/build","name":"PKGBUILDs","isFolder":true,"size":12},
+						{"type":"folder","fullpath":"/media/build/Temporary Items","directory":"/media/build","name":"Temporary Items","isFolder":true,"size":3},
+						{"type":"folder","fullpath":"/media/build/cam","directory":"/media/build","name":"cam","isFolder":true,"size":3},
+						{"type":"folder","fullpath":"/media/build/node_modules","directory":"/media/build","name":"node_modules","isFolder":true,"size":9},
+						{"type":"folder","fullpath":"/media/build/PlugUI","directory":"/media/build","name":"PlugUI","isFolder":true,"size":19},
+						{"type":"py","fullpath":"/media/build/led.py","directory":"/media/build","name":"led.py","isFolder":false,"size":1185},
+						{"type":"gz","fullpath":"/media/build/cloud9-git.tar.gz","directory":"/media/build","name":"cloud9-git.tar.gz","isFolder":false,"size":1658},
+						{"type":"folder","fullpath":"/media/build/llvm","directory":"/media/build","name":"llvm","isFolder":true,"size":20},
+						{"type":"c","fullpath":"/media/build/hello.c","directory":"/media/build","name":"hello.c","isFolder":false,"size":80},
+						{"type":"i","fullpath":"/media/build/hello.i","directory":"/media/build","name":"hello.i","isFolder":false,"size":17259},
+						{"type":"folder","fullpath":"/media/build/Network Trash Folder","directory":"/media/build","name":"Network Trash Folder","isFolder":true,"size":3},
+						{"type":"folder","fullpath":"/media/build/meta-texasinstruments","directory":"/media/build","name":"meta-texasinstruments","isFolder":true,"size":14},
+						{"type":"folder","fullpath":"/media/build/cloud9-git","directory":"/media/build","name":"cloud9-git","isFolder":true,"size":9},
+						{"type":"folder","fullpath":"/media/build/log","directory":"/media/build","name":"log","isFolder":true,"size":3},
+						{"type":"folder","fullpath":"/media/build/build","directory":"/media/build","name":"build","isFolder":true,"size":7},
+						{"type":"folder","fullpath":"/media/build/libobjc2","directory":"/media/build","name":"libobjc2","isFolder":true,"size":4},
+						{"type":"folder","fullpath":"/media/build/lost+found","directory":"/media/build","name":"lost+found","isFolder":true,"size":3} 
+					]
+				}
+	
+	
+	
