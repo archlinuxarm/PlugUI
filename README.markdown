@@ -111,7 +111,8 @@ Assists the frontend in validating existing sessions or authenticating a user, c
 	
 	Returns: json
 	
-	Details: 3 commands so far, 'check', 'login' and 'logout'. Check avoids requiring the frontend to authenticate when a session already exists.
+	Details: 3 commands so far, 'check', 'login' and 'logout'. 
+			 Check avoids requiring the frontend to authenticate when a session already exists.
 	
 	
 ####Check for a session 
@@ -143,7 +144,8 @@ Allows the frontend to manage system users
 	
 	Returns: json
 	
-	Details: This is a jsonified wrapper around some unix tools for working with system users. The user list is all inclusive, it is up to the frontend to show or hide users that arent relevant or shouldn't be editable.
+	Details: This is a jsonified wrapper around some unix tools for working with system users. 
+			 The user list is all inclusive, frontend must show or hide them as appropriate.
 	
 ####List users 
 
@@ -184,7 +186,10 @@ Allows for simple directory listing, file download, delete
  
 	Returns: json|binary file (depending on the command)
  
-	Details: File list is sandboxed inside /media by path standardization followed by regex matching, all requested paths are relative to that directory. This may change in the future.
+	Details: File list is sandboxed inside /media by path standardization followed by regex matching. 
+			 All requested paths are relative to that directory, this may change in the future.
+			 All returned sizes are in bytes.
+			 Files without any extension will not have a 'type' property, check its length before using.
 	
 
 ####Directory list
