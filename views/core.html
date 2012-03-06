@@ -35,11 +35,12 @@
 	<link rel="stylesheet" href="/static/stylesheets/plugui.css">	
 	
 	<script src="/static/javascripts/jquery-1.7.1.js"></script>
+	<script src="/static/javascripts/jquery.event.drag-2.0.min.js"></script>
 	<script src="/static/javascripts/jquery.filedrop.js"></script>
 	<script src="/static/javascripts/jquery.sparkline.min.js"></script>
 	<script src="/static/javascripts/jquery.jqplot.min.js"></script>
 	<script src="/static/javascripts/jqplot.pieRenderer.js"></script>
-	<script src="/static/javascripts/jquery.event.drag-2.0.min.js"></script>
+	
 	<script src="/static/javascripts/jquery.jplayer.min.js"></script> 
 	<!-- <script type="text/javascript" src="/static/javascripts/soundmanager2.js"></script> -->
 
@@ -73,32 +74,6 @@
 
 
 	<!-- templates -->
-	<script type="text/template" id="auth-template">
-
-		<h4><%= username %></h4>
-		<button type='button' id='logoutbutton' name='logout'>Logout</button>
-				
-		<div id='logout_error'></div>
-				
-
-	</script>	
-	
-	
-	<script type="text/template" id="login-template">
-				<h4>Login</h4>
-				<div class='whitebox'>
-					<input placeholder='Username' type='text' name='username' id='usernamefield'>
-				</div>	
-				<div class='whitebox'>
-					<input placeholder='Password' type='text' name='password' id='passwordfield'>
-				</div>	
-					
-					
-				<button type='button' id='loginbutton' name='login'>Login</button>
-				
-				<div id='login_error'></div>
-
-	</script>
 	
 	<script type="text/template" id="mediabar-template">
 	
@@ -174,36 +149,8 @@
 		</div>
 
 		<div id="rightpanel" class="one-third column statusbox">
-			<div id="dropbox">
-				<div class="message">Drop file to upload</div>
-				<div class="progressHolder">
-					<div class="progress"></div>
-				</div>
-			</div>
-			
-			
-			<div id="attributes">
-
-				<div id="filetypetitle" class="panelattributename stat-list">
-					Type:
-					<span id="filetype" class="panelattribute">none </span>
-				</div>
 		
-		
-				<div id="filesizetitle" class="panelattributename stat-list">
-					Size:
-					<span id="filesize" class="panelattribute">none </span>
-				</div>
-		
-		
-				<div id="filedatetitle" class="panelattributename stat-list">
-					Modified:
-					<span id="filedate" class="panelattribute">none </span>
-				</div>
-		
-
-
-			</div>
+	
 
 		</div>
 

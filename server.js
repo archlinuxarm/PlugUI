@@ -130,7 +130,7 @@ app.post('/api/auth', function(req, res) {
 		});
 	}
 	else if ( apicmd == "logout" ) {
-		req.session.destroy();
+		req.session.reset(['csrf']);
 		res.json({ success: true });
 	}	
 	

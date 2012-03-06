@@ -101,8 +101,6 @@
     
 		initialize: function() {
 			_.bindAll(this, 'render');
-			this.loginTemplate = _.template($('#login-template').html());
-			this.authTemplate = _.template($('#auth-template').html());
 
 			this.visible = false;
 			
@@ -115,33 +113,22 @@
 
     
 		},
-		events: {
-            "click #loginbutton": "login",
-			"click #logoutbutton": "logout",
-
-			"click #cancelbutton": "toggle"
-        },
-		login: function() {
-			window.App.authenticate();
-		}, 
-		logout: function() {
-			console.log('logging out');
-			window.App.logout();
-		}, 
 		hideAuth: function() {
 			if (this.visible == true) {
-				console.log("removing login popup");
 				$('#userbutton').removeClass('selected'); 
+				console.log("removing login popup");
+				
 				this.visible = false;
 				$(this.el).remove();
 			}
 		},
 		showAuth: function() {
 			if (this.visible == false) {
+				$('#userbutton').addClass('selected');
 				console.log("adding login popup");
 				var $container = $('body');
 				$container.append(this.render().el);
-				$('#userbutton').addClass('selected');
+				
 				this.visible = true;
 			}
 		},
@@ -152,21 +139,94 @@
 			else {
 				this.showAuth();
 			}
-		
-			
-			
-		
 		},
 		render: function() {
 
 			
 			if (window.authenticated == false) {
-				var renderedContent = this.loginTemplate();
-				$(this.el).html(renderedContent);
+				var title = document.createElement('div');
+				var text = document.createTextNode('Login');
+				title.appendChild(text);
+				
+				
+				// username field container and field
+				var userbox = document.createElement('div');
+				userbox.setAttribute('class','whitebox');
+				
+				var userfield = document.createElement('input');
+				userfield.setAttribute('placeholder','Username');
+				userfield.setAttribute('type','text');
+				userfield.setAttribute('name','username');
+				userfield.setAttribute('id','usernamefield');
+				
+				userbox.appendChild(userfield);
+				
+				
+				//password field container and field
+				var passbox = document.createElement('div');
+				passbox.setAttribute('class','whitebox');
+				
+				var passfield = document.createElement('input');
+				passfield.setAttribute('placeholder','Password');
+				passfield.setAttribute('type','password');
+				passfield.setAttribute('name','password');
+				passfield.setAttribute('id','passwordfield');
+				
+				passbox.appendChild(passfield);
+				
+
+				var loginbutton = document.createElement('button');
+				loginbutton.setAttribute('type','button');
+				loginbutton.setAttribute('id','loginbutton');
+				loginbutton.setAttribute('name','login');
+				loginbutton.onclick = function() {
+					console.log('logging in');
+					window.App.authenticate();
+				};
+				
+				var login_text = document.createTextNode('Login');
+				loginbutton.appendChild(login_text);
+
+				var error = document.createElement('div');
+				error.setAttribute('id','login_error');
+				
+				$(this.el).empty();
+				
+				$(this.el).append(title);
+				$(this.el).append(userbox);
+				$(this.el).append(passbox);
+				$(this.el).append(loginbutton);
+				$(this.el).append(error);
+				
+				
 			}
 			else {
-				var renderedContent = this.authTemplate();
-				$(this.el).html(renderedContent);
+			
+				var title = document.createElement('div');
+				var username = document.createTextNode(window.username);
+				title.appendChild(username);
+				
+				var logoutbutton = document.createElement('button');
+				logoutbutton.setAttribute('type','button');
+				logoutbutton.setAttribute('id','logoutbutton');
+				logoutbutton.setAttribute('name','logout');
+				logoutbutton.onclick = function() {
+					console.log('logging out');
+					window.App.logout();
+				};
+				
+				var logout_text = document.createTextNode('Logout');
+				logoutbutton.appendChild(logout_text);
+
+				var error = document.createElement('div');
+				error.setAttribute('id','logout_error');
+				
+				
+				$(this.el).empty();
+				
+				$(this.el).append(title);
+				$(this.el).append(logoutbutton);
+				$(this.el).append(error);
 			}
 			return this;
 		}
@@ -413,7 +473,69 @@
 		}
 	});	
 
+	window.UploadView = Backbone.View.extend({
+		tagName: 'div',
+		idName: 'dropbox',
+		events : {
+			"dragenter" : "dragEnter",
+			"dragover"  : "dragOver",
+			"dragleave" : "dragLeave",
+			"drop"      : "drop"
+		},
 
+		initialize : function ( options ) {
+			
+			this.hoverTarget = this.$("#hover_target");
+		},
+		
+		dragEnter : function ( event ) {
+			console.log('enter');
+			event.preventDefault();
+			this.hoverTarget.fadeIn();
+		},
+		
+		dragOver : function ( event ) {
+			console.log('over');
+			event.preventDefault();
+		},
+
+		dragLeave : function ( event ) {
+			console.log('leave');
+			event.preventDefault();
+		
+			if (!this.isInside(event)) {
+				this.hoverTarget.fadeOut();
+			}
+		},
+
+		drop : function ( event ) {
+			console.log('drop');
+			event.preventDefault();
+			this.trigger("drop", event.originalEvent.dataTransfer);
+		},
+		
+		isInside : function ( event ) {
+			var top    = this.el.offset().top;
+			var left   = this.el.offset().left;
+			var right  = left + this.el.outerWidth();
+			var bottom = top + this.el.outerHeight();
+
+			if ((event.pageX > right) || (event.pageX < left)) {
+			return false;
+			}
+
+			if ((event.pageY >= bottom) || (event.pageY <= top)) {
+			return false;
+			}
+
+			return true;
+		},
+		render: function() {
+			console.log('rendering upload view');
+			$(this.el).html('Upload');
+			return this;
+		}
+	});
   
 	window.FilesView = Backbone.View.extend({
 		tagName: 'div',
@@ -425,10 +547,15 @@
 			this.template = _.template($('#files-template').html());
 			this.directory = '';
 
+			//this.uploadView = UploadView({ el: this.$('#dropbox') });
 			this.collection = new Files();
 			
 			this.collection.bind('reset', this.render);
 			
+			this.dropbox = new UploadView({ });
+			
+				
+						
 			dispatcher.on("didAuthenticate", function(msg) {
 				console.log('authenticated, getting new file tree');
 				window.App.filesView.getTree('',false);
@@ -470,6 +597,9 @@
 			$(this.el).html(this.template({}));
 
 			
+			var $rightpanel = this.$('#rightpanel');
+			
+			$rightpanel.html(this.dropbox.render().el);
 			
 			var $filelist = this.$('#filelist');
 			
@@ -614,13 +744,21 @@
 			_.bindAll(this, 'render');
 			this.template = _.template($('#dashboard-template').html());
 			this.status = new StatusView({ });
+			dispatcher.on("needsAuthentication", function(msg) {
+				window.App.dashboardView.render();
+			});
 		},
     
 		render: function() {
-			console.log('render dashboard');
-			var renderedContent = this.template();
-			$(this.el).html(renderedContent);
-			$(this.el).append($(this.status.render().el));
+			console.log('Render dashboard');
+			if (window.authenticated == false) {
+				$(this.el).html('');
+			}
+			else {
+				var renderedContent = this.template();
+				$(this.el).html(renderedContent);
+				$(this.el).append($(this.status.render().el));
+			}
 			return this;
 		}
 	});

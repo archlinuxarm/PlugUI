@@ -475,55 +475,6 @@ function saveSettings() {
     });
 }
 
-function setFileDropbox() {
-	var dropbox = $('#dropbox');
-	var message = $('.message', dropbox);
-	
-	dropbox.filedrop({
-
-		paramname:'file',
-		maxfiles: 1,
-		maxfilesize: 500, // in mb
-		url: '/api/files/upload',
-					 
-		uploadFinished:function(i,file,response){
-			//$.data(file).addClass('done');
-			message.html("File uploaded");
-			//setTimeout(window.location="/admin/files/list",3000);
-			// response is the JSON object that post_file.php returns
-		},
-					 
-		error: function(err, file) {
-			switch(err) {
-				case 'BrowserNotSupported':
-					message.html('Browser unsupported');
-					break;
-				case 'TooManyFiles':
-					message.html('Limit 1 file');
-					break;
-				case 'FileTooLarge':
-					message.html(file.name+' is too large');
-					break;
-				default:
-					break;
-			}
-		},
-					 
-		// Called before each upload is started
-		beforeEach: function(file){
-			//
-		},
-						
-		uploadStarted:function(i, file, len){
-			message.html("Uploading " + file.name);
-		},
-					 
-		progressUpdated: function(i, file, progress) {
-			$('.progress').width(progress + "%");
-		}
-	});
-}
-
 
 // User stuff
 
