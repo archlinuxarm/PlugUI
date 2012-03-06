@@ -11,9 +11,29 @@ var express = require('express');
 var each	= require('each');
 var form	= require('connect-form');
 
+var clientSessions = require('client-sessions');
+var crypto	= require('crypto');
 
 //pam auth connector
 var unixlib = require('unixlib');
+
+
+// secret used for cookie encryption, needs to be stored once in the filesystem if it doesnt exist already
+var secret;
+var secretPath = '/var/lib/plugui.secret';
+
+if (path.existsSync(secretPath)) {
+	secret = fs.readFileSync(secretPath);
+}
+else {
+	try {
+		secret = crypto.randomBytes(256);
+		fs.writeFileSync(secretPath, secret);
+	} catch (ex) {
+		console.log('Error generating random bytes for secret!');
+	}	
+	
+}
 
 // create an application 
 var app = module.exports = express.createServer(
@@ -25,7 +45,16 @@ app.configure(function(){
 	
 	//sessions in memory at the moment
 	app.use(express.cookieParser());
-	app.use(express.session({ secret: "70197a4d3a5cd29b62d4239007b1c5c3c0009d42d190308fd855fc459b107f40a03bd427cb6d87de18911f21ae9fdfc24dadb0163741559719669c7668d7d587" }));
+	app.use(
+		clientSessions({
+			cookieName: 'session_state',
+			secret: secret, 
+			duration: 24 * 60 * 60 * 1000, // 1 day
+		})
+	);
+	
+	
+	
 	
 	app.use(express.methodOverride());
 	app.use(app.router);
