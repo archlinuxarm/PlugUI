@@ -47,6 +47,35 @@
 	});
 	
 	
+	
+	window.User = Backbone.Model.extend({
+		defaults: {
+			username: null,
+			uid: null,
+			gid: null,
+			homedir: false,
+			shell: null
+        },
+		initialize: function(){
+            //
+			console.log('creating new user model');
+			
+        }
+	});
+  
+	window.Users = Backbone.Collection.extend({
+		initialize: function(){
+            //
+			console.log('creating new user collection');
+			
+        },
+		model: User,
+		comparator: function(user) {
+			return user.get("username").toLowerCase();
+		}
+	});
+	
+	
 	/* 
 	
 		Views 
@@ -95,6 +124,55 @@
 		}
 	});
 	
+	
+	window.UserView = Backbone.View.extend({
+		tagName: 'div',
+		className: 'one-third column statusbox',
+		
+		
+		initialize: function() {
+			_.bindAll(this, 'render');
+			this.template = _.template($('#user-template').html());
+			this.collection = new Users();
+			
+			this.collection.bind('reset', this.render);
+			dispatcher.on("didAuthenticate", function(msg) {
+				console.log('User view firing authenticated event');
+				window.App.settingsView.userView.fetch();
+			});
+			dispatcher.on("needsAuthentication", function(msg) {
+				console.log('User view firing deauthenticated event');
+				window.App.settingsView.userView.collection.reset();
+			});
+		},
+		render: function() {
+			console.log('User view rendering');
+			var context = { userlist: this.collection.toJSON() };
+			var renderedContent = this.template(context);
+			$(this.el).html(renderedContent);
+      
+			return this;
+		},
+		fetch: function() {
+			console.log('getting users from server');
+			$.ajax({
+				type: 'POST',
+				cache: false,
+				url : '/api/users',
+				data: { apicmd: "list" },
+				dataType : 'json',
+				success: function (json) { 
+					var response = json;
+					if (response.success == true) {
+						window.App.settingsView.userView.collection.reset(response.userlist);
+					}
+					hideloader();
+				}
+			});
+		}
+	});
+	
+			
 	window.AuthView = Backbone.View.extend({
 		tagName: 'div',
 		className: 'authpanel',
@@ -722,12 +800,13 @@
 		initialize: function() {
 			_.bindAll(this, 'render');
 			this.template = _.template($('#settings-template').html());
+			this.userView = new UserView();
 		},
     
 		render: function() {
 			var renderedContent = this.template();
 			$(this.el).html(renderedContent);
-      
+			$(this.el).append($(this.userView.render().el));
 			return this;
 		}
 	});

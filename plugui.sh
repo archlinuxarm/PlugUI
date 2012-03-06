@@ -19,7 +19,7 @@ fi
 case "$1" in
 	start)
 		stat_busy 'Starting PlugUI'
-		NODE_ENV=production nohup "$NODE" "$DIR/server.js" 1>>"/var/log/plugui.log" 2>&1 &
+		NODE_ENV=development NODE_PATH=$NODE_PATH nohup "$NODE" "$DIR/server.js" 1>>"/var/log/plugui.log" 2>&1 &
 		PID=$!
 		echo $! > $PIDFILE
 		if [[ $? -gt 0 ]]; then

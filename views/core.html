@@ -63,16 +63,6 @@
 	<div id="notificationbar" class="bottom ui-panel">    </div>
 
 
-
-
-
-
-
-
-
-
-
-
 	<!-- templates -->
 	
 	<script type="text/template" id="mediabar-template">
@@ -176,6 +166,18 @@
 
 	</script>
 	
+	<script type="text/template" id="user-template">
+		<h5>Users</h5>
+		<div class="etch"></div>
+		<ul id="userlist">
+			<% _.each(userlist, function(i) { %>  
+				<li><%= i.username %></li> 
+			<% }); 
+			%>
+		</ul>
+		<div class=""><a href="javascript:" onclick="add_user();">Add user</a></div>
+	
+	</script>
 	
 	<!-- 
 	
@@ -197,18 +199,12 @@
 			<div class="etch"></div>
 			<span id="settingserror"></span>
 		</div>
-        
-		<div class="eight columns statusbox">
-			<h5>Users</h5>
-			<div class="etch"></div>
-			<ul id="userlist">
-		
-			</ul>
-			<div class=""><a href="javascript:" onclick="add_user();">Add user</a></div>
-	
-		</div>
 
-		<div id="overlay">  
+	</script>
+
+<!--
+
+<div id="overlay">  
 			<div class="msgbox">  
 			<strong>Create user</strong>	
 			<div class="whitebox text-entry-box"><input placeholder="Username" type="text" name="username" id="usernamefield" /></div>
@@ -216,13 +212,13 @@
 			<div class="whitebox text-entry-box"><input placeholder="Password" type="password" name="password" id="passwordfield" /></div>
 			<div class="whitebox text-entry-box"><input placeholder="Repeat password" type="password" name="password2" id="password2field" /></div>
 
-			<!-- <div>
+			<div>
 				<strong>Is admin?</strong>
 				<select id="adminfield" name="admin">
 					<option value="1" selected="selected">Yes</option>
 					<option value="0">No</option>
 				</select>
-			</div> -->
+			</div>
 			<div id="buttons">
 				<button type="button" name="create" onclick="createUser();">Create</button>
 				<button style="float:right;" type="button" name="cancel" onclick="$('#overlay').fadeOut();">Cancel</button>
@@ -232,10 +228,8 @@
 	
 			</div>  
 		</div> 
-
-	</script>
-
-
+		
+-->
 	
 	<!-- onload -->
 	

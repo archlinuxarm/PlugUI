@@ -138,12 +138,36 @@ app.post('/api/auth', function(req, res) {
 		
 
 
-app.post('/api/user', function(req, res){
+app.post('/api/users', function(req, res){
 	response = {};
 	response.success = false
 	apicmd = req.body.apicmd
 	if (apicmd == "list") {
-		//users = database.list_users();
+		fs.readFile('/etc/passwd', 'ascii', function(err,data){
+			if(err) {
+				
+			}
+			else {
+				var users = data.toString().split("\n");
+				var userlist = [];
+				for(i in users) {					
+					var userinfo = users[i].split(":");
+					
+					var user = {};
+					user.username = userinfo[0];
+					user.uid = userinfo[2];
+					user.gid = userinfo[3];
+					user.homedir = userinfo[5];
+					user.shell = userinfo[6];
+					userlist.push(user);
+				}
+				response.success = true;
+				response.userlist = userlist;
+			}
+			res.json(response);
+		});
+	
+
 		//response.success = true;
 		//response.users = users;
 	}
@@ -155,7 +179,7 @@ app.post('/api/user', function(req, res){
 		//database.delete_user(uuid=bottle.request.forms.uuid)
 		//response.success = true;
 	}
-	res.json(response);
+	
 });
 
 app.post('/api/files/upload', function(req, res) {
