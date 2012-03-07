@@ -14,6 +14,9 @@ var form	= require('connect-form');
 var clientSessions = require('client-sessions');
 var crypto	= require('crypto');
 
+var spawn = require('child_process').spawn;
+	
+	
 //pam auth connector
 var unixlib = require('unixlib');
 
@@ -137,11 +140,69 @@ app.post('/api/auth', function(req, res) {
 });							
 		
 
+app.post('/api/pacman', function(req, res) {
+	response = {};
+	response.success = false;
+	apicmd = req.body.apicmd;
+	if (apicmd == "list_installed_packages") {
+	
+		installedpackages = [];
+		var packagelist = spawn('pacman', ["-Q"]);
+		
+		packagelist.stdout.on('data', function (data) {
+			var packagelines = data.toString().split("\n");
+			for(i in packagelines) {	
+				if ( packagelines[i].match("^\ ") ) return;
+				if ( packagelines[i].match("^\:") ) return;
+				var packagesplit = packagelines[i].split(" ");
+				var package = { name: packagesplit[0], version: packagesplit[1] };
+				installedpackages.push(package);				
+			}
+		});
+
+		packagelist.on('exit', function (code) {
+			if (code == 0) {
+				response.success = true;
+				response.installedpackages = installedpackages;
+			}
+			res.json(response);
+		});
+	}
+	else if ( apicmd == "list_all_packages" ) {
+	
+	}
+	else if ( apicmd == "list_upgrades" ) {
+		var packagelist = spawn('pacman', ["-Syup","--print-format","'%n %v'"]);
+		packagelist.stdout.on('data', function (data) {
+			response.upgradelist.push(data);
+		});
+
+		packagelist.on('exit', function (code) {
+			if (code == 0) {
+				response.success = true;
+			}
+			res.json(response);
+		});
+	}
+	else if ( apicmd == "do_upgrade" ) {
+		var packagelist = spawn('pacman', ["-Syu","--noconfirm","--noprogressbar"]);
+		packagelist.stdout.on('data', function (data) {
+			response.upgraderesult.push(data);
+		});
+
+		packagelist.on('exit', function (code) {
+			if (code == 0) {
+				response.success = true;
+			}
+			res.json(response);
+		});
+	}		
+});
 
 app.post('/api/users', function(req, res){
 	response = {};
-	response.success = false
-	apicmd = req.body.apicmd
+	response.success = false;
+	apicmd = req.body.apicmd;
 	if (apicmd == "list") {
 		fs.readFile('/etc/passwd', 'ascii', function(err,data){
 			if(err) {
@@ -166,18 +227,29 @@ app.post('/api/users', function(req, res){
 			}
 			res.json(response);
 		});
-	
-
-		//response.success = true;
-		//response.users = users;
 	}
 	else if ( apicmd == "create" ) {
-		//database.create_user(username=bottle.request.forms.username,password=bottle.request.forms.password,admin=true);
-		//response.success = true;
+		var username = req.body.username;
+		// note: this is vulnerable to potential attack, 'username; rm -rf /' 
+		var useradd = spawn('useradd', [username]);
+		useradd.on('exit', function (code) {
+			if (code == 0) {
+				response.success = true;
+			}
+			res.json(response);
+		});
+		
 	}
 	else if ( apicmd == "delete" ) {
-		//database.delete_user(uuid=bottle.request.forms.uuid)
-		//response.success = true;
+		var username = req.body.username;
+		// note: this is vulnerable to potential attack, 'username; rm -rf /' 
+		var userdel = spawn('userdel', [username]);
+		userdel.on('exit', function (code) {
+			if (code == 0) {
+				response.success = true;
+			}
+			res.json(response);
+		});
 	}
 	
 });
@@ -194,8 +266,6 @@ app.post('/api/files/upload', function(req, res) {
 		}
 	});
 	
-	// We can add listeners for several form
-	// events such as "progress"
 	req.form.on('progress', function(bytesReceived, bytesExpected){
 		var percent = (bytesReceived / bytesExpected * 100) | 0;
 		console.log('Uploading: %' + percent + '\r');
