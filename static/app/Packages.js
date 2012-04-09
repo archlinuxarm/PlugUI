@@ -3,22 +3,23 @@
 		defaults: {
 			name: null,
 			version: null,
-			repo: null
+			repo: null,
+			installed: false
         },
 		initialize: function(){
-			console.log('creating new package model');
+
 			
         }
 	});
   
 	window.Packages = Backbone.Collection.extend({
 		initialize: function(){
-            console.log('New package collection');
+
 			
         },
 		model: Package,
 		comparator: function(package) {
-			return package.get("name").toLowerCase();
+			return package.get("name");
 		}
 	});
 })(jQuery);

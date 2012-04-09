@@ -7,7 +7,7 @@
 		initialize: function() {
 			_.bindAll(this, 'render');
 			this.template = _.template($('#user-template').html());
-			this.addusertemplate = _.template($('#adduser-template').html());
+			this.addform = _.template($('#adduser-template').html());
 			this.collection = new Users();
 			
 			this.collection.bind('reset', this.render);
@@ -44,20 +44,8 @@
 				this.$('#adduser-error').html("<strong>No password</strong>");
 				return false;  
 			}
-			if (this.$('#password2field').attr('value') !== undefined) {  
-				var password2	= this.$('#password2field').attr('value');    
-			} 	
-			else {
-				this.$("#password2field").focus();  
-				this.$('#adduser-error').html("<strong>Repeat password</strong>");
-				return false;  
-			}
-	
-			if (password != password2) {
-				this.$("#password2field").focus(); 
-				this.$('#adduser-error').html("<strong>Passwords don't match</strong>");
-				return false; 	
-			}
+
+
 			this.$('#adduser-error').html("<strong>Creating user...</strong>");
 			$.ajax({
 				type: "POST",
@@ -68,15 +56,15 @@
 					var result = json;
 					if (result.success == true) {
 				
-						lthis.$('#adduser-error').html("<strong>User created</strong>");
-						lthis.$('#adduser-error').fadeIn('slow');
+						lthis.$('#user-error').html("<strong>User created</strong>");
+						lthis.$('#user-error').fadeIn('slow');
 						$(lthis.popupel).remove();
 					}
 					else {
-						lthis.$('#adduser-error').html("<strong>Create user failed</strong>");
-						lthis.$('#adduser-error').fadeIn('slow');
+						lthis.$('#user-error').html("<strong>Create user failed</strong>");
+						lthis.$('#user-error').fadeIn('slow');
 					}  
-					setTimeout('$("#adduser-error").fadeOut("slow");$("#adduser-error").html("");', 3000);
+					setTimeout('$("#user-error").fadeOut("slow");$("#adduser-error").html("");', 3000);
 					lthis.fetch();
 				}
 			});
@@ -98,20 +86,6 @@
 					}
 				}
 			});	
-		},
-		popup: function() {
-			console.log('User popup');
-			this.popupel = this.addusertemplate();
-			var lthis = this;
-			
-			
-			$(this.el).append(this.popupel);
-			this.$('#saveuser-button').onclick = function() { 
-				console.log('saveuser from bind');
-				lthis.saveuser(); 
-			};
-			
-			
 		},
 		render: function() {
 			var lthis = this;
@@ -141,16 +115,22 @@
 					lthis.$('#userlist').append(li);
 				}; 
 			});
+
+
+			$(this.el).append(this.addform());
 			
-			var button = document.createElement('button');
-			button.onclick = function() {
-				console.log('User popup click');
-				lthis.popup();
+			var lthis = this;
+
+			var savebutton = document.createElement('button');
+			savebutton.setAttribute('class','saveuser-button');
+			var text = document.createTextNode('Add');
+			savebutton.appendChild(text);
+			savebutton.onclick = function() {					
+				console.log('saveuser from bind');
+				lthis.saveuser(); 
+				lthis.render();
 			};
-			var text = document.createTextNode('Add user');
-			
-			button.appendChild(text);
-			$(this.el).append(button);
+			this.el.appendChild(savebutton);
 			return this;
 		},
 		

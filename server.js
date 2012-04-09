@@ -144,10 +144,10 @@ app.post('/api/pacman', function(req, res) {
 	response = {};
 	response.success = false;
 	apicmd = req.body.apicmd;
-	if (apicmd == "list_installed_packages") {
+	if (apicmd == "list_packages") {
 	
-		installedpackages = [];
-		var packagelist = spawn('pacman', ["-Q"]);
+		packages = [];
+		var packagelist = spawn('pacman', ["-Sl"]);
 		
 		packagelist.stdout.on('data', function (data) {
 			var packagelines = data.toString().split("\n");
@@ -155,21 +155,25 @@ app.post('/api/pacman', function(req, res) {
 				if ( packagelines[i].match("^\ ") ) return;
 				if ( packagelines[i].match("^\:") ) return;
 				var packagesplit = packagelines[i].split(" ");
-				var package = { name: packagesplit[0], version: packagesplit[1] };
-				installedpackages.push(package);				
+				var isInstalled;
+				if (packagesplit[4] == "[installed]") { 
+					isInstalled = true;
+				}
+				else {
+					isInstalled = false;
+				}
+				var package = { repo: packagesplit[0], name: packagesplit[1], version: packagesplit[2], installed: isInstalled };
+				packages.push(package);				
 			}
 		});
 
 		packagelist.on('exit', function (code) {
 			if (code == 0) {
 				response.success = true;
-				response.installedpackages = installedpackages;
+				response.packages = packages;
 			}
 			res.json(response);
 		});
-	}
-	else if ( apicmd == "list_all_packages" ) {
-	
 	}
 	else if ( apicmd == "list_upgrades" ) {
 		var packagelist = spawn('pacman', ["-Syup","--print-format","'%n %v'"]);

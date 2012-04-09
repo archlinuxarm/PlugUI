@@ -9,11 +9,12 @@
 
 			this.visible = false;
 			
+			var lthis = this;
 			dispatcher.on("didAuthenticate", function(msg) {
-				window.App.authView.hideAuth();
+				lthis.hideAuth();
 			});
 			dispatcher.on("needsAuthentication", function(msg) {
-				window.App.authView.showAuth();
+				lthis.showAuth();
 			});
 
     
@@ -59,6 +60,8 @@
 				userbox.setAttribute('class','whitebox');
 				
 				var userfield = document.createElement('input');
+				userfield.setAttribute('class','selectable');
+
 				userfield.setAttribute('placeholder','Username');
 				userfield.setAttribute('type','text');
 				userfield.setAttribute('name','username');
@@ -72,6 +75,7 @@
 				passbox.setAttribute('class','whitebox');
 				
 				var passfield = document.createElement('input');
+				passfield.setAttribute('class','selectable');
 				passfield.setAttribute('placeholder','Password');
 				passfield.setAttribute('type','password');
 				passfield.setAttribute('name','password');

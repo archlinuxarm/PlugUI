@@ -10,7 +10,19 @@ html {
 
 * {
 	font-family:Helvetica !important;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
 
+.selectable {
+-webkit-user-select: text;
+-khtml-user-select: text;
+-moz-user-select: text;
+-o-user-select: text;
+user-select: text;
 }
 
 body {
@@ -103,6 +115,28 @@ body {
 #content_area {
 	padding-bottom:48px;
 	
+}
+
+#package-list {
+	max-height:500px;
+	min-height:150px;
+	height:auto;
+	overflow-y:scroll;
+	overflow-x:hidden;
+	
+	
+}
+
+#package-controls {
+	float:right;
+	display:inline-block;
+}
+
+#package-controls span {
+	height:24px;
+	display:inline-block;
+	padding:0 6px;
+	cursor:pointer;
 }
 
 .whitebox {
@@ -211,11 +245,7 @@ img#pageloader {
     padding:0;
     display:block;
     list-style:none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-o-user-select: none;
-	user-select: none;
+
 }
 
 #adminbar.top {
@@ -299,7 +329,7 @@ img#pageloader {
 }
 
 .ui-panel ul.gradient li.first {
-	border-left:none;
+	border-left: #F4F5F6 1px solid; 
 	border-right: #9BA5AE 1px solid;
 }
 
@@ -360,9 +390,6 @@ img#pageloader {
 
 
 .ui-panel ul.gradient li#userbutton {
-	position:absolute;
-	bottom:0;
-	right:0;
 	width:48px;
 	text-align:center;
 	cursor:pointer;
@@ -379,18 +406,6 @@ img#pageloader {
 .ui-panel ul.gradient li#userbutton:active {
 	top:1px;
 }
-
-.ui-panel ul.gradient li#userbutton-before {
-	border-right: #9BA5AE 1px solid;
-	border-left:none;
-	width:1px;
-	position:absolute;
-	bottom:0;
-	right:50px;
-}
-
-
-
 
 .ui-panel ul.gradient li.last {
 	border-left: #F4F5F6 1px solid;
@@ -583,9 +598,9 @@ div.authpanel {
 
     width: 275px;
 	height: 200px;
-	bottom: 72px;
-	right: 12px;
-	position: fixed;
+	top: 72px;
+	left: 12px;
+	position: absolute;
 	padding-top:12px;
 	padding-bottom:12px;
 	-moz-border-radius: 10px;

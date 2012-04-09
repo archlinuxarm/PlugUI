@@ -7,14 +7,26 @@
 		initialize: function() {
 			_.bindAll(this, 'render');
 			this.template = _.template($('#adminbar-template').html());
+			
+			var lthis = this;
+			dispatcher.on("didAuthenticate", function(msg) {
+				lthis.render();
+			});
+			dispatcher.on("needsAuthentication", function(msg) {
+				lthis.render();
+			});
 		},
 		events: {
             "click #controlbutton": "reveal",
 			"click #dashboard-button": "dashboard",
 			"click #files-button": "files",
 			"click #packages-button": "packages",
-			"click #settings-button": "settings"
+			"click #settings-button": "settings",
+			"click #userbutton": "auth"
         },
+		auth: function() {
+			window.App.authView.toggle();
+		}, 
 		dashboard: function() {
 			if (!window.authenticated == true) return;
 			$('.adminbutton').removeClass('selected'); 
@@ -43,7 +55,7 @@
 					duration:500,
 					easing:"swing",
 					complete:function(){
-					//alert("complete!");
+						//alert("complete!");
 					}
 				});
 			} else {
@@ -53,7 +65,7 @@
 					duration:500,
 					easing:"swing",
 					complete:function(){
-					//alert("complete!");
+						//alert("complete!");
 					}
 				});
 			}            

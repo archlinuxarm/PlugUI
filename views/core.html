@@ -57,7 +57,7 @@
 	<script src="/static/app/Files.js"> </script>
 	<script src="/static/app/FilesView.js"> </script>
 	<script src="/static/app/MediaBar.js"> </script>
-	<script src="/static/app/NotificationBar.js"> </script>
+
 	<script src="/static/app/PackagesView.js"> </script>
 	<script src="/static/app/Packages.js"> </script>
 
@@ -83,32 +83,20 @@
 
 	<div id="content_area" id="container" class="container">   </div><!-- container -->
 
-
-	<div id="notificationbar" class="bottom ui-panel">    </div>
-
-
 	<!-- templates -->
 	
 	<script type="text/template" id="mediabar-template">
 	
 	</script>
 	
-	<script type="text/template" id="notificationbar-template">
+	<script type="text/template" id="adminbar-template">
 
-			<li id="userbutton-before"></li>
-			<li id="userbutton">
+			<li class="first" id="userbutton">
 				<div id="user-icon">
 					<img src="/static/images/111-user.png" title="user panel"/>
 				</div>
 			
 			</li>
-					
-	</script>
-	
-	<script type="text/template" id="adminbar-template">
-
-			<li class="first" id="logo">
-				<a style="padding-top:12px; display:block; text-decoration:none;" href="javascript:" onClick="window.open('http://github.com/archlinuxarm/plugui');">PlugUI</a>
 			</li>
 			<li id="dashboard-button" class="adminbutton">
 				<a href="/#/dashboard">
@@ -197,12 +185,27 @@
 		-->
 		
 	<script type="text/template" id="packages-template">
-			<h5>Installed packages</h5>
+		<div class="two-thirds column statusbox">
+			<h5 style="display:inline-block;">Packages</h5>
+			<div id="package-controls">
+				<span id="previous-button">⬇</span>
+				<span id="current-index"></span>
+				<span id="next-button">⬆</span>
+			</div>
 			<div class="etch"></div>
-			<ul id="installed-packages"></ul>
+			<ul id="package-list"></ul>
+		</div>
+		<div class="one-third column statusbox">
+			<h5>Status</h5>
+			<div class="etch"></div>
+			<div>Total: <span id="number-all-packages"></span></div>
+			<div>Installed: <span id="number-installed-packages"></span></div>
+			<div>Updates: <span id="number-updates-available"></span></div>
+			
+		</div>
 	</script>
 	<script type="text/template" id="settings-template">
-		<div class="eight columns statusbox">
+		<div class="two-thirds column statusbox">
 			<h5>Global Settings</h5>
 			<div class="etch"></div>
 			<span id="settingserror"></span>
@@ -211,21 +214,12 @@
 	</script>
 
 	<script type="text/template" id="adduser-template"> 
-	
-		<div class="msgbox greybox">  
-			<strong>Create user</strong>	
-			<div class="whitebox text-entry-box"><input placeholder="Username" type="text" name="username" id="usernamefield" /></div>
-			<div class="whitebox text-entry-box"><input placeholder="Password" type="password" name="password" id="passwordfield" /></div>
-			<div class="whitebox text-entry-box"><input placeholder="Repeat password" type="password" name="password2" id="password2field" /></div>
 
-			<div id="buttons">
-				<button id="saveuser-button" type="button" name="create">Create</button>
-				<button style="float:right;" type="button" name="cancel" onclick="$('.msgbox').remove();">Cancel</button>
-			</div> 
-			<div id="adduser-error"></div>
-	
-	
-		</div>  
+ 
+
+		<div class="whitebox text-entry-box"><input class="selectable" placeholder="Username" type="text" name="username" id="usernamefield" /></div>
+		<div class="whitebox text-entry-box"><input class="selectable" placeholder="Password" type="password" name="password" id="passwordfield" /></div>
+
 		
 	</script>
 	

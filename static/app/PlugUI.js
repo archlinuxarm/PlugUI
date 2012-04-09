@@ -16,13 +16,6 @@
 			this.filesView		= new FilesView();
 			
 			
-			
-			this.notificationBar = new NotificationBar();
-			
-			var $notificationBarContainer = $('#notificationbar');
-			$notificationBarContainer.append(this.notificationBar.render().el);
-			
-			
 			this.adminBar		= new AdminBar();
 			this.mediaBar		= new MediaBar();
 			var $adminBarContainer = $('#adminbar');
