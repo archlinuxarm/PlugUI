@@ -10,6 +10,7 @@ var util	= require('util');
 var express = require('express');
 var each	= require('each');
 var form	= require('connect-form');
+var mime	= require('mime');
 
 var clientSessions = require('client-sessions');
 var crypto	= require('crypto');
@@ -358,6 +359,30 @@ app.post('/api/files', function(req, res){
 			response.success = false;
 			response.validpath = false;
 			res.json(response);
+		}
+	}
+	else if (apicmd == 'download') {
+			
+		filename = req.body.filename;
+		filepath = req.body.filepath;
+		
+		// this may not be secure yet depending on how easily the filesystem APIs can be abused. 
+		// the old python version explicitly normalized the path and did some other checks, but
+		// it may be that doing just a regex type sandbox works so long as nobody can ../ or symlink (need to check this)
+		if ( filepath.match("^/media") ) {		
+			var mimetype = mime.lookup(filepath);
+			res.writeHead(200, {
+				"Content-Type": mimetype,
+				"Content-disposition": "attachment; filename=" + filename,
+			});
+					
+			var filestream = fs.createReadStream(filepath);
+			filestream.on('data', function(chunk) {
+				res.write(chunk);
+			});
+			filestream.on('end', function() {
+				res.end();
+			});
 		}
 	}
 });

@@ -11,6 +11,7 @@
 		render: function() {
 			var item = this.model;
 			
+			var lthis = this;
 			
 			
 			var fileline = this.el;
@@ -95,7 +96,41 @@
 				var downloadlink = document.createElement("span");
 				downloadlink.setAttribute('class', 'file-toolbar-button');
 				downloadlink.setAttribute('title', 'Download file');
-				downloadlink.onclick = function(){ downloadFile(item);return false };
+				downloadlink.onclick = function() { 
+
+					// this is a rather crude hack, appending a form just to download a file without 
+					// switching pages, but it works and the alternatives don't
+					var form = document.createElement("form");
+					form.setAttribute("method", "post");
+					form.setAttribute("action", "/api/files");
+					document.body.appendChild(form);
+
+					var hidden;
+
+					// append cmd to form
+					hidden = document.createElement('input');
+					hidden.type = 'hidden';
+					hidden.name = 'apicmd';
+					hidden.value = 'download';
+					form.appendChild(hidden);
+	
+					// append path to form
+					hidden = document.createElement('input');
+					hidden.type = 'hidden';
+					hidden.name = 'filepath';
+					hidden.value = item.get('fullpath');
+					form.appendChild(hidden);
+
+					// append filename to form
+					hidden = document.createElement('input');
+					hidden.type = 'hidden';
+					hidden.name = 'filename';
+					hidden.value = item.get('name');
+					form.appendChild(hidden);
+						
+					form.submit();	
+					return false;		
+				};
 				var text = document.createTextNode("D");
 				downloadlink.appendChild(text);
 				tools.appendChild(downloadlink);
@@ -112,7 +147,38 @@
 				var viewlink = document.createElement("span");
 				viewlink.setAttribute('class', 'file-toolbar-button');
 				viewlink.setAttribute('title', 'View file (if possible)');
-				viewlink.onclick = function(){ viewFile(item);return false };
+				viewlink.onclick = function(){
+					var form = document.createElement("form");
+					form.setAttribute("method", "post");
+					form.setAttribute("action", "/api/files");
+					document.body.appendChild(form);
+
+					var hidden;
+
+					// append cmd to form
+					hidden = document.createElement('input');
+					hidden.type = 'hidden';
+					hidden.name = 'apicmd';
+					hidden.value = 'view';
+					form.appendChild(hidden);
+	
+					// append path to form
+					hidden = document.createElement('input');
+					hidden.type = 'hidden';
+					hidden.name = 'filepath';
+					hidden.value = item.get('fullpath');
+					form.appendChild(hidden);
+
+					// append filename to form
+					hidden = document.createElement('input');
+					hidden.type = 'hidden';
+					hidden.name = 'filename';
+					hidden.value = item.get('name');
+					form.appendChild(hidden);
+						
+					form.submit();	
+					return false;
+				};
 				var text = document.createTextNode("V");
 				viewlink.appendChild(text);
 				tools.appendChild(viewlink);

@@ -11,6 +11,7 @@
 	  "connect": ">= 2.0.2",
 	  "connect-form": ">= 0.2.1",
 	  "each":  ">= 0.0.9",
-	  "client-sessions": ">= 0.0.3"
+	  "client-sessions": ">= 0.0.3",
+	  "mime": ">= 1.2.5"
   }
 }
