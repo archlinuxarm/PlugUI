@@ -1,0 +1,12 @@
+default:
+  app:
+    port: 80
+development:
+  app:
+    port: 8080
+test:
+  app:
+    port: 80
+production:
+  app:
+    port: 80

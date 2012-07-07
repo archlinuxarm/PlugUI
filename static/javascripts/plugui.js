@@ -102,6 +102,28 @@ function prettysize(bytes) {
 	}	
 }
 
+function prettytime(seconds) {
+	var numdays = Math.floor(seconds / (60 * 60 * 24));
+	var numhours = Math.floor((seconds % (60 * 60 * 24)) / (60 * 60));
+	if (numhours < 10) {
+		numhours = "0" + numhours;
+	}
+
+	var numminutes = Math.floor(((seconds % (60 * 60 * 24)) % (60 * 60)) / 60);
+	if (numminutes < 10) {
+		numminutes = "0" + numminutes;
+	}
+
+	var numseconds = ((seconds % (60 * 60 * 24)) % (60 * 60)) % 60;
+	numseconds = numseconds.toFixed(0);
+	if (numseconds < 10) {
+		numseconds = "0" + numseconds;
+	}
+
+
+	return numdays + " days " + numhours + ":" + numminutes + ":" + numseconds;
+}
+
 
 function plugui_init() {
 

@@ -9,24 +9,29 @@ var fs		= require('fs');
 var util	= require('util');
 var express = require('express');
 var each	= require('each');
-var form	= require('connect-form');
 var mime	= require('mime');
 
 var clientSessions = require('client-sessions');
 var crypto	= require('crypto');
 
 var spawn = require('child_process').spawn;
-	
+
+//configuration	
+var config = require('yaml-config');
+var settings = config.readConfig("config/app.yaml");	
 	
 //pam auth connector
 var unixlib = require('unixlib');
 
+// read version information
+var packageJson = JSON.parse(fs.readFileSync("package.json", "UTF-8"));
+var packageVersion = packageJson.version;
 
 // secret used for cookie encryption, needs to be stored once in the filesystem if it doesnt exist already
 var secret;
-var secretPath = '/var/lib/plugui.secret';
+var secretPath = os.tmpDir() + "/plugui.secret";
 
-if (path.existsSync(secretPath)) {
+if (fs.existsSync(secretPath)) {
 	secret = fs.readFileSync(secretPath);
 }
 else {
@@ -41,7 +46,7 @@ else {
 
 // create an application 
 var app = module.exports = express.createServer(
-	form({ keepExtensions: true })
+
 );
 
 app.configure(function(){
@@ -56,9 +61,6 @@ app.configure(function(){
 			duration: 24 * 60 * 60 * 1000, // 1 day
 		})
 	);
-	
-	
-	
 	
 	app.use(express.methodOverride());
 	app.use(app.router);
@@ -85,31 +87,29 @@ app.configure('production', function(){
 });
 
 
-
-
 // only one page, all views and transitions handled client-side
-
 app.get('/', function(req, res){
 	res.render('core.html');
 });
 
 
-
-
-
-
 // APIs
-
-
-
 app.post('/api/status', function(req,res) {
 	response = {};
+//	console.log("Constructing status response");
 	response.success		= true;
+	response.hostname   = os.hostname();
+	response.type       = os.type();
+	response.arch       = os.arch();
+	response.platform   = os.platform();
+	response.release    = os.release(); 
 	response.freemem		= os.freemem();
-	response.memused		= os.totalmem() - os.freemem();
+	response.usedmem		= os.totalmem() - os.freemem();
 	response.loadavg		= os.loadavg();
 	response.uptime			= os.uptime();
-	response.memory_total	= os.totalmem();
+	response.totalmem	  = os.totalmem();
+	response.version    = packageVersion;
+//	console.log("Response constructed");
 	res.json(response);
 });
 
@@ -259,24 +259,24 @@ app.post('/api/users', function(req, res){
 	
 });
 
-app.post('/api/files/upload', function(req, res) {
-	req.form.complete(function(err, fields, files){
-		if (err) {
-			next(err);
-		} 
-		else {
-			console.log('\nuploaded %s to %s',  files.image.filename, files.image.path);
-			//res.redirect('back');
-			res.json( { "success": success });
-		}
-	});
-	
-	req.form.on('progress', function(bytesReceived, bytesExpected){
-		var percent = (bytesReceived / bytesExpected * 100) | 0;
-		console.log('Uploading: %' + percent + '\r');
-	});
-	
-});
+//app.post('/api/files/upload', function(req, res) {
+//	req.form.complete(function(err, fields, files){
+//		if (err) {
+//			next(err);
+//		} 
+//		else {
+//			console.log('\nuploaded %s to %s',  files.image.filename, files.image.path);
+//			//res.redirect('back');
+//			res.json( { "success": success });
+//		}
+//	});
+//	
+//	req.form.on('progress', function(bytesReceived, bytesExpected){
+//		var percent = (bytesReceived / bytesExpected * 100) | 0;
+//		console.log('Uploading: %' + percent + '\r');
+//	});
+//	
+//});
 
 app.post('/api/files', function(req, res){
 	console.log("Getting directory list");
@@ -511,4 +511,5 @@ elif apicmd == 'download':
 
 
 // GO! :D
-app.listen(80);
+console.log('Starting PlugUI on port: ' +  settings.app.port);
+app.listen(settings.app.port);
