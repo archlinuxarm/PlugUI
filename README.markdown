@@ -25,7 +25,7 @@ Install node:
 
 Then install the required node modules:
 
-	npm install -g express unixlib connect-form each client-sessions
+	npm install express unixlib each client-sessions
 
 Now symlink the run script and run it:
 
