@@ -5,9 +5,7 @@
 
 DIR=/opt/PlugUI
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-NODE_PATH=/usr/lib/node_modules
 NODE=/usr/bin/node
-
 
 PIDFILE=/var/run/plugui.pid
 PID=$(cat $PIDFILE 2>/dev/null)
@@ -48,3 +46,4 @@ case "$1" in
 		echo "usage: $0 {start|stop|restart}"
 esac
 exit 0
+	
