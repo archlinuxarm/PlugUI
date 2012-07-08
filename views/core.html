@@ -161,10 +161,23 @@
 	<script type="text/template" id="status-template">
 		<h5>Status</h5>
 		<div class="etch"></div>
+		<div class="stat-list">Hostname:<span class="value" id="hostname"><%= hostname %></span></div>
 		<div class="stat-list">Load:<span class="value" id="loadfield"><%= loadavg %></span></div>
-		<div class="stat-list">RAM used:<span class="value" id="memused"><%= memused %></span></div>
+		<div class="stat-list">RAM total:<span class="value" id="totalmem"><%= totalmem %></span></div>
+		<div class="stat-list">RAM used:<span class="value" id="usedmem"><%= usedmem %></span></div>
+		<div class="stat-list">RAM free:<span class="value" id="freemem"><%= freemem %></span></div>
+		<div class="stat-list">Uptime:<span class="value" id="uptime"><%= uptime %></span></div>
+		<div class="stat-list">PlugUi Version:<span class="value" id="version"><%= version %></span></div>
 	
+		<div class="stat-list">Release:<span class="value" id="release"><%= release %></span></div>
+		<div class="stat-list">Arch:<span class="value" id="arch"><%= arch %></span></div>
+
 	</script>
+<!--
+		<div class="stat-list">Type:<span class="value" id="type"><%= type %></span></div>
+		<div class="stat-list">Platform:<span class="value" id="platform"><%= platform %></span></div>
+-->
+
 	
 	<script type="text/template" id="user-template">
 		<h5>Users</h5>

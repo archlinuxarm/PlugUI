@@ -22,3 +22,6 @@ build/
 #python/fabric
 
 *.pyc
+
+node_modules
+*~
