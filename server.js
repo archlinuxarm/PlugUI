@@ -17,15 +17,11 @@ var crypto	= require('crypto');
 var spawn = require('child_process').spawn;
 
 //configuration	
-var config = require('yaml-config');
-var settings = config.readConfig("config/app.yaml");	
+var configFile = require('yaml-config');
+var config = configFile.readConfig("config/app.yaml");	
 	
 //pam auth connector
 var unixlib = require('unixlib');
-
-// read version information
-var packageJson = JSON.parse(fs.readFileSync("package.json", "UTF-8"));
-var packageVersion = packageJson.version;
 
 // secret used for cookie encryption, needs to be stored once in the filesystem if it doesnt exist already
 var secret;
@@ -43,6 +39,9 @@ else {
 	}	
 	
 }
+
+// read version information
+var packageJson = JSON.parse(fs.readFileSync("package.json", "UTF-8"));
 
 // create an application 
 var app = module.exports = express.createServer(
@@ -65,9 +64,15 @@ app.configure(function(){
 	app.use(express.methodOverride());
 	app.use(app.router);
 	app.use("/static", express.static(__dirname + '/static'));
-	
+
 	// disable layout
 	app.set("view options", {layout: false});
+	
+	// enable cross routes settings
+	app.set("secret", secret);
+	app.set("config", config);
+	app.set("packageJson", packageJson);
+
 
 	app.register('.html', {
 		compile: function(str, options){
@@ -86,31 +91,12 @@ app.configure('production', function(){
 	app.use(express.errorHandler());
 });
 
+// allow dynamic routes
+require('./routes')(app);
 
 // only one page, all views and transitions handled client-side
 app.get('/', function(req, res){
 	res.render('core.html');
-});
-
-
-// APIs
-app.post('/api/status', function(req,res) {
-	response = {};
-//	console.log("Constructing status response");
-	response.success		= true;
-	response.hostname   = os.hostname();
-	response.type       = os.type();
-	response.arch       = os.arch();
-	response.platform   = os.platform();
-	response.release    = os.release(); 
-	response.freemem		= os.freemem();
-	response.usedmem		= os.totalmem() - os.freemem();
-	response.loadavg		= os.loadavg();
-	response.uptime			= os.uptime();
-	response.totalmem	  = os.totalmem();
-	response.version    = packageVersion;
-//	console.log("Response constructed");
-	res.json(response);
 });
 
 
@@ -511,5 +497,5 @@ elif apicmd == 'download':
 
 
 // GO! :D
-console.log('Starting PlugUI on port: ' +  settings.app.port);
-app.listen(settings.app.port);
+console.log('Starting PlugUI on port: ' +  config.app.port);
+app.listen(config.app.port);
