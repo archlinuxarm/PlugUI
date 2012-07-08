@@ -97,9 +97,15 @@ Simple device information, memory stats, load average and uptime. May add more s
 	Sample: { "success":true, 
 			  "freemem":14774272,
 			  "memused":238837760, 
+			  "totalmem":253612032,
 			  "loadavg":[5.8623046875,5.5654296875,5.21826171875], 
 			  "uptime":498867.340181713, 
-			  "memory_total":253612032 }
+			  "hostname": "athene",
+			  "type": "Linux",
+			  "release": "3.4.4-2-ARCH",
+			  "platform": "linux",
+			  "arch": "arm",
+			  "version": "1.10.001" }
 	
 ###Auth
 
