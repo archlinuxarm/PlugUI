@@ -3,18 +3,14 @@
  * Copyright © 2012 Stephen Oliver <mrsteveman1@gmail.com>
  */
  
-var path	= require('path');
 var os		= require('os');
 var fs		= require('fs');
 var util	= require('util');
 var express = require('express');
-var each	= require('each');
 var mime	= require('mime');
 
 var clientSessions = require('client-sessions');
 var crypto	= require('crypto');
-
-var spawn = require('child_process').spawn;
 
 //configuration	
 var configFile = require('yaml-config');
@@ -73,6 +69,7 @@ app.configure(function(){
 	app.set("config", config);
 	app.set("packageJson", packageJson);
 
+	console.log("basepath: " + config.app.basepath);
 
 	app.register('.html', {
 		compile: function(str, options){
@@ -126,61 +123,6 @@ app.post('/api/auth', function(req, res) {
 	
 });							
 		
-app.post('/api/users', function(req, res){
-	response = {};
-	response.success = false;
-	apicmd = req.body.apicmd;
-	if (apicmd == "list") {
-		fs.readFile('/etc/passwd', 'ascii', function(err,data){
-			if(err) {
-				
-			}
-			else {
-				var users = data.toString().split("\n");
-				var userlist = [];
-				for(i in users) {					
-					var userinfo = users[i].split(":");
-					
-					var user = {};
-					user.username = userinfo[0];
-					user.uid = userinfo[2];
-					user.gid = userinfo[3];
-					user.homedir = userinfo[5];
-					user.shell = userinfo[6];
-					userlist.push(user);
-				}
-				response.success = true;
-				response.userlist = userlist;
-			}
-			res.json(response);
-		});
-	}
-	else if ( apicmd == "create" ) {
-		var username = req.body.username;
-		// note: this is vulnerable to potential attack, 'username; rm -rf /' 
-		var useradd = spawn('useradd', [username]);
-		useradd.on('exit', function (code) {
-			if (code == 0) {
-				response.success = true;
-			}
-			res.json(response);
-		});
-		
-	}
-	else if ( apicmd == "delete" ) {
-		var username = req.body.username;
-		// note: this is vulnerable to potential attack, 'username; rm -rf /' 
-		var userdel = spawn('userdel', [username]);
-		userdel.on('exit', function (code) {
-			if (code == 0) {
-				response.success = true;
-			}
-			res.json(response);
-		});
-	}
-	
-});
-
 //app.post('/api/files/upload', function(req, res) {
 //	req.form.complete(function(err, fields, files){
 //		if (err) {
@@ -200,114 +142,6 @@ app.post('/api/users', function(req, res){
 //	
 //});
 
-app.post('/api/files', function(req, res){
-	console.log("Getting directory list");
-	response = {};
-	response.success = false
-
-
-	apicmd = req.body.apicmd
-
-	if (apicmd == 'directory_list') {
-		dirs = [];
-		rawpath = req.body.path;
-		directory = path.join("/media/", rawpath);
-		if ( directory.match("^/media") ) {
-			response.requestpath = directory;
-			response.validpath = true;
-			each( fs.readdirSync(directory) )
-				.on('item', function(next, element, index) {
-					var file = element;
-					//skip hidden files
-					if ( file.match("^\\.") ) next();
-					currentfile = {};
-					fullpath = path.join(directory,file);
-					if ( fs.statSync(fullpath).isDirectory() ) {
-
-
-						/* frontend model 
-						
-								fullpath: null,
-								directory: null,
-								isFolder: false,
-								name: null,
-								size: null,
-								type: null
-						*/
-						currentfile.type = 'folder';
-						currentfile.fullpath = fullpath;
-						currentfile.directory = directory;
-						currentfile.name = file;
-						currentfile.isFolder = true;
-						
-						currentfile.size = fs.statSync(fullpath).size;
-						//currentfile.date = str(datetime.datetime.fromtimestamp(os.path.getmtime(fullpath)))
-					}
-					else {
-
-						currentfile.type = path.extname(fullpath).substring(1);
-						currentfile.fullpath = fullpath;
-						currentfile.directory = directory;
-						currentfile.name = file;
-						currentfile.isFolder = false;
-
-						currentfile.size = fs.statSync(fullpath).size;
-						//currentfile.date = str(datetime.datetime.fromtimestamp(os.path.getmtime(fullpath)))
-					}
-					dirs.push(currentfile);
-
-					next();
-				})
-				.on('error', function(err) {
-					console.log(err.message);
-				})
-				.on('end', function() {
-
-					dirs.sort(function sortfunction(a, b) {
-						if (a.text < b.text) {
-							return -1;
-						}
-						if (a.text > b.text) {
-							return 1;
-						}
-						return 0;
-					});
-					response.success = true;
-					response.files = dirs;
-					res.json(response);
-				});
-		}
-		else {
-			response.success = false;
-			response.validpath = false;
-			res.json(response);
-		}
-	}
-	else if (apicmd == 'download') {
-			
-		filename = req.body.filename;
-		filepath = req.body.filepath;
-		
-		// this may not be secure yet depending on how easily the filesystem APIs can be abused. 
-		// the old python version explicitly normalized the path and did some other checks, but
-		// it may be that doing just a regex type sandbox works so long as nobody can ../ or symlink (need to check this)
-		if ( filepath.match("^/media") ) {		
-			var mimetype = mime.lookup(filepath);
-			res.writeHead(200, {
-				"Content-Type": mimetype,
-				"Content-disposition": "attachment; filename=" + filename,
-			});
-					
-			var filestream = fs.createReadStream(filepath);
-			filestream.on('data', function(chunk) {
-				res.write(chunk);
-			});
-			filestream.on('end', function() {
-				res.end();
-			});
-		}
-	}
-});
 
 
 

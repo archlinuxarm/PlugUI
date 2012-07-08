@@ -1,6 +1,7 @@
 default:
   app:
     port: 80
+    basepath: '/media'      
 development:
   app:
     port: 8080
